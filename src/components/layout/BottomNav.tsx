@@ -21,20 +21,20 @@ export default function BottomNav() {
   ];
 
   return (
-    <div className="fixed bottom-6 z-50 left-1/2 -translate-x-1/2 flex justify-center w-full px-4 pointer-events-none">
+    <div className="fixed bottom-0 md:bottom-6 z-50 left-0 md:left-1/2 md:-translate-x-1/2 flex justify-center w-full px-2 md:px-4 pointer-events-none pb-4 md:pb-0">
       <nav 
         onMouseLeave={() => setHoveredIndex(null)}
         className="
           pointer-events-auto 
-          bg-[#0F0F0F]/80 backdrop-blur-2xl 
+          bg-[#0F0F0F]/90 backdrop-blur-2xl 
           border border-white/10 
           rounded-2xl md:rounded-full 
-          p-2 
-          shadow-[0_20px_40px_rgba(0,0,0,0.6)] 
+          p-2 pb-4 md:p-2
+          shadow-[0_20px_40px_rgba(0,0,0,0.8)] 
           flex items-end gap-2 
           ring-1 ring-white/5 
           overflow-x-auto no-scrollbar
-          max-w-[calc(100vw-32px)] md:max-w-max
+          w-full md:w-auto md:max-w-max
         "
       >
         {navItems.map((item, index) => {
@@ -57,8 +57,8 @@ export default function BottomNav() {
                   rounded-xl md:rounded-2xl
                   ${isActive ? "bg-white/10 border-alsaha-green/30" : "hover:bg-white/10"}
                   transition-colors duration-300
-                  min-w-[50px] md:min-w-[60px]
-                  h-[50px] md:h-[60px]
+                  min-w-[48px] md:min-w-[60px]
+                  h-[48px] md:h-[60px]
                 `}
                 animate={{
                   scale: isHovered ? 1.1 : 1,
@@ -79,22 +79,17 @@ export default function BottomNav() {
                     strokeWidth={isActive ? 2 : 1.5} 
                     className={`
                         transition-all duration-300 
-                        ${isActive ? "text-alsaha-green drop-shadow-[0_0_8px_rgba(114,191,68,0.5)]" : "text-white/60 group-hover:text-white"}
+                        ${isActive ? "text-alsaha-green drop-shadow-[0_0_8px_rgba(114,191,68,0.5)]" : "text-white/70 group-hover:text-white"}
                     `}
                  />
 
-                 {/* Desktop Label (Tooltip Style) - Only visible on hover/active or simple faint text? 
-                     User Guidelines: "Compact on mobile... MacOS style." 
-                     Let's keep text mostly hidden on desktop and show on hover to be cleaner? 
-                     Or stick to the previous Mobile text style but refined.
-                 */}
               </motion.div>
               
               {/* Text Label - Mobile Optimized */}
               <span className={`
                 flex md:hidden 
                 justify-center mt-1 text-[9px] font-medium 
-                ${isActive ? "text-alsaha-green" : "text-white/40"}
+                ${isActive ? "text-alsaha-green" : "text-white/50"}
               `}>
                 {item.name}
               </span>

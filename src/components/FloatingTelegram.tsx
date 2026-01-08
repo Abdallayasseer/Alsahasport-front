@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function FloatingTelegram() {
   return (
-    <div className="fixed bottom-24 right-6 z-50 group">
+    <div className="fixed bottom-[110px] right-4 md:bottom-8 md:right-8 z-40 group transition-all duration-500">
        {/* Tooltip */}
       <span className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs text-white border border-white/10 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
         Need help? Chat with support
