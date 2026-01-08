@@ -26,12 +26,14 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body
-        className={`${cairo.variable} antialiased pb-32 md:pb-12`}
+        className={`${cairo.variable} antialiased min-h-screen pb-32 md:pb-0 relative overflow-x-hidden`}
       >
         <NoiseOverlay />
         <AuroraBackground />
         <Navbar />
-        {children}
+        <main className="flex-grow">
+          {children}
+        </main>
         <BottomNav />
       </body>
     </html>

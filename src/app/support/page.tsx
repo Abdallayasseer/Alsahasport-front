@@ -23,8 +23,7 @@ export default function SupportPage() {
   ];
 
   return (
-    <main className="min-h-screen pt-28 pb-24 px-4 container mx-auto max-w-5xl">
-      
+<main className="min-h-screen pt-28 pb-[200px] md:pb-32 px-4 container mx-auto max-w-5xl overflow-y-auto">      
       {/* Hero Search */}
       <div className="text-center mb-16 relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-alsaha-green/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
