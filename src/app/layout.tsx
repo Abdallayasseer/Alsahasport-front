@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body
-        className={`${cairo.variable} antialiased pb-32 md:pb-0`}
+        className={`${cairo.variable} antialiased pb-32`}
       >
         <NoiseOverlay />
         <AuroraBackground />

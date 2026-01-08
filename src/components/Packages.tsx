@@ -81,10 +81,10 @@ export default function Packages() {
 
             <Link href={`/subscription?plan=${encodeURIComponent(pkg.name)}`} className="block w-full">
                 <button
-                className={`w-full py-3 rounded-xl font-bold text-sm transition-all ${
+                className={`w-full ${
                     pkg.popular
-                    ? "bg-alsaha-green text-white shadow-lg hover:shadow-[0_0_20px_rgba(114,191,68,0.4)]"
-                    : "bg-white/5 text-white hover:bg-white/10 border border-white/5"
+                    ? "btn-primary shadow-lg hover:shadow-[0_0_30px_rgba(114,191,68,0.5)]"
+                    : "btn-secondary"
                 }`}
                 >
                 اشترك الآن
