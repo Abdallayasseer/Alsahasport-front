@@ -67,11 +67,11 @@ export default function Hero() {
 
           {/* Visual Content (Span 5) - DESKTOP ONLY */}
           <div className="hidden md:flex md:col-span-5 relative justify-center items-center">
-             {/* Glow */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-alsaha-green/20 blur-[120px] rounded-full animate-pulse-slow pointer-events-none" />
+             {/* Glow - Optimized for TBT */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-alsaha-green/20 blur-[100px] rounded-full animate-pulse-slow pointer-events-none will-change-transform" />
 
              {/* Main Image - CSS Animation for Performance */}
-             <div className="relative z-10 w-full max-w-[500px] animate-float will-change-transform">
+             <div className="relative z-10 w-full max-w-[500px] animate-float will-change-transform transform-gpu">
                 <div className="relative aspect-[4/5] w-full">
                     <Image
                     src="/images/green-new.png"

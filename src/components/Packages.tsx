@@ -60,7 +60,7 @@ export default function Packages() {
             }`}
           >
             {pkg.popular && (
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-alsaha-green text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-alsaha-green text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
                 Most Popular
               </span>
             )}
