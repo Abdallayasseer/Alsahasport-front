@@ -74,7 +74,7 @@ export default function BottomNav() {
                     />
                  )}
 
-                 <Icon 
+                  <Icon 
                     size={24} 
                     strokeWidth={isActive ? 2 : 1.5} 
                     className={`
@@ -85,29 +85,21 @@ export default function BottomNav() {
 
               </motion.div>
               
-              {/* Text Label - Mobile Optimized */}
+              {/* Text Label - Visible on Mobile AND Desktop now */}
               <span className={`
-                flex md:hidden 
-                justify-center mt-1 text-[9px] font-medium 
-                ${isActive ? "text-alsaha-green" : "text-white/50"}
+                flex
+                justify-center mt-1 text-[9px] md:text-[10px] font-medium 
+                ${isActive ? "text-alsaha-green" : "text-white/50 group-hover:text-white/70"}
               `}>
                 {item.name}
               </span>
-
-              {/* Desktop Tooltip */}
-              <AnimatePresence>
-                {isHovered && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                        animate={{ opacity: 1, y: -45, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        className="hidden md:block absolute left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 border border-white/10 px-3 py-1 rounded-lg text-xs text-white backdrop-blur-md z-50"
-                    >
-                        {item.name}
-                    </motion.div>
-                )}
-              </AnimatePresence>
             </Link>
+          );
+        })}
+      </nav>
+    </div>
+  );
+}
           );
         })}
       </nav>

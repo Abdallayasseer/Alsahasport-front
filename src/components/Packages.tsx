@@ -65,9 +65,10 @@ export default function Packages() {
               </span>
             )}
 
-            <h3 className="text-xl font-bold text-white mb-2">{pkg.name}</h3>
-            <div className="flex items-baseline gap-1 mb-6">
-              <span className="text-3xl font-black text-white">{pkg.price}</span>
+            <h3 className="text-xl font-bold text-white mb-2 text-center">{pkg.name}</h3>
+            <div className="flex flex-col items-center justify-center mb-6 text-center">
+              <span className="text-4xl font-black text-white">{pkg.price}</span>
+              <span className="text-lg text-text-secondary">{pkg.currency}</span>
             </div>
 
             <ul className="space-y-3 mb-8">
