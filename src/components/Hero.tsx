@@ -78,7 +78,7 @@ export default function Hero() {
              >
                 <div className="relative aspect-[4/5] w-full">
                     <Image
-                    src="/images/اخظر جديد.png"
+                    src="/images/green-new.png"
                     alt="Premium Sports Streaming"
                     fill
                     className="object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700"

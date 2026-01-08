@@ -49,13 +49,13 @@ export default function Packages() {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="flex justify-center gap-6 max-w-6xl mx-auto">
         {packages.map((pkg, idx) => (
           <div
             key={idx}
-            className={`relative p-6 rounded-2xl border transition-all duration-300 group ${
+            className={`relative p-8 md:p-12 rounded-3xl border transition-all duration-300 group w-full md:max-w-lg ${
               pkg.popular
-                ? "bg-white/5 border-alsaha-green/30 shadow-[0_0_30px_rgba(114,191,68,0.1)]"
+                ? "bg-white/5 border-alsaha-green/30 shadow-[0_0_50px_rgba(114,191,68,0.15)] transform hover:scale-[1.02]"
                 : "bg-white/4 border-white/5 hover:border-alsaha-green/30"
             }`}
           >
