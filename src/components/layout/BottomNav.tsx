@@ -47,7 +47,7 @@ export default function BottomNav() {
                  />
               </div>
 
-              <span className={`text-[10px] font-medium tracking-wide transition-all duration-300 ${isActive ? "font-bold text-[#72BF44]" : ""}`}>
+              <span className={`text-[9px] md:text-[10px] font-medium tracking-wide transition-all duration-300 ${isActive ? "font-bold text-[#72BF44]" : ""}`}>
                 {item.name}
               </span>
               

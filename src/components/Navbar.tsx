@@ -25,20 +25,22 @@ export default function Navbar() {
                 pointer-events-auto mx-auto 
                 flex items-center justify-between 
                 rounded-full border border-white/5 
-                backdrop-blur-xl transition-all duration-500
-                ${isScrolled ? "bg-[#050505]/80 shadow-2xl py-2 px-6 w-[98%] ring-1 ring-white/5" : "bg-[#050505]/40 shadow-lg py-3 px-8 w-full hover:bg-[#050505]/60"}
+                rounded-full border border-white/5 
+                md:backdrop-blur-xl transition-all duration-500
+                ${isScrolled ? "bg-[#050505]/95 md:bg-[#050505]/80 shadow-2xl py-2 px-4 md:px-6 w-[95%] md:w-[98%] ring-1 ring-white/5" : "bg-[#050505]/90 md:bg-[#050505]/40 shadow-lg py-2 md:py-3 px-4 md:px-8 w-full hover:bg-[#050505]/60"}
             `}
         >
             
             {/* Logo - Extremely Minimal & Subtle */}
             <Link href="/" className="relative flex items-center group">
-                <div className="relative w-12 h-10 md:w-14 md:h-12 transition-transform group-hover:scale-105">
+                <div className="relative w-9 h-8 md:w-14 md:h-12 transition-transform group-hover:scale-105">
                     <Image 
                         src="/images/ابيض.png" 
                         alt="Alsaha Sport" 
                         fill
                         className="object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]"
                         priority
+                        sizes="(max-width: 768px) 40px, 60px"
                     />
                 </div>
             </Link>
@@ -46,7 +48,7 @@ export default function Navbar() {
             {/* Right Side Actions */}
             <div className="flex items-center gap-4">
                 <Link href="/subscription">
-                    <button className="flex items-center gap-2 px-5 py-2 bg-[#72BF44] text-white text-[13px] font-bold rounded-full shadow-[0_0_15px_rgba(114,191,68,0.3)] hover:shadow-[0_0_20px_rgba(114,191,68,0.5)] transition-all hover:scale-105 active:scale-95 group">
+                    <button className="flex items-center gap-2 px-4 md:px-5 py-2 md:py-2 bg-[#72BF44] text-white text-xs md:text-[13px] font-bold rounded-full shadow-[0_0_15px_rgba(114,191,68,0.3)] hover:shadow-[0_0_20px_rgba(114,191,68,0.5)] transition-all hover:scale-105 active:scale-95 group">
                         <Zap size={14} className="fill-current group-hover:scale-110 transition-transform" />
                         <span>اشترك الآن</span>
                     </button>
