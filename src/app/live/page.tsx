@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
 import VideoPlayer from "@/components/live/VideoPlayer";
 import LiveSidebar from "@/components/live/LiveSidebar";
@@ -57,7 +57,9 @@ export default function LivePage() {
         <div 
             className="hidden lg:block flex-shrink-0 w-[320px]"
         >
-             <LiveSidebar isCollapsed={false} toggleCollapse={() => {}} />
+             <Suspense fallback={<div className="w-full h-full bg-dark-surface/50 rounded-2xl animate-pulse" />}>
+                <LiveSidebar isCollapsed={false} toggleCollapse={() => {}} />
+             </Suspense>
         </div>
 
         {/* Mobile Sidebar Overlay */}
@@ -65,7 +67,9 @@ export default function LivePage() {
             <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsSidebarCollapsed(true)} />
             <div className={`absolute left-0 top-0 bottom-0 w-[85%] max-w-[300px] h-full bg-dark-base transform transition-transform duration-300 z-[70] ${isSidebarCollapsed ? '-translate-x-full' : 'translate-x-0'}`}>
                 <div className="h-full p-2">
-                    <LiveSidebar isCollapsed={false} toggleCollapse={() => setIsSidebarCollapsed(true)} />
+                    <Suspense fallback={<div className="w-full h-full bg-dark-surface/50 rounded-2xl animate-pulse" />}>
+                        <LiveSidebar isCollapsed={false} toggleCollapse={() => setIsSidebarCollapsed(true)} />
+                    </Suspense>
                 </div>
             </div>
         </div>
