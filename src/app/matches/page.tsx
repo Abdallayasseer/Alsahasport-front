@@ -44,20 +44,20 @@ export default function MatchesPage() {
                             transition={{ delay: idx * 0.05 }}
                             className="flex items-center justify-between p-4 bg-white/4 border border-white/5 rounded-xl hover:border-alsaha-green/20 hover:bg-white/5 transition-all group"
                         >
-                             <div className="flex items-center gap-4 w-1/3">
+                             <div className="flex items-center gap-2 md:gap-4 shrink-0 w-[60px] md:w-auto justify-start">
                                  <span className="text-white font-bold text-sm md:text-base">{match.time}</span>
                                  <span className="text-[10px] text-text-secondary bg-white/5 px-2 py-0.5 rounded border border-white/5 hidden md:inline-block truncate max-w-[80px]">{match.league}</span>
                              </div>
 
-                             <div className="flex-1 flex justify-center items-center gap-4 md:gap-8">
-                                 <span className="text-white font-bold text-sm md:text-base w-1/3 text-right truncate">{match.home}</span>
-                                 <span className="text-text-secondary text-xs shrink-0">VS</span>
-                                 <span className="text-white font-bold text-sm md:text-base w-1/3 text-left truncate">{match.away}</span>
+                             <div className="flex-1 flex justify-center items-center gap-2 md:gap-8 px-2">
+                                 <span className="text-white font-bold text-xs md:text-base w-[45%] text-left md:text-right truncate leading-tight">{match.home}</span>
+                                 <span className="text-alsaha-green/50 text-[10px] md:text-xs shrink-0 font-mono">VS</span>
+                                 <span className="text-white font-bold text-xs md:text-base w-[45%] text-right md:text-left truncate leading-tight">{match.away}</span>
                              </div>
 
-                             <div className="w-1/3 flex justify-end">
+                             <div className="shrink-0 w-auto flex justify-end">
                                  <Link href="/subscription">
-                                     <button className="text-xs text-alsaha-green border border-alsaha-green/20 px-3 py-1.5 rounded-full hover:bg-alsaha-green hover:text-white transition-all opacity-60 group-hover:opacity-100 flex items-center gap-1 cursor-pointer">
+                                     <button className="text-[10px] md:text-xs text-alsaha-green border border-alsaha-green/20 px-2 md:px-3 py-1 md:py-1.5 rounded-full hover:bg-alsaha-green hover:text-white transition-all opacity-80 md:opacity-60 group-hover:opacity-100 flex items-center gap-1 cursor-pointer whitespace-nowrap">
                                          <span>تذكير</span>
                                      </button>
                                  </Link>
