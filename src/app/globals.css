@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --alsaha-green: #72bf44;
+  --dark-base: #050505;
+  --dark-surface: #0f0f0f;
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-alsaha-green: var(--alsaha-green);
+  --color-dark-base: var(--dark-base);
+  --color-dark-surface: var(--dark-surface);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-cairo: var(--font-cairo);
+
+  /* Extend font family to use Cairo by default if we want, or just verify class usage */
+  --font-sans: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--dark-base);
+  color: var(--text-primary);
+  font-family: var(--font-cairo);
+  overflow-x: hidden;
+  /* Background handled by AuroraBackground component */
+}
+
+/* Custom Utilities */
+.glass {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(26, 26, 26, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(26, 26, 26, 0.7);
+  border-color: rgba(114, 191, 68, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(114, 191, 68, 0.4);
+}
+
+.section-padding {
+  @apply py-24 md:py-32;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--alsaha-green);
 }
