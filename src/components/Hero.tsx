@@ -16,15 +16,15 @@ export default function Hero() {
           
           {/* Text Content */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
             className="text-center md:text-right order-1 md:order-1 col-span-1 md:col-span-1 flex flex-col items-center md:items-start pt-12 md:pt-0"
           >
             {/* New Professional Badge (Relocated) */}
             <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#72BF44]/10 border border-[#72BF44]/20 text-[#72BF44] text-[10px] md:text-xs font-bold mb-4 md:mb-6 backdrop-blur-md shadow-[0_0_20px_rgba(114,191,68,0.1)]"
             >
