@@ -16,7 +16,7 @@ const schedule = [
 
 export default function MatchesPage() {
   return (
-    <main className="min-h-screen pt-28 pb-20 px-4 container mx-auto max-w-4xl">
+    <main className="min-h-screen pt-28 pb-32 px-4 container mx-auto max-w-4xl">
       <div className="mb-10 text-center">
          <h1 className="text-3xl md:text-5xl font-black text-white mb-2 flex items-center justify-center gap-3">
              <CalendarDays className="text-alsaha-green" size={32} />

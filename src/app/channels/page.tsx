@@ -26,7 +26,7 @@ export default function ChannelsPage() {
     : channels.filter(c => c.category === activeCategory);
 
   return (
-    <main className="min-h-screen pt-28 pb-24 px-6 container mx-auto mb-16">
+    <main className="min-h-screen pt-28 pb-32 px-6 container mx-auto">
       {/* Header - Compact & Clean */}
       <div className="flex flex-col md:flex-row items-end justify-between mb-10 gap-6 border-b border-white/5 pb-6">
         <div>

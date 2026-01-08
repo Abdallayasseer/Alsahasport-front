@@ -19,8 +19,8 @@ export default function BottomNav() {
   ];
 
   return (
-    <div className="fixed bottom-4 md:bottom-8 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
-      <nav className="pointer-events-auto bg-[#0F0F0F]/90 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-full px-2 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center justify-between md:justify-center gap-1 md:gap-6 w-full md:w-auto max-w-lg md:max-w-none ring-1 ring-white/5">
+    <div className="fixed bottom-4 md:bottom-8 left-0 right-0 z-50 flex justify-center pointer-events-none px-2 md:px-4">
+      <nav className="pointer-events-auto bg-[#0F0F0F]/90 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-full px-1 py-2 md:px-2 md:py-3 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center justify-around md:justify-center gap-0 md:gap-6 w-full md:w-auto max-w-lg md:max-w-none ring-1 ring-white/5 overflow-x-auto no-scrollbar">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.Icon;

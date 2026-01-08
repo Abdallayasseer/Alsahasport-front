@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function NewsPage() {
   return (
-    <main className="min-h-screen pt-28 pb-20 px-4 container mx-auto">
+    <main className="min-h-screen pt-28 pb-32 px-4 container mx-auto">
       <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-6">
         <h1 className="text-3xl md:text-5xl font-black text-white">آخر الأخبار</h1>
         <button className="text-sm text-alsaha-green hover:underline">عرض الكل</button>
