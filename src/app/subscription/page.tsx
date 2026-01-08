@@ -111,14 +111,14 @@ export default function SubscriptionPage() {
                     <div>
                         <p className="text-xs text-text-secondary mb-1">سعر الاشتراك</p>
                         <div className="flex items-baseline gap-1">
-                            <span className="text-2xl font-bold text-white">30</span>
-                            <span className="text-sm text-alsaha-green">ر.س</span>
+                            <span className="text-2xl font-bold text-white">5000</span>
+                            <span className="text-sm text-alsaha-green">د.ع</span>
                         </div>
-                        <p className="text-[10px] text-white/40 mt-1">جهاز واحد فقط</p>
+                        <p className="text-[10px] text-white/40 mt-1">شامل كل القنوات</p>
                     </div>
                     <div className="text-left">
                         <span className="inline-block px-3 py-1 bg-alsaha-green/10 border border-alsaha-green/20 rounded-full text-[10px] text-alsaha-green font-bold">
-                            ✨ اشتراك لمدة شهر
+                            ✨ باقة مميزة
                         </span>
                     </div>
                 </div>
@@ -139,7 +139,7 @@ export default function SubscriptionPage() {
                         <Send size={16} className="group-hover/tg:-translate-y-0.5 transition-transform" />
                         <span>تيليجرام</span>
                     </Link>
-                    <Link href="#" className="flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#833AB4]/10 via-[#FD1D1D]/10 to-[#FCA761]/10 border border-white/5 text-white/80 hover:text-white hover:border-white/20 rounded-xl transition-all text-sm font-medium group/ig">
+                    <Link href="https://www.instagram.com/alsahasports?igsh=OTU0cWFhYnExbDZu" target="_blank" className="flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#833AB4]/10 via-[#FD1D1D]/10 to-[#FCA761]/10 border border-white/5 text-white/80 hover:text-white hover:border-white/20 rounded-xl transition-all text-sm font-medium group/ig">
                         <Instagram size={16} className="group-hover/ig:-translate-y-0.5 transition-transform" />
                         <span>انستقرام</span>
                     </Link>
