@@ -99,7 +99,7 @@ export default function BottomNav() {
                 flex justify-center mt-1 
                 text-[10px] md:text-[11px] font-medium tracking-wide
                 transition-colors duration-300
-                ${isActive ? "text-alsaha-green" : "text-white/40 group-hover:text-white/70"}
+                ${isActive ? "text-alsaha-green" : "text-white/60 group-hover:text-white/90"}
               `}>
                 {item.name}
               </span>

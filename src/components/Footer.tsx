@@ -40,10 +40,10 @@ export default function Footer() {
           <div className="col-span-1">
             <h5 className="text-white font-bold mb-4">تابعنا</h5>
             <div className="flex gap-4">
-              <Link href="https://www.instagram.com/alsahasports?igsh=OTU0cWFhYnExbDZu" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all cursor-pointer">
+              <Link href="https://www.instagram.com/alsahasports?igsh=OTU0cWFhYnExbDZu" target="_blank" aria-label="Instagram" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all cursor-pointer">
                 <Instagram size={20} />
               </Link>
-              <Link href="https://t.me/fareedsaad" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all cursor-pointer">
+              <Link href="https://t.me/fareedsaad" target="_blank" aria-label="Telegram" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all cursor-pointer">
                 <Send size={20} />
               </Link>
             </div>

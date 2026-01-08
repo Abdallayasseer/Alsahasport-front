@@ -14,6 +14,7 @@ export default function FloatingTelegram() {
       <Link
         href="https://t.me/fareedsaad"
         target="_blank"
+        aria-label="Chat with Support on Telegram"
         className="relative flex items-center justify-center w-12 h-12 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-white shadow-lg transition-all duration-300 hover:bg-[#229ED9] hover:border-[#229ED9] hover:shadow-[0_0_20px_rgba(34,158,217,0.5)] active:scale-95"
       >
         <MessageCircle size={20} className="fill-current" />

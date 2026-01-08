@@ -71,7 +71,10 @@ export default function Navbar() {
                       <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                   </button>
                   {/* Mobile Compact Button */}
-                   <button className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-alsaha-green text-black shadow-lg shadow-alsaha-green/20 hover:scale-105 transition-transform">
+                   <button 
+                      className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-alsaha-green text-black shadow-lg shadow-alsaha-green/20 hover:scale-105 transition-transform"
+                      aria-label="Subscription"
+                   >
                       <Zap size={20} className="fill-black" />
                   </button>
               </Link>

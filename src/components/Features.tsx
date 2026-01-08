@@ -48,7 +48,7 @@ export default function Features() {
               <div className="p-3 bg-white/5 rounded-xl group-hover:bg-alsaha-green/20 transition-colors">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-white">{feature.title}</h3>
+              <h2 className="text-xl font-bold text-white">{feature.title}</h2>
               <p className="text-text-secondary leading-relaxed">
                 {feature.desc}
               </p>

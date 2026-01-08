@@ -70,12 +70,8 @@ export default function Hero() {
              {/* Glow */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-alsaha-green/20 blur-[120px] rounded-full animate-pulse-slow pointer-events-none" />
 
-             {/* Main Image */}
-             <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                className="relative z-10 w-full max-w-[500px]"
-             >
+             {/* Main Image - CSS Animation for Performance */}
+             <div className="relative z-10 w-full max-w-[500px] animate-float will-change-transform">
                 <div className="relative aspect-[4/5] w-full">
                     <Image
                     src="/images/green-new.png"
@@ -83,11 +79,12 @@ export default function Hero() {
                     fill
                     className="object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.5)] transform hover:scale-105 transition-transform duration-700"
                     priority
+                    loading="eager"
                     sizes="(max-width: 768px) 0vw, 50vw"
                     quality={90}
                     />
                 </div>
-             </motion.div>
+             </div>
           </div>
 
         </div>
