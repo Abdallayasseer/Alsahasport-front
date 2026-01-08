@@ -9,44 +9,59 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   const navItems = [
-    { name: "الرئيسية", href: "/", icon: <Home size={20} /> },
-    { name: "القنوات", href: "/channels", icon: <Tv size={20} /> },
-    { name: "LIVE", href: "/live", icon: <Radio size={20} /> },
-    { name: "المباريات", href: "/matches", icon: <CalendarDays size={20} /> },
-    { name: "الأخبار", href: "/news", icon: <Newspaper size={20} /> },
-    { name: "البحث", href: "/search", icon: <Search size={20} /> },
-    { name: "الدعم", href: "/support", icon: <HelpCircle size={20} /> },
+    { name: "الرئيسية", href: "/", Icon: Home },
+    { name: "القنوات", href: "/channels", Icon: Tv },
+    { name: "LIVE", href: "/live", Icon: Radio },
+    { name: "المباريات", href: "/matches", Icon: CalendarDays },
+    { name: "الأخبار", href: "/news", Icon: Newspaper },
+    { name: "البحث", href: "/search", Icon: Search },
+    { name: "الدعم", href: "/support", Icon: HelpCircle },
   ];
 
   return (
-    <div className="md:hidden fixed bottom-6 left-4 right-4 z-50 flex justify-center pointer-events-none">
-      <div className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-full px-2 py-3 shadow-2xl flex items-center gap-1 pointer-events-auto overflow-x-auto max-w-full no-scrollbar">
+    <div className="fixed bottom-4 md:bottom-8 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
+      <nav className="pointer-events-auto bg-[#0F0F0F]/90 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-full px-2 py-3 shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center justify-between md:justify-center gap-1 md:gap-6 w-full md:w-auto max-w-lg md:max-w-none ring-1 ring-white/5">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
+          const Icon = item.Icon;
+          
           return (
             <Link
-              key={item.name}
+              key={item.href}
               href={item.href}
-              className={`relative flex flex-col items-center justify-center min-w-[60px] h-12 rounded-2xl transition-all duration-300 ${
-                isActive ? "text-white" : "text-text-secondary hover:text-white"
+              className={`relative flex flex-col items-center justify-center gap-1.5 min-w-[48px] md:min-w-[64px] py-1 rounded-xl transition-all duration-300 group cursor-pointer ${
+                isActive ? "text-[#72BF44]" : "text-white/50 hover:text-white"
               }`}
             >
-              {/* Icon */}
-              <div className={`relative z-10 ${isActive ? "text-alsaha-green drop-shadow-[0_0_8px_rgba(114,191,68,0.6)]" : ""}`}>
-                {item.icon}
+              <div className={`relative transition-all duration-300 ${isActive ? "-translate-y-1 scale-110" : "group-hover:-translate-y-0.5"}`}>
+                 {/* Glow behind icon */}
+                 {isActive && (
+                    <div className="absolute inset-0 bg-[#72BF44] blur-[12px] opacity-40 rounded-full" />
+                 )}
+                 <Icon 
+                    size={24} 
+                    strokeWidth={isActive ? 2.5 : 1.5} 
+                    className={`relative z-10 transition-all duration-300 ${isActive ? "drop-shadow-[0_0_8px_rgba(114,191,68,0.5)]" : ""}`}
+                    fill={isActive ? "currentColor" : "none"}
+                    fillOpacity={isActive ? 0.2 : 0}
+                 />
               </div>
+
+              <span className={`text-[10px] font-medium tracking-wide transition-all duration-300 ${isActive ? "font-bold text-[#72BF44]" : ""}`}>
+                {item.name}
+              </span>
               
-              {/* Active Indicator (Dot) */}
+              {/* Optional Active Indicator Dot */}
               {isActive && (
-                <motion.div
-                  layoutId="bottom-nav-dot"
-                  className="absolute -bottom-1 w-1 h-1 bg-alsaha-green rounded-full shadow-[0_0_5px_#72BF44]"
-                />
+                 <motion.div 
+                    layoutId="nav-pill"
+                    className="absolute -bottom-2 w-1 h-1 bg-[#72BF44] rounded-full shadow-[0_0_5px_#72BF44]"
+                 />
               )}
             </Link>
           );
         })}
-      </div>
+      </nav>
     </div>
   );
 }

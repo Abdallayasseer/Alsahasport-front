@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Plus, HelpCircle, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SupportPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -48,10 +49,12 @@ export default function SupportPage() {
               <HelpCircle className="mx-auto text-alsaha-green mb-4" size={48} />
               <h3 className="text-2xl font-bold text-white mb-2">لم تجد إجابتك؟</h3>
               <p className="text-white/70 mb-6">فريق الدعم المباشر جاهز لمساعدتك</p>
-              <button className="bg-alsaha-green text-white font-bold px-8 py-3 rounded-xl shadow-lg hover:bg-[#65aa3c] transition-colors flex items-center gap-2 mx-auto">
-                  <MessageCircle size={20} />
-                  <span>تحدث معنا</span>
-              </button>
+              <Link href="https://t.me/fareedsaad" target="_blank">
+                  <button className="bg-alsaha-green text-white font-bold px-8 py-3 rounded-xl shadow-lg hover:bg-[#65aa3c] transition-colors flex items-center gap-2 mx-auto">
+                      <MessageCircle size={20} />
+                      <span>تحدث معنا</span>
+                  </button>
+              </Link>
           </div>
       </div>
     </main>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function TrustSection() {
   return (
@@ -38,9 +39,11 @@ export default function TrustSection() {
                <h3 className="text-3xl md:text-5xl font-black text-white mb-6">
                  جاهز لبدء التجربة؟
                </h3>
-               <button className="px-10 py-4 bg-alsaha-green text-white font-bold rounded-xl shadow-[0_10px_40px_rgba(114,191,68,0.3)] hover:scale-105 transition-all text-xl">
-                 اشترك الآن
-               </button>
+               <Link href="/subscription">
+                 <button className="px-10 py-4 bg-alsaha-green text-white font-bold rounded-xl shadow-[0_10px_40px_rgba(114,191,68,0.3)] hover:scale-105 transition-all text-xl cursor-pointer">
+                   اشترك الآن
+                 </button>
+               </Link>
              </div>
           </div>
         </motion.div>

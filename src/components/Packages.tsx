@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { CheckCircle } from "lucide-react";
+import Link from "next/link";
 
 const packages = [
   {
@@ -13,7 +14,7 @@ const packages = [
     popular: false,
   },
   {
-    name: "اشتراك سنة 🔥",
+    name: "اشتراك سنة",
     price: "150",
     currency: "ر.س",
     period: "/ سنة",
@@ -57,51 +58,50 @@ export default function Packages() {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
-          {packages.map((pkg, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className={`relative rounded-3xl p-8 border transition-all duration-300 ${
-                pkg.popular 
-                  ? "bg-gradient-to-b from-white/10 to-white/5 border-alsaha-green shadow-[0_0_30px_rgba(114,191,68,0.2)] scale-105 z-10" 
-                  : "bg-white/5 backdrop-blur-xl border-white/5 hover:border-alsaha-green hover:shadow-[0_0_20px_rgba(114,191,68,0.3)] hover:scale-105"
-              } flex flex-col h-full`}
-            >
-              {pkg.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-alsaha-green text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">
-                  الأكثر طلبًا
-                </div>
-              )}
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {packages.map((pkg, idx) => (
+          <div
+            key={idx}
+            className={`relative p-6 rounded-2xl border transition-all duration-300 group ${
+              pkg.popular
+                ? "bg-white/5 border-alsaha-green/30 shadow-[0_0_30px_rgba(114,191,68,0.1)]"
+                : "bg-white/4 border-white/5 hover:border-alsaha-green/30"
+            }`}
+          >
+            {pkg.popular && (
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-alsaha-green text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                Most Popular
+              </span>
+            )}
 
-              <h3 className="text-2xl font-bold text-white mb-2">{pkg.name}</h3>
-              <div className="mb-6">
-                <span className="text-4xl font-black text-white">{pkg.price}</span>
-                <span className="text-sm text-text-secondary mr-2">{pkg.currency} {pkg.period}</span>
-              </div>
+            <h3 className="text-xl font-bold text-white mb-2">{pkg.name}</h3>
+            <div className="flex items-baseline gap-1 mb-6">
+              <span className="text-3xl font-black text-white">{pkg.price}</span>
+            </div>
 
-              <ul className="space-y-4 mb-8 flex-grow">
-                {pkg.features.map((feat, i) => (
-                  <li key={i} className="flex items-center gap-3 text-text-secondary text-sm">
-                    <Check className="text-alsaha-green flex-shrink-0" size={18} />
-                    <span>{feat}</span>
-                  </li>
-                ))}
-              </ul>
+            <ul className="space-y-3 mb-8">
+              {pkg.features.map((feature, i) => (
+                <li key={i} className="flex items-center gap-3 text-sm text-text-secondary group-hover:text-white/90 transition-colors">
+                  <CheckCircle size={16} className={`flex-shrink-0 ${pkg.popular ? "text-alsaha-green" : "text-white/20 group-hover:text-alsaha-green transition-colors"}`} />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
 
-              <button className={`w-full py-4 rounded-xl font-bold transition-all ${
-                pkg.popular 
-                  ? "bg-alsaha-green text-white hover:shadow-lg hover:bg-[#65aa3c]" 
-                  : "bg-white/5 text-white hover:bg-white/10"
-              }`}>
+            <Link href={`/subscription?plan=${encodeURIComponent(pkg.name)}`} className="block w-full">
+                <button
+                className={`w-full py-3 rounded-xl font-bold text-sm transition-all ${
+                    pkg.popular
+                    ? "bg-alsaha-green text-white shadow-lg hover:shadow-[0_0_20px_rgba(114,191,68,0.4)]"
+                    : "bg-white/5 text-white hover:bg-white/10 border border-white/5"
+                }`}
+                >
                 اشترك الآن
-              </button>
-            </motion.div>
-          ))}
-        </div>
+                </button>
+            </Link>
+          </div>
+        ))}
+      </div>
       </div>
     </section>
   );

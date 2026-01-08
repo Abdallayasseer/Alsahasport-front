@@ -20,9 +20,9 @@ export default function Footer() {
           <div className="col-span-1">
             <h5 className="text-white font-bold mb-4">روابط سريعة</h5>
             <ul className="space-y-2 text-sm text-text-secondary">
-              <li><Link href="#hero" className="hover:text-alsaha-green transition-colors">الرئيسية</Link></li>
-              <li><Link href="#packages" className="hover:text-alsaha-green transition-colors">الباقات</Link></li>
-              <li><Link href="#how-it-works" className="hover:text-alsaha-green transition-colors">كيف يعمل</Link></li>
+              <li><Link href="/" className="hover:text-alsaha-green transition-colors cursor-pointer">الرئيسية</Link></li>
+              <li><Link href="/subscription" className="hover:text-alsaha-green transition-colors cursor-pointer">الباقات</Link></li>
+              <li><Link href="/how-it-works" className="hover:text-alsaha-green transition-colors cursor-pointer">كيف يعمل</Link></li>
             </ul>
           </div>
 
@@ -30,9 +30,9 @@ export default function Footer() {
           <div className="col-span-1">
             <h5 className="text-white font-bold mb-4">الدعم والمساعدة</h5>
             <ul className="space-y-2 text-sm text-text-secondary">
-              <li><Link href="#" className="hover:text-alsaha-green transition-colors">اتصل بنا</Link></li>
-              <li><Link href="#" className="hover:text-alsaha-green transition-colors">الأسئلة الشائعة</Link></li>
-              <li><Link href="#" className="hover:text-alsaha-green transition-colors">شروط الخدمة</Link></li>
+              <li><Link href="/support" className="hover:text-alsaha-green transition-colors cursor-pointer">اتصل بنا</Link></li>
+              <li><Link href="/support" className="hover:text-alsaha-green transition-colors cursor-pointer">الأسئلة الشائعة</Link></li>
+              <li><Link href="/support" className="hover:text-alsaha-green transition-colors cursor-pointer">شروط الخدمة</Link></li>
             </ul>
           </div>
 
@@ -40,22 +40,21 @@ export default function Footer() {
           <div className="col-span-1">
             <h5 className="text-white font-bold mb-4">تابعنا</h5>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all">
+              <Link href="https://twitter.com" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all cursor-pointer">
                 <Twitter size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all">
+              </Link>
+              <Link href="https://instagram.com" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all cursor-pointer">
                 <Instagram size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all">
+              </Link>
+              <Link href="https://t.me/fareedsaad" target="_blank" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-alsaha-green hover:text-white transition-all cursor-pointer">
                 <Send size={20} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="border-t border-white/5 pt-8 text-center text-text-secondary text-sm flex flex-col md:flex-row justify-between items-center gap-4">
           <p>© {new Date().getFullYear()} الساحة سبورت. جميع الحقوق محفوظة.</p>
-          <p>Made with ❤️ for Sports Fans</p>
         </div>
       </div>
     </footer>

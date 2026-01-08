@@ -1,36 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Send } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function FloatingTelegram() {
   return (
-    <Link 
-      href="https://t.me/@fareedsaad" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50"
-    >
-      <motion.div
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        animate={{ 
-          boxShadow: [
-            "0 0 0 0 rgba(34, 158, 217, 0.7)",
-            "0 0 0 20px rgba(34, 158, 217, 0)",
-          ]
-        }}
-        transition={{ 
-          boxShadow: {
-            duration: 1.5,
-            repeat: Infinity
-          }
-        }}
-        className="w-16 h-16 bg-[#229ED9] rounded-full flex items-center justify-center text-white shadow-2xl cursor-pointer"
+    <div className="fixed bottom-24 right-6 z-50 group">
+       {/* Tooltip */}
+      <span className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs text-white border border-white/10 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        Need help? Chat with support
+      </span>
+
+      <Link
+        href="https://t.me/fareedsaad"
+        target="_blank"
+        className="relative flex items-center justify-center w-12 h-12 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-white shadow-lg transition-all duration-300 hover:bg-[#229ED9] hover:border-[#229ED9] hover:shadow-[0_0_20px_rgba(34,158,217,0.5)] active:scale-95"
       >
-        <Send size={32} className="-ml-1 mt-1" />
-      </motion.div>
-    </Link>
+        <MessageCircle size={20} className="fill-current" />
+        
+        {/* Subtle Ring (Always there but faint) */}
+        <div className="absolute inset-0 rounded-full border border-alsaha-green/30 animate-[pulse_4s_infinite]" />
+      </Link>
+    </div>
   );
 }

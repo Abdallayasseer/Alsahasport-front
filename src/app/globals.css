@@ -26,8 +26,17 @@ body {
   background-color: var(--dark-base);
   color: var(--text-primary);
   font-family: var(--font-cairo);
+  font-weight: 400;
+  line-height: 1.6;
   overflow-x: hidden;
   /* Background handled by AuroraBackground component */
+}
+
+/* Global Interaction Rules */
+button,
+[role="button"],
+a {
+  cursor: pointer !important;
 }
 
 /* Custom Utilities */

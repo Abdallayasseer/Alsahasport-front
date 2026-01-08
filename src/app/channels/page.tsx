@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Play, Star } from "lucide-react";
+import { Play } from "lucide-react";
 
 const channels = [
   { id: 1, name: "beIN Sports 1", category: "Sports", image: "/images/اخظر.png" }, // Using placeholders
@@ -25,24 +26,24 @@ export default function ChannelsPage() {
     : channels.filter(c => c.category === activeCategory);
 
   return (
-    <main className="min-h-screen pt-32 pb-24 px-6 container mx-auto">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
+    <main className="min-h-screen pt-28 pb-24 px-6 container mx-auto mb-16">
+      {/* Header - Compact & Clean */}
+      <div className="flex flex-col md:flex-row items-end justify-between mb-10 gap-6 border-b border-white/5 pb-6">
         <div>
-           <h1 className="text-4xl md:text-5xl font-black text-white mb-2">القنوات</h1>
-           <p className="text-text-secondary">اكتشف عالمًا من الترفيه اللامتناهي</p>
+           <h1 className="text-3xl md:text-4xl font-black text-white mb-2">القنوات</h1>
+           <p className="text-text-secondary text-sm">اكتشف عالمًا من الترفيه اللامتناهي</p>
         </div>
         
-        {/* Filters */}
-        <div className="flex items-center gap-2 p-1 bg-white/5 rounded-full backdrop-blur-md border border-white/5">
+        {/* Filters - Compact Pills */}
+        <div className="flex items-center gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${
+              className={`px-5 py-2 rounded-full text-xs font-bold transition-all border ${
                 activeCategory === cat 
-                  ? "bg-alsaha-green text-white shadow-[0_0_15px_rgba(114,191,68,0.4)]" 
-                  : "text-text-secondary hover:text-white"
+                  ? "bg-alsaha-green text-white border-alsaha-green shadow-[0_0_15px_rgba(114,191,68,0.3)]" 
+                  : "bg-white/5 border-white/5 text-text-secondary hover:text-white hover:bg-white/10"
               }`}
             >
               {cat === "All" ? "الكل" : cat}
@@ -51,31 +52,29 @@ export default function ChannelsPage() {
         </div>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      {/* Grid - Tighter & Cleaner */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {filteredChannels.map((channel, idx) => (
+            <Link key={channel.id} href="/subscription" className="block">
             <motion.div
-              key={channel.id}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: idx * 0.05 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="group relative aspect-video bg-white/5 border border-white/5 rounded-2xl overflow-hidden cursor-pointer backdrop-blur-sm hover:border-alsaha-green/50 hover:shadow-[0_0_30px_rgba(114,191,68,0.2)] transition-all"
+              transition={{ delay: idx * 0.03 }}
+              whileHover={{ y: -4 }}
+              className="group relative aspect-video bg-white/4 border border-white/5 rounded-xl overflow-hidden cursor-pointer backdrop-blur-sm hover:border-alsaha-green/30 transition-all"
             >
-                {/* Channel Preview Placeholder */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent z-0" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 
-                <div className="absolute inset-0 flex items-center justify-center z-10 text-white font-bold text-lg opacity-50 group-hover:opacity-100 transition-opacity">
-                    {/* Placeholder Icon */}
-                    <span className="text-2xl">{channel.name.charAt(0)}</span>
+                <div className="absolute inset-0 flex items-center justify-center z-10 text-white font-bold text-xl opacity-40 group-hover:opacity-100 transition-opacity scale-90 group-hover:scale-100 duration-300">
+                    {channel.name.charAt(0)}
                 </div>
 
-                {/* Info Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-20 flex justify-between items-center">
-                    <span className="text-white text-sm font-bold">{channel.name}</span>
-                    <Play size={16} className="text-alsaha-green fill-alsaha-green" />
+                <div className="absolute bottom-3 right-3 left-3 z-20 flex justify-between items-center">
+                    <span className="text-white text-xs font-bold truncate">{channel.name}</span>
+                    <Play size={12} className="text-alsaha-green fill-alsaha-green opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0" />
                 </div>
             </motion.div>
+            </Link>
         ))}
       </div>
     </main>
