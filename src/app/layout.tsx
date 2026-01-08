@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 };
 
 import BottomNav from "@/components/layout/BottomNav";
+import Navbar from "@/components/Navbar";
 
 export default function RootLayout({
   children,
@@ -29,8 +30,9 @@ export default function RootLayout({
       >
         <NoiseOverlay />
         <AuroraBackground />
-        <BottomNav />
+        <Navbar />
         {children}
+        <BottomNav />
       </body>
     </html>
   );

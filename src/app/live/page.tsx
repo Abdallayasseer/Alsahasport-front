@@ -1,80 +1,82 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Clock, Trophy } from "lucide-react";
-
-// Mock Live Matches
-const liveMatches = [
-  { id: 1, home: "Real Madrid", away: "Barcelona", league: "La Liga", time: "LIVE", score: "2 - 1", minute: "78'" },
-  { id: 2, home: "Liverpool", away: "Man City", league: "Premier League", time: "LIVE", score: "0 - 0", minute: "12'" },
-  { id: 3, home: "Al Hilal", away: "Al Nassr", league: "SPL", time: "LIVE", score: "1 - 1", minute: "45+2'" },
-];
+import VideoPlayer from "@/components/live/VideoPlayer";
+import LiveSidebar from "@/components/live/LiveSidebar";
 
 export default function LivePage() {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+
   return (
-    <main className="min-h-screen pt-28 pb-20 px-4 container mx-auto relative overflow-hidden max-w-5xl">
-      {/* Background Ambience (Subtle Arena Lights) */}
-      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-red-600/5 blur-[100px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-600/5 blur-[100px] pointer-events-none rounded-full" />
+    <main className="min-h-screen pt-24 pb-32 md:pb-8 px-4 container mx-auto relative overflow-x-hidden w-full max-w-[1600px]">
+      
+      {/* Layout Grid - using dvh for better mobile height */}
+      <div className="flex flex-col lg:flex-row gap-6 h-[calc(100dvh-180px)] min-h-[500px]">
+        
+        {/* Main Player Area */}
+        <div className="flex-1 flex flex-col gap-4">
+             {/* Mobile Sidebar Toggle (Above Video) */}
+             <div className="lg:hidden flex justify-end w-full">
+                <button 
+                    onClick={() => setIsSidebarCollapsed(false)}
+                    className={`p-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-alsaha-green hover:text-black transition-all ${!isSidebarCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'} flex items-center gap-2`}
+                >
+                    <span className="text-sm font-bold">القنوات</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                </button>
+             </div>
 
-      <div className="flex items-center gap-4 mb-8">
-        <h1 className="text-3xl md:text-5xl font-black text-white">مباشر</h1>
-        <div className="flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-full">
-            <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-red-500 text-[10px] font-bold tracking-wider">LIVE NOW</span>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-4">
-        {liveMatches.map((match, idx) => (
-            <motion.div
-                key={match.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className="group relative bg-white/4 border border-white/5 rounded-xl p-5 backdrop-blur-md hover:border-alsaha-green/20 transition-all hover:bg-white/5"
-            >
-                {/* League Badge - Subtle */}
-                <div className="absolute top-4 left-4 flex items-center gap-2 text-text-secondary text-xs opacity-60">
-                    <Trophy size={12} />
-                    <span>{match.league}</span>
-                </div>
-
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                    {/* Home Team */}
-                    <div className="flex-1 text-center md:text-right order-1 w-full md:w-auto">
-                        <h3 className="text-lg md:text-xl font-bold text-white">{match.home}</h3>
-                    </div>
-
-                    {/* Score Board - Compact */}
-                    <div className="order-2 flex flex-col items-center min-w-[100px]">
-                        <div className="text-3xl md:text-4xl font-black tracking-widest text-white mb-1 font-mono">
-                            {match.score}
-                        </div>
-                        <div className="flex items-center gap-1 text-alsaha-green font-bold text-[10px] bg-alsaha-green/5 px-2 py-0.5 rounded-full">
-                            <Clock size={10} />
-                            <span>{match.minute}</span>
-                        </div>
-                    </div>
-
-                    {/* Away Team */}
-                    <div className="flex-1 text-center md:text-left order-3 w-full md:w-auto">
-                        <h3 className="text-lg md:text-xl font-bold text-white">{match.away}</h3>
-                    </div>
-                </div>
-                
-                {/* Quick Action - Clean & Instant */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 rounded-xl backdrop-blur-[2px] z-10">
-                     <Link href="/subscription">
-                        <button className="px-6 py-2 bg-alsaha-green text-white text-sm font-bold rounded-full shadow-lg hover:scale-105 transition-transform cursor-pointer">
-                            مشاهدة الآن
+             {/* Player Wrapper */}
+             <div className="flex-1 relative bg-black/40 rounded-2xl overflow-hidden border border-white/5 group">
+                <VideoPlayer channelName="beIN Sports 1 Premium" />
+             </div>
+             
+             {/* Stream Info (Below Player) */}
+             <div className="glass p-4 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                 <div>
+                     <h1 className="text-xl md:text-2xl font-bold text-white mb-1">Real Madrid vs Barcelona</h1>
+                     <p className="text-text-secondary text-sm">La Liga • Matchday 24</p>
+                 </div>
+                 <div className="flex gap-3 w-full md:w-auto">
+                     <Link href="/support" className="flex-1 md:flex-none">
+                        <button className="w-full px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm font-bold text-white transition-colors">
+                            الإبلاغ عن مشكلة
                         </button>
                      </Link>
+                     <Link href="/subscription" className="flex-1 md:flex-none">
+                        <button className="w-full px-4 py-2 bg-alsaha-green text-black rounded-lg text-sm font-black hover:scale-105 transition-transform">
+                            تجديد الاشتراك
+                        </button>
+                     </Link>
+                 </div>
+             </div>
+        </div>
+
+        {/* Sidebar (Desktop) */}
+        <div 
+            className="hidden lg:block flex-shrink-0 w-[320px]"
+        >
+             <LiveSidebar isCollapsed={false} toggleCollapse={() => {}} />
+        </div>
+
+        {/* Mobile Sidebar Overlay */}
+        <div className={`fixed inset-0 z-[60] lg:hidden transition-all duration-300 ${isSidebarCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsSidebarCollapsed(true)} />
+            <div className={`absolute left-0 top-0 bottom-0 w-[85%] max-w-[300px] h-full bg-dark-base transform transition-transform duration-300 z-[70] ${isSidebarCollapsed ? '-translate-x-full' : 'translate-x-0'}`}>
+                <div className="h-full p-2">
+                    <LiveSidebar isCollapsed={false} toggleCollapse={() => setIsSidebarCollapsed(true)} />
                 </div>
-            </motion.div>
-        ))}
+            </div>
+        </div>
+
+        {/* Mobile Toggle Button (Fixed) - Removed in favor of Video Overlay */}
+        {!isSidebarCollapsed && <div className="fixed inset-0 z-40 bg-black/50 lg:hidden user-select-none" onClick={() => setIsSidebarCollapsed(true)} />}
+
+        {/* Mobile/Tablet Sidebar (Maybe handled differently or below) */}
+        
       </div>
+
     </main>
   );
 }
