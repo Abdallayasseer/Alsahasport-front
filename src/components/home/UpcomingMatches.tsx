@@ -121,7 +121,7 @@ export default function UpcomingMatches() {
                         className="min-w-[85vw] md:min-w-[400px] snap-center md:snap-start"
                     >
                         <Link href={`/matches/${match.id}`}>
-                            <div className="glass-card h-full group relative overflow-hidden rounded-3xl p-5 md:p-6 transition-all duration-500 hover:shadow-[0_0_30px_rgba(114,191,68,0.1)] hover:-translate-y-1">
+                            <div className="glass-card h-full group relative overflow-hidden rounded-3xl p-5 md:p-6 transition-all duration-500 hover:shadow-[0_0_30px_rgba(114,191,68,0.1)]">
                                 
                                 {/* Hover Gradient Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -160,7 +160,7 @@ export default function UpcomingMatches() {
                                         <div className="flex flex-col items-center justify-center w-1/3">
                                             {match.status === 'LIVE' ? (
                                                 <>
-                                                    <span className="text-2xl md:text-3xl font-black text-white tracking-widest font-mono mb-1" dir="ltr">{match.score}</span>
+                                                    <span className="text-2xl md:text-3xl font-black text-white tracking-widest font-mono mb-1 whitespace-nowrap" dir="ltr">{match.score}</span>
                                                     <span className="px-2 py-0.5 bg-red-600 rounded text-[10px] font-bold text-white animate-pulse">LIVE</span>
                                                 </>
                                             ) : (
