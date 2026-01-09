@@ -57,6 +57,8 @@ export const metadata: Metadata = {
 import BottomNav from "@/components/layout/BottomNav";
 import Navbar from "@/components/layout/Navbar";
 
+import MobileFloatingCTA from "@/components/layout/MobileFloatingCTA";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -75,14 +77,7 @@ export default function RootLayout({
         </main>
         
         {/* Mobile Floating Subscribe CTA */}
-        <div className="md:hidden fixed bottom-[90px] left-4 right-4 z-40 pointer-events-none">
-            <a href="/subscription" className="pointer-events-auto block w-full">
-                <button className="w-full bg-alsaha-green text-black font-black text-lg py-3.5 rounded-2xl shadow-[0_0_20px_rgba(114,191,68,0.4)] animate-pulse hover:animate-none transition-transform active:scale-95 flex items-center justify-center gap-2">
-                    <span>اشترك الآن</span>
-                    <span className="bg-black/10 px-2 py-0.5 rounded text-sm font-bold">5000 د.ع</span>
-                </button>
-            </a>
-        </div>
+        <MobileFloatingCTA />
 
         <BottomNav />
       </body>

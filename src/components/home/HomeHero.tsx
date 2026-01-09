@@ -71,7 +71,7 @@ export default function HomeHero() {
 
              {/* Actions */}
              <div className="flex flex-col md:flex-row items-center gap-4 justify-center md:justify-start w-full md:w-auto">
-                <Link href="/live" className="w-full md:w-auto group">
+                <Link href="/live" className="w-full md:w-auto group" data-trigger-cta="true">
                     <Button variant="primary" size="lg" className="pl-6 pr-8 w-full md:w-auto py-7 text-lg shadow-[0_0_30px_rgba(114,191,68,0.25)] hover:shadow-[0_0_50px_rgba(114,191,68,0.5)] transition-all duration-500 rounded-2xl">
                        <Play className="fill-black ml-2 group-hover:scale-110 transition-transform" size={24} />
                        شاهد المباراة مجاناً
