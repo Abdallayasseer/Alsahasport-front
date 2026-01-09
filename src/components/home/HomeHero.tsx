@@ -46,7 +46,7 @@ export default function HomeHero() {
 
              {/* Title */}
              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-4 drop-shadow-2xl">
-                Real Madrid <span className="text-stroke-1 text-transparent stroke-white/30 font-light mx-2">VS</span> Man City
+                Real Madrid <span className="text-white/80 font-black mx-2 text-3xl md:text-5xl translate-y-1 inline-block">VS</span> Man City
              </h1>
 
              {/* Meta Info */}

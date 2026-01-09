@@ -37,9 +37,9 @@ export default function Navbar() {
                   </button>
               </Link>
 
-              <Link href="/profile">
-                 <button className="flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/5 hover:border-alsaha-green/50 text-sm font-bold transition-all">
-                    <span>حسابي</span>
+              <Link href="/subscription">
+                 <button className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-alsaha-green hover:bg-[#65aa3c] text-black text-sm font-bold transition-all shadow-[0_0_20px_rgba(114,191,68,0.3)] hover:shadow-[0_0_30px_rgba(114,191,68,0.5)] transform hover:scale-105">
+                    <span>اشترك الآن</span>
                  </button>
               </Link>
           </div>
