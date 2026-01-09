@@ -101,7 +101,7 @@ export default function SubscriptionClientPage() {
                         >
                             تفعيل الاشتراك
                         </Button>
-                         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 pointer-events-none rounded-xl" />
+                         <div className="absolute inset-0 bg-white/20 translate-y-full opacity-0 group-hover/btn:translate-y-0 group-hover/btn:opacity-100 transition-all duration-300 pointer-events-none rounded-xl" />
                     </div>
 
                     {/* Price Widget */}
