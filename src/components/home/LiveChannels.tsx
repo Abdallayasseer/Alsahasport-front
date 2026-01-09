@@ -25,38 +25,49 @@ export default function LiveChannels() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Mock scroll for now, or just simple horizontal scroll
   const scrollLeft = () => {
     if (containerRef.current) {
-        containerRef.current.scrollBy({ left: -300, behavior: "smooth" });
+        containerRef.current.scrollBy({ left: -320, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (containerRef.current) {
-        containerRef.current.scrollBy({ left: 300, behavior: "smooth" });
+        containerRef.current.scrollBy({ left: 320, behavior: "smooth" });
     }
   };
 
   return (
-    <section className="section-padding relative overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section className="py-20 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-alsaha-green/5 blur-[100px] rounded-full pointer-events-none -translate-y-1/2" />
+      
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         
         {/* Header */}
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex items-end justify-between mb-12">
             <div>
-                <h2 className="text-3xl md:text-5xl font-black text-white mb-2">
-                    قنوات <span className="text-alsaha-green">مباشرة</span>
+                <motion.div 
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold mb-4"
+                >
+                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                    <span>بث مباشر الآن</span>
+                </motion.div>
+                <h2 className="text-3xl md:text-5xl font-black text-white mb-3 tracking-tight">
+                    قنوات <span className="text-transparent bg-clip-text bg-gradient-to-l from-alsaha-green to-white">التلفزيون</span>
                 </h2>
-                <p className="text-text-secondary">أكثر القنوات مشاهدة الآن بجودة 4K</p>
+                <p className="text-white/60 text-lg">أكثر القنوات مشاهدة الآن بجودة 4K</p>
             </div>
             
-            <div className="flex gap-2">
-                <button onClick={scrollRight} className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors border border-white/5">
-                    <ChevronRight size={24} />
+            <div className="hidden md:flex gap-3">
+                <button onClick={scrollRight} className="p-4 rounded-2xl glass hover:bg-white/10 text-white transition-all hover:scale-105 active:scale-95 group">
+                    <ChevronRight size={24} className="group-hover:text-alsaha-green transition-colors" />
                 </button>
-                <button onClick={scrollLeft} className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors border border-white/5">
-                    <ChevronLeft size={24} />
+                <button onClick={scrollLeft} className="p-4 rounded-2xl glass hover:bg-white/10 text-white transition-all hover:scale-105 active:scale-95 group">
+                    <ChevronLeft size={24} className="group-hover:text-alsaha-green transition-colors" />
                 </button>
             </div>
         </div>
@@ -64,15 +75,16 @@ export default function LiveChannels() {
         {/* Carousel */}
         <div 
             ref={containerRef}
-            className="flex gap-6 overflow-x-auto no-scrollbar pb-10 snap-x snap-mandatory"
+            className="flex gap-6 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0"
         >
             {loading ? (
                 // Skeletons
                 Array.from({ length: 5 }).map((_, idx) => (
-                    <div key={idx} className="min-w-[280px] md:min-w-[320px] snap-start">
-                        <div className="aspect-video rounded-2xl bg-white/5 border border-white/5 p-4 flex flex-col justify-end">
-                            <Skeleton className="w-16 h-3 rounded-md mb-2 bg-white/10" />
-                            <Skeleton className="w-32 h-6 rounded-md bg-white/10" />
+                    <div key={idx} className="min-w-[280px] md:min-w-[340px] snap-center">
+                        <div className="aspect-[16/10] rounded-3xl bg-white/5 border border-white/5 p-6 flex flex-col justify-end relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                            <Skeleton className="w-16 h-3 rounded-md mb-2 bg-white/10 relative z-10" />
+                            <Skeleton className="w-32 h-6 rounded-md bg-white/10 relative z-10" />
                         </div>
                     </div>
                 ))
@@ -80,38 +92,42 @@ export default function LiveChannels() {
                 CHANNELS.map((channel, idx) => (
                     <motion.div 
                         key={channel.id}
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.05 }}
-                        className="min-w-[280px] md:min-w-[320px] snap-start"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="min-w-[280px] md:min-w-[340px] snap-center"
                     >
                         <Link href={`/live?channel=${channel.id}`}>
-                            <div className="group relative aspect-video rounded-2xl overflow-hidden glass-card cursor-pointer border border-white/5">
+                            <div className="group relative aspect-[16/10] rounded-3xl overflow-hidden glass-card cursor-pointer border border-white/5 transition-all duration-500 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:-translate-y-2">
                                 {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity z-10" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500 z-10" />
+                                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-alsaha-green/20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />
                                 
                                 {/* Hover Play Button */}
-                                <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
-                                    <div className="w-16 h-16 rounded-full bg-alsaha-green/90 flex items-center justify-center shadow-[0_0_30px_rgba(114,191,68,0.5)]">
-                                        <Play size={32} className="fill-black text-black ml-1" />
+                                <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                                    <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                        <Play size={32} className="fill-white text-white ml-1 drop-shadow-lg" />
                                     </div>
                                 </div>
                                 
                                 {/* Live Badge */}
-                                <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-red-600/90 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                                <div className="absolute top-5 right-5 z-20 px-3 py-1.5 rounded-full bg-red-600/20 backdrop-blur-md border border-red-500/30 text-white text-[10px] font-black tracking-widest flex items-center gap-2 shadow-lg">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(220,38,38,0.5)]" />
                                     LIVE
                                 </div>
 
                                 {/* Channel Info (Bottom) */}
-                                <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                                    <p className="text-alsaha-green text-xs font-bold mb-1 tracking-wider uppercase">{channel.category}</p>
-                                    <h3 className="text-xl font-bold text-white group-hover:text-alsaha-green transition-colors">{channel.name}</h3>
+                                <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                                    <p className="text-alsaha-green/90 text-xs font-bold mb-2 tracking-widest uppercase">{channel.category}</p>
+                                    <h3 className="text-2xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-alsaha-green transition-all duration-300 drop-shadow-lg">
+                                        {channel.name}
+                                    </h3>
                                 </div>
 
                                 {/* Placeholder Image */}
-                                <div className="absolute inset-0 bg-[#1a1a1a] flex items-center justify-center">
-                                    <span className="text-white/10 font-black text-4xl uppercase">{channel.name.substring(0, 2)}</span>
+                                <div className="absolute inset-0 bg-[#161616] flex items-center justify-center transition-transform duration-700 group-hover:scale-110">
+                                    <span className="text-white/5 font-black text-6xl uppercase tracking-tighter select-none">{channel.name.substring(0, 2)}</span>
                                 </div>
                             </div>
                         </Link>
@@ -120,9 +136,9 @@ export default function LiveChannels() {
             )}
         </div>
 
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-8 md:hidden">
             <Link href="/channels">
-                <button className="btn-secondary">
+                <button className="btn-secondary w-full">
                     <span>عرض كل القنوات</span>
                 </button>
             </Link>

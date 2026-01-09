@@ -32,25 +32,32 @@ export default function FeaturesSection() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.15
       }
     }
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0 }
   };
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
-            لماذا يختارنا <span className="text-alsaha-green">الآلاف؟</span>
-          </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <motion.div
+             initial={{ opacity: 0, scale: 0.9 }}
+             whileInView={{ opacity: 1, scale: 1 }}
+             viewport={{ once: true }}
+             className="inline-block mb-4"
+          >
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">
+                لماذا يختارنا <span className="text-transparent bg-clip-text bg-gradient-to-r from-alsaha-green to-white">الآلاف؟</span>
+              </h2>
+          </motion.div>
+          <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
             تجربة مشاهدة لا تضاهى مع مميزات حصرية صممت خصيصاً لعشاق الرياضة
           </p>
         </div>
@@ -59,22 +66,27 @@ export default function FeaturesSection() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {features.map((feature, idx) => (
             <motion.div 
               key={idx}
               variants={item}
-              className="bg-white/5 border border-white/5 rounded-2xl p-6 hover:bg-white/10 hover:border-alsaha-green/30 transition-all duration-300 group"
+              className="group relative bg-[#111]/40 backdrop-blur-md border border-white/5 rounded-[2rem] p-8 hover:bg-white/[0.03] hover:border-alsaha-green/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-full bg-alsaha-green/10 flex items-center justify-center mb-6 group-hover:bg-alsaha-green/20 group-hover:scale-110 transition-all duration-300">
-                <feature.icon className="text-alsaha-green w-7 h-7" />
+              {/* Hover Glow */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-alsaha-green/10 blur-[60px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-alsaha-green group-hover:rotate-3 transition-all duration-500 border border-white/5 group-hover:border-alsaha-green/50 shadow-lg">
+                    <feature.icon className="text-alsaha-green w-7 h-7 group-hover:text-black transition-colors duration-300" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-alsaha-green transition-colors">{feature.title}</h3>
+                  <p className="text-white/50 leading-relaxed text-sm group-hover:text-white/80 transition-colors">
+                    {feature.desc}
+                  </p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-              <p className="text-white/60 leading-relaxed text-sm">
-                {feature.desc}
-              </p>
             </motion.div>
           ))}
         </motion.div>

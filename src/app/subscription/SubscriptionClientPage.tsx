@@ -93,15 +93,14 @@ export default function SubscriptionClientPage() {
                     />
 
                     {/* Primary Action */}
-                    <div className="relative group/btn">
+                    <div>
                         <Button 
                             variant="primary" 
-                            className="w-full py-4 text-sm font-bold shadow-[0_0_20px_rgba(114,191,68,0.2)] hover:shadow-[0_0_30px_rgba(114,191,68,0.4)]"
+                            className="w-full py-4 text-sm font-bold shadow-[0_0_20px_rgba(114,191,68,0.2)] hover:shadow-[0_0_40px_rgba(114,191,68,0.6)] transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:brightness-110"
                             rightIcon={<CheckCircle2 size={18} />}
                         >
                             تفعيل الاشتراك
                         </Button>
-                         <div className="absolute inset-0 bg-white/20 translate-y-full opacity-0 group-hover/btn:translate-y-0 group-hover/btn:opacity-100 transition-all duration-300 pointer-events-none rounded-xl" />
                     </div>
 
                     {/* Price Widget */}

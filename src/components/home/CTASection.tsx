@@ -28,7 +28,7 @@ export default function CTASection() {
                         <Button 
                             variant="primary" 
                             size="lg" 
-                            className="bg-white text-black hover:bg-white/90 border-transparent shadow-[0_0_30px_rgba(255,255,255,0.2)] px-10 py-8 text-lg"
+                            className="bg-white text-black hover:bg-white/90 border-transparent shadow-[0_0_30px_rgba(255,255,255,0.2)] px-6 py-4 md:px-10 md:py-6 text-base md:text-lg whitespace-nowrap w-full md:w-auto"
                             rightIcon={<ArrowRight className="mr-2" />}
                         >
                             ابدأ اشتراكك اليوم
