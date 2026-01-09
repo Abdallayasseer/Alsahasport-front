@@ -8,10 +8,11 @@ export default function Navbar() {
   
   const navLinks = [
     { name: "الرئيسية", href: "/" },
-    { name: "المباريات", href: "/matches" },
     { name: "البث المباشر", href: "/live" },
+    { name: "المباريات", href: "/matches" },
     { name: "القنوات", href: "/channels" },
     { name: "الأخبار", href: "/news" },
+    { name: "المساعدة", href: "/support" },
   ];
 
   return (
@@ -19,10 +20,11 @@ export default function Navbar() {
       <div 
           className="
               pointer-events-auto 
+              container mx-auto
               flex items-center justify-between 
               bg-black/20 backdrop-blur-md border border-white/5
-              rounded-full py-3 px-6 
-              w-full max-w-6xl
+              rounded-full py-3 px-8
+              shadow-lg
           "
       >
           {/* Logo */}
@@ -33,17 +35,17 @@ export default function Navbar() {
           </Link>
           
           {/* Desktop Nav Items */}
-          <div className="hidden md:flex flex-1 items-center justify-center gap-6">
+          <div className="hidden md:flex flex-1 items-center justify-center gap-8">
              {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
                    <Link 
                       key={link.href}
                       href={link.href} 
-                      className={`text-sm font-bold transition-all relative ${
+                      className={`text-sm font-bold transition-all duration-300 relative ${
                         isActive 
                         ? "text-alsaha-green" 
-                        : "text-white/70 hover:text-white"
+                        : "text-white/70 hover:text-alsaha-green"
                       }`}
                    >
                      {link.name}
