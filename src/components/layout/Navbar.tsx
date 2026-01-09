@@ -1,9 +1,20 @@
 "use client";
 
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  
+  const navLinks = [
+    { name: "الرئيسية", href: "/" },
+    { name: "البث المباشر", href: "/live" },
+    { name: "جدول المباريات", href: "/matches" },
+    { name: "القنوات", href: "/channels" },
+    { name: "الأخبار", href: "/news" },
+    { name: "المساعدة", href: "/support" },
+  ];
+
   return (
     <nav className="hidden md:flex fixed top-0 left-0 right-0 z-40 justify-center pt-6 px-4 pointer-events-none">
       <div 
@@ -16,23 +27,37 @@ export default function Navbar() {
           "
       >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
              <span className="font-black text-2xl tracking-tighter text-white">
                 ALSAHA<span className="text-alsaha-green">.SPORT</span>
              </span>
           </Link>
           
           {/* Desktop Nav Items */}
-          <div className="flex items-center gap-6">
-             <Link href="/" className="text-sm font-bold text-white/70 hover:text-white transition-colors">الرئيسية</Link>
-             <Link href="/matches" className="text-sm font-bold text-white/70 hover:text-white transition-colors">المباريات</Link>
-             <Link href="/live" className="text-sm font-bold text-white/70 hover:text-white transition-colors">البث المباشر</Link>
-             <Link href="/subscription" className="text-sm font-bold text-white/70 hover:text-white transition-colors">الاشتراك</Link>
-             <Link href="/support" className="text-sm font-bold text-white/70 hover:text-white transition-colors">الدعم</Link>
+          <div className="hidden md:flex flex-1 items-center justify-center gap-6">
+             {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                   <Link 
+                      key={link.href}
+                      href={link.href} 
+                      className={`text-sm font-bold transition-all relative ${
+                        isActive 
+                        ? "text-alsaha-green" 
+                        : "text-white/70 hover:text-white"
+                      }`}
+                   >
+                     {link.name}
+                     {isActive && (
+                        <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-alsaha-green rounded-full shadow-[0_0_8px_#72BF44]" />
+                     )}
+                   </Link>
+                );
+             })}
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 flex-shrink-0">
               <Link href="/subscription">
                  <button className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-alsaha-green hover:bg-[#65aa3c] text-black text-sm font-bold transition-all shadow-[0_0_20px_rgba(114,191,68,0.3)] hover:shadow-[0_0_30px_rgba(114,191,68,0.5)] transform hover:scale-105">
                     <span>اشترك الآن</span>

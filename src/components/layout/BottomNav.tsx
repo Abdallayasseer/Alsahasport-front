@@ -2,21 +2,22 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Radio, Trophy, Zap, Headset } from "lucide-react";
+import { Home, Calendar, Tv, CreditCard, Headset } from "lucide-react";
 import { motion } from "framer-motion";
+
 export default function BottomNav() {
   const pathname = usePathname();
 
   const navItems = [
     { name: "الرئيسية", href: "/", Icon: Home },
-    { name: "مباشر", href: "/live", Icon: Radio },
-    { name: "المباريات", href: "/matches", Icon: Trophy },
-    { name: "اشتراك", href: "/subscription", Icon: Zap },
+    { name: "المباريات", href: "/matches", Icon: Calendar },
+    { name: "مباشر", href: "/live", Icon: Tv },
+    { name: "الاشتراكات", href: "/subscription", Icon: CreditCard },
     { name: "الدعم", href: "/support", Icon: Headset },
   ];
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden flex justify-center pointer-events-none">
+    <div className="fixed bottom-4 left-4 right-4 z-[100] md:hidden flex justify-center pointer-events-none">
       <nav 
         className="
           pointer-events-auto 
@@ -61,4 +62,3 @@ export default function BottomNav() {
     </div>
   );
 }
-
