@@ -147,7 +147,10 @@ export default function UpcomingMatches() {
                                         <div className="flex flex-col items-center gap-3 w-1/3 text-center">
                                             <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-b from-white/10 to-transparent p-[1px] group-hover:from-alsaha-green/50 transition-colors">
                                                 <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center p-2">
-                                                     <div className="w-full h-full rounded-full bg-white/5" /> {/* Placeholder */}
+                                                     {/* Logo Fallback: Initials */}
+                                                     <span className="text-xs md:text-sm font-black text-white/40 uppercase tracking-tighter">
+                                                        {match.homeTeam.substring(0, 2)}
+                                                     </span>
                                                 </div>
                                             </div>
                                             <span className="font-bold text-white text-sm md:text-base line-clamp-1 w-full">{match.homeTeam}</span>
@@ -157,7 +160,7 @@ export default function UpcomingMatches() {
                                         <div className="flex flex-col items-center justify-center w-1/3">
                                             {match.status === 'LIVE' ? (
                                                 <>
-                                                    <span className="text-2xl md:text-3xl font-black text-white tracking-widest font-mono mb-1">{match.score}</span>
+                                                    <span className="text-2xl md:text-3xl font-black text-white tracking-widest font-mono mb-1" dir="ltr">{match.score}</span>
                                                     <span className="px-2 py-0.5 bg-red-600 rounded text-[10px] font-bold text-white animate-pulse">LIVE</span>
                                                 </>
                                             ) : (
@@ -172,7 +175,10 @@ export default function UpcomingMatches() {
                                         <div className="flex flex-col items-center gap-3 w-1/3 text-center">
                                             <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-b from-white/10 to-transparent p-[1px] group-hover:from-alsaha-green/50 transition-colors">
                                                 <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center p-2">
-                                                     <div className="w-full h-full rounded-full bg-white/5" /> {/* Placeholder */}
+                                                     {/* Logo Fallback: Initials */}
+                                                     <span className="text-xs md:text-sm font-black text-white/40 uppercase tracking-tighter">
+                                                        {match.awayTeam.substring(0, 2)}
+                                                     </span>
                                                 </div>
                                             </div>
                                             <span className="font-bold text-white text-sm md:text-base line-clamp-1 w-full">{match.awayTeam}</span>
