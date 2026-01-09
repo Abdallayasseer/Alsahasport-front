@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, FileText, CreditCard, Tv, Settings } from "lucide-react";
+import { Search, FileText, CreditCard, Tv, Settings, Send } from "lucide-react";
 import FAQAccordion from "@/components/support/FAQAccordion";
-import ContactForm from "@/components/support/ContactForm";
 
 export default function SupportClientPage() {
   const categories = [
@@ -61,14 +60,22 @@ export default function SupportClientPage() {
               <FAQAccordion />
           </div>
 
-          {/* Contact Section */}
-          <div>
-               <div className="mb-8 pl-4">
-                  <h2 className="text-2xl font-black text-white mb-2">لم تجد إجابة؟</h2>
-                  <p className="text-text-secondary text-sm">تواصل معنا مباشرة عبر النموذج التالي</p>
+           {/* Direct Contact Card */}
+           <div>
+               <div className="bg-white/5 border border-white/5 rounded-3xl p-8 md:p-10 backdrop-blur-sm text-center shadow-2xl">
+                    <h3 className="text-2xl md:text-3xl font-black text-white mb-4">تواصل معنا مباشرة</h3>
+                    <p className="text-white/60 mb-8 text-lg leading-relaxed max-w-sm mx-auto">
+                        هل تواجه مشكلة؟ فريق الدعم جاهز للرد عليك فوراً عبر تيليجرام.
+                    </p>
+                    
+                    <a href="https://t.me/fareedsaad" target="_blank" className="block w-full group">
+                        <button className="w-full py-5 rounded-2xl bg-alsaha-green hover:bg-[#62a639] text-black font-black text-lg transition-all shadow-[0_0_20px_rgba(114,191,68,0.3)] hover:shadow-[0_0_40px_rgba(114,191,68,0.5)] transform group-hover:scale-[1.02] flex items-center justify-center gap-3">
+                            <span>مراسلة الدعم الفني الآن</span>
+                            <Send className="w-6 h-6 rtl:rotate-180" />
+                        </button>
+                    </a>
                </div>
-               <ContactForm />
-          </div>
+           </div>
       </div>
 
     </main>
