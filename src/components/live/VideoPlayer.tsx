@@ -7,9 +7,11 @@ import { Play, Pause, Volume2, Maximize, Settings, Cast, AlertCircle, RefreshCw 
 interface VideoPlayerProps {
     channelName?: string;
     onError?: () => void;
+    onShowSidebar?: () => void;
 }
 
-export default function VideoPlayer({ channelName = "Channel" }: VideoPlayerProps) {
+export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: VideoPlayerProps) {
+  // ... (keep state)
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
@@ -28,8 +30,9 @@ export default function VideoPlayer({ channelName = "Channel" }: VideoPlayerProp
     }
     return () => clearTimeout(timeout);
   }, [isPlaying, isHovering, isLoading, hasError]);
-
+  
   const togglePlay = () => {
+      // ... (keep existing logic)
       if (hasError) {
           setHasError(false);
           setIsLoading(true);
@@ -43,6 +46,7 @@ export default function VideoPlayer({ channelName = "Channel" }: VideoPlayerProp
   };
 
   const handleFullscreen = () => {
+      // ...
       if (!document.fullscreenElement && containerRef.current) {
           containerRef.current.requestFullscreen().catch(err => console.error(err));
       } else {
@@ -59,12 +63,11 @@ export default function VideoPlayer({ channelName = "Channel" }: VideoPlayerProp
         onMouseMove={() => {
             setShowControls(true);
             if(isPlaying && !isLoading) {
-                // Reset timer logic handled by useEffect dep on isHovering/showControls state usually, 
-                // but strictly simple here: just showing them is enough, useEffect will hide them again.
+                // Reset timer...
             }
         }}
     >
-        {/* State: Idle / Start Screen */}
+        {/* ... (Start Screen, Active Player, Error Fallback - Unchanged) ... */}
         {!isPlaying && !isLoading && !hasError && (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
                  <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/20 to-black/80" />
@@ -79,10 +82,8 @@ export default function VideoPlayer({ channelName = "Channel" }: VideoPlayerProp
             </div>
         )}
 
-        {/* State: Active Player (Simulated) */}
         {(isPlaying || isLoading) && !hasError && (
              <div className="absolute inset-0 flex items-center justify-center bg-black">
-                 {/* Placeholder Stream Graphic */}
                  <div className={`w-full h-full bg-[url('/images/hero-bg-stadium.jpg')] bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-30' : 'opacity-60'}`} />
                  
                  {isLoading && (
@@ -94,7 +95,6 @@ export default function VideoPlayer({ channelName = "Channel" }: VideoPlayerProp
              </div>
         )}
 
-        {/* State: Error Fallback */}
         {hasError && (
             <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/90 backdrop-blur-xl">
                  <AlertCircle size={48} className="text-red-500 mb-4" />
@@ -121,15 +121,28 @@ export default function VideoPlayer({ channelName = "Channel" }: VideoPlayerProp
                     className="absolute inset-0 flex flex-col justify-between p-4 md:p-6 z-20 bg-gradient-to-t from-black/80 via-transparent to-black/60 pointer-events-none"
                 >
                     {/* Top Bar */}
-                    <div className="flex justify-between items-start pointer-events-auto">
-                        <div className="flex items-center gap-4">
-                            <span className="px-2.5 py-1 bg-red-600 rounded-md text-[10px] font-black text-white flex items-center gap-1.5 shadow-lg tracking-wider">
+                    <div className="flex justify-between items-start pointer-events-auto w-full gap-4">
+                        <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0">
+                            <span className="px-2 py-1 bg-red-600 rounded-md text-[10px] font-black text-white flex items-center gap-1.5 shadow-lg tracking-wider shrink-0">
                                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                                 LIVE
                             </span>
-                            <div className="flex flex-col">
-                                <h3 className="font-bold text-white drop-shadow-md leading-none">{channelName}</h3>
-                                <span className="text-[10px] text-white/50 font-mono mt-1">1080p • 60FPS</span>
+                            
+                            {/* Mobile Channels Button (Visible on Mobile Only) */}
+                            <button 
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    onShowSidebar?.();
+                                }}
+                                className="md:hidden flex items-center gap-2 px-3 py-1.5 bg-alsaha-green/20 border border-alsaha-green/50 hover:bg-alsaha-green rounded-lg text-white hover:text-black transition-colors"
+                            >
+                                <div className="w-1.5 h-1.5 rounded-full bg-alsaha-green animate-pulse shadow-[0_0_5px_#72BF44]" />
+                                <span className="text-[10px] font-bold">القنوات</span>
+                            </button>
+
+                            <div className="flex flex-col min-w-0 hidden md:flex">
+                                <h3 className="font-bold text-white drop-shadow-md leading-none truncate text-sm md:text-base">{channelName}</h3>
+                                <span className="text-[10px] text-white/50 font-mono mt-0.5 md:mt-1">1080p • 60FPS</span>
                             </div>
                         </div>
                         <button className="p-2.5 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white backdrop-blur-sm">
