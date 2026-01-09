@@ -23,8 +23,9 @@ const FAQS = [
   }
 ];
 
-export default function SubscriptionFAQ() {
+export default function SubscriptionFAQ({ limit }: { limit?: number }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const displayFaqs = limit ? FAQS.slice(0, limit) : FAQS;
 
   return (
     <section className="py-20 bg-black/20 relative">
@@ -38,7 +39,7 @@ export default function SubscriptionFAQ() {
             </div>
 
             <div className="space-y-4">
-                {FAQS.map((faq, idx) => (
+                {displayFaqs.map((faq, idx) => (
                     <div key={idx} className="border border-white/5 bg-white/5 rounded-2xl overflow-hidden hover:border-alsaha-green/20 transition-all">
                         <button 
                             onClick={() => setOpenIndex(disk => disk === idx ? null : idx)}

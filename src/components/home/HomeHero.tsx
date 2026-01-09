@@ -69,6 +69,20 @@ export default function HomeHero() {
                     </Button>
                 </Link>
              </div>
+             
+             {/* Social Proof Badge */}
+             <div className="mt-8 flex items-center gap-4 animate-fade-in opacity-80">
+                <div className="flex -space-x-3 space-x-reverse">
+                    {[1,2,3,4].map(i => (
+                        <div key={i} className="w-8 h-8 rounded-full border-2 border-black bg-white/10 backdrop-blur-sm flex items-center justify-center text-[10px] text-white font-bold">
+                            {i === 4 ? '+10k' : ''}
+                        </div>
+                    ))}
+                </div>
+                <div className="text-sm font-medium text-white/80">
+                    أكثر من <span className="text-white font-bold">10,000 مشترك</span> يثقون بنا
+                </div>
+             </div>
         </motion.div>
 
         {/* Floating Carousel Indicators (Optional polish) */}
