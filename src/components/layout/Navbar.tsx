@@ -8,11 +8,10 @@ export default function Navbar() {
   
   const navLinks = [
     { name: "الرئيسية", href: "/" },
+    { name: "المباريات", href: "/matches" },
     { name: "البث المباشر", href: "/live" },
-    { name: "جدول المباريات", href: "/matches" },
     { name: "القنوات", href: "/channels" },
     { name: "الأخبار", href: "/news" },
-    { name: "المساعدة", href: "/support" },
   ];
 
   return (
