@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 const CHANNELS = [
   { id: 1, name: "beIN Sports 1", image: "/images/channels/bein1.png", category: "Sports" },
@@ -16,6 +17,13 @@ const CHANNELS = [
 
 export default function LiveChannels() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Mock scroll for now, or just simple horizontal scroll
   const scrollLeft = () => {
@@ -58,47 +66,58 @@ export default function LiveChannels() {
             ref={containerRef}
             className="flex gap-6 overflow-x-auto no-scrollbar pb-10 snap-x snap-mandatory"
         >
-            {CHANNELS.map((channel, idx) => (
-                <motion.div 
-                    key={channel.id}
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.05 }}
-                    className="min-w-[280px] md:min-w-[320px] snap-start"
-                >
-                    <Link href={`/live?channel=${channel.id}`}>
-                        <div className="group relative aspect-video rounded-2xl overflow-hidden glass-card cursor-pointer border border-white/5">
-                            {/* Overlay Gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity z-10" />
-                            
-                            {/* Hover Play Button */}
-                            <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
-                                <div className="w-16 h-16 rounded-full bg-alsaha-green/90 flex items-center justify-center shadow-[0_0_30px_rgba(114,191,68,0.5)]">
-                                    <Play size={32} className="fill-black text-black ml-1" />
+            {loading ? (
+                // Skeletons
+                Array.from({ length: 5 }).map((_, idx) => (
+                    <div key={idx} className="min-w-[280px] md:min-w-[320px] snap-start">
+                        <div className="aspect-video rounded-2xl bg-white/5 border border-white/5 p-4 flex flex-col justify-end">
+                            <Skeleton className="w-16 h-3 rounded-md mb-2 bg-white/10" />
+                            <Skeleton className="w-32 h-6 rounded-md bg-white/10" />
+                        </div>
+                    </div>
+                ))
+            ) : (
+                CHANNELS.map((channel, idx) => (
+                    <motion.div 
+                        key={channel.id}
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                        className="min-w-[280px] md:min-w-[320px] snap-start"
+                    >
+                        <Link href={`/live?channel=${channel.id}`}>
+                            <div className="group relative aspect-video rounded-2xl overflow-hidden glass-card cursor-pointer border border-white/5">
+                                {/* Overlay Gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity z-10" />
+                                
+                                {/* Hover Play Button */}
+                                <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
+                                    <div className="w-16 h-16 rounded-full bg-alsaha-green/90 flex items-center justify-center shadow-[0_0_30px_rgba(114,191,68,0.5)]">
+                                        <Play size={32} className="fill-black text-black ml-1" />
+                                    </div>
+                                </div>
+                                
+                                {/* Live Badge */}
+                                <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-red-600/90 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                                    LIVE
+                                </div>
+
+                                {/* Channel Info (Bottom) */}
+                                <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                                    <p className="text-alsaha-green text-xs font-bold mb-1 tracking-wider uppercase">{channel.category}</p>
+                                    <h3 className="text-xl font-bold text-white group-hover:text-alsaha-green transition-colors">{channel.name}</h3>
+                                </div>
+
+                                {/* Placeholder Image */}
+                                <div className="absolute inset-0 bg-[#1a1a1a] flex items-center justify-center">
+                                    <span className="text-white/10 font-black text-4xl uppercase">{channel.name.substring(0, 2)}</span>
                                 </div>
                             </div>
-                            
-                            {/* Live Badge */}
-                            <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-red-600/90 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg">
-                                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                                LIVE
-                            </div>
-
-                            {/* Channel Info (Bottom) */}
-                            <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                                <p className="text-alsaha-green text-xs font-bold mb-1 tracking-wider uppercase">{channel.category}</p>
-                                <h3 className="text-xl font-bold text-white group-hover:text-alsaha-green transition-colors">{channel.name}</h3>
-                            </div>
-
-                            {/* Placeholder Image (Use a gradient or pattern if no real image) */}
-                            <div className="absolute inset-0 bg-[#1a1a1a] flex items-center justify-center">
-                                {/* Use text fallback for now as we don't have images */}
-                                <span className="text-white/10 font-black text-4xl uppercase">{channel.name.substring(0, 2)}</span>
-                            </div>
-                        </div>
-                    </Link>
-                </motion.div>
-            ))}
+                        </Link>
+                    </motion.div>
+                ))
+            )}
         </div>
 
         <div className="flex justify-center mt-8">

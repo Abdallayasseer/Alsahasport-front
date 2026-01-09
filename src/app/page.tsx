@@ -1,27 +1,22 @@
 "use client";
 
-import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import LiveChannels from "@/components/home/LiveChannels";
-import UpcomingMatches from "@/components/home/UpcomingMatches";
-import Packages from "@/components/Packages";
-import HowItWorks from "@/components/HowItWorks";
-import TrustSection from "@/components/TrustSection"; 
-import Footer from "@/components/Footer"; 
-import FloatingTelegram from "@/components/FloatingTelegram";
+import dynamic from 'next/dynamic';
+import HomeHero from "@/components/home/HomeHero";
+
+// Lazy load heavy components below the fold
+const LiveChannels = dynamic(() => import("@/components/home/LiveChannels"));
+const UpcomingMatches = dynamic(() => import("@/components/home/UpcomingMatches"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
   return (
     <main className="min-h-screen relative overflow-hidden bg-dark-base text-white">
-      <Hero />
-      <Features />
+      <HomeHero />
       <LiveChannels />
       <UpcomingMatches />
-      <HowItWorks />
-      <Packages />
-      <TrustSection /> 
+      
+      {/* Retain Footer */}
       <Footer />
-      <FloatingTelegram />
     </main>
   );
 }

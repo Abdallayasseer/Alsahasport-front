@@ -1,0 +1,30 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="630" fill="#050505"/>
+    
+    <circle cx="600" cy="315" r="400" fill="#72BF44" fill-opacity="0.1"/>
+    <circle cx="600" cy="315" r="200" fill="#72BF44" fill-opacity="0.15" filter="url(#filter0_f)"/>
+    
+    <path d="M0 315H1200" stroke="white" stroke-opacity="0.05" stroke-width="1"/>
+    <path d="M600 0V630" stroke="white" stroke-opacity="0.05" stroke-width="1"/>
+    
+    <text x="600" y="300" text-anchor="middle" font-family="system-ui, -apple-system, 'Cairo', sans-serif" font-weight="900" font-size="110" fill="white" style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+        الساحة سبورت
+    </text>
+    
+    <text x="600" y="380" text-anchor="middle" font-family="system-ui, -apple-system, 'Cairo', sans-serif" font-weight="500" font-size="40" fill="#B3B3B3" letter-spacing="2">
+        مشاهدة بجودة سينمائية 4K
+    </text>
+    
+    <rect x="500" y="430" width="200" height="6" rx="3" fill="#72BF44"/>
+
+    <rect x="1050" y="50" width="100" height="40" rx="20" fill="#72BF44" fill-opacity="0.2"/>
+    <text x="1100" y="75" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="14" fill="#72BF44">LIVE TV</text>
+
+    <defs>
+        <filter id="filter0_f" x="200" y="-85" width="800" height="800" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+            <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur"/>
+        </filter>
+    </defs>
+</svg>

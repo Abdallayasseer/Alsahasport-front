@@ -18,6 +18,15 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import SubscriptionFAQ from "@/components/subscription/SubscriptionFAQ";
+import Input from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "باقات الاشتراك",
+  description: "أفضل الأسعار في العراق! اشترك الآن بـ 5000 د.ع فقط واستمتع بمشاهدة غير محدودة.",
+};
 
 export default function SubscriptionPage() {
   const containerVariants = {
@@ -83,28 +92,24 @@ export default function SubscriptionPage() {
 
                 {/* Input Section */}
                 <div className="space-y-6">
-                    <div className="space-y-2">
-                        <label className="text-sm text-text-secondary font-medium mr-1 block">
-                            كود الاشتراك
-                        </label>
-                        <div className="relative">
-                            <Lock className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30" size={16} />
-                            <input 
-                                type="text" 
-                                placeholder="أدخل كود الاشتراك..."
-                                className="w-full bg-black/60 border border-white/5 rounded-xl py-4 pr-12 pl-4 text-white placeholder:text-white/20 focus:outline-none focus:border-alsaha-green/50 focus:ring-1 focus:ring-alsaha-green/50 transition-all text-sm shadow-inner"
-                            />
-                        </div>
-                    </div>
+                    <Input 
+                        label="كود الاشتراك"
+                        placeholder="أدخل كود الاشتراك..."
+                        icon={Lock}
+                        className="bg-black/60 shadow-inner py-4"
+                    />
 
                     {/* Primary Action */}
-                    <button className="w-full py-4 bg-alsaha-green hover:bg-[#6bbf3a] text-black font-bold rounded-xl text-sm transition-all shadow-[0_0_20px_rgba(114,191,68,0.2)] hover:shadow-[0_0_30px_rgba(114,191,68,0.4)] relative overflow-hidden group/btn cursor-pointer">
-                        <span className="relative z-10 flex items-center justify-center gap-2">
-                            <span>تفعيل الاشتراك</span>
-                            <CheckCircle2 size={16} />
-                        </span>
-                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
-                    </button>
+                    <div className="relative group/btn">
+                        <Button 
+                            variant="primary" 
+                            className="w-full py-4 text-sm font-bold shadow-[0_0_20px_rgba(114,191,68,0.2)] hover:shadow-[0_0_30px_rgba(114,191,68,0.4)]"
+                            rightIcon={<CheckCircle2 size={18} />}
+                        >
+                            تفعيل الاشتراك
+                        </Button>
+                         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 pointer-events-none rounded-xl" />
+                    </div>
 
                     {/* Price Widget */}
                     <div className="bg-white/5 border border-white/5 rounded-xl p-5 flex items-center justify-between mt-8">
@@ -135,13 +140,15 @@ export default function SubscriptionPage() {
 
                     {/* Contact Buttons */}
                     <div className="grid grid-cols-2 gap-4">
-                        <Link href="https://t.me/fareedsaad" target="_blank" className="flex items-center justify-center gap-2 py-3 bg-[#229ED9]/10 border border-[#229ED9]/20 text-[#229ED9] hover:bg-[#229ED9] hover:text-white rounded-xl transition-all text-sm font-medium group/tg">
-                            <Send size={16} className="group-hover/tg:-translate-y-0.5 transition-transform" />
-                            <span>تيليجرام</span>
+                        <Link href="https://t.me/fareedsaad" target="_blank" className="block">
+                             <Button variant="secondary" className="w-full bg-[#229ED9]/10 border-[#229ED9]/20 text-[#229ED9] hover:bg-[#229ED9] hover:text-white" leftIcon={<Send size={16} />}>
+                                تيليجرام
+                             </Button>
                         </Link>
-                        <Link href="https://www.instagram.com/alsahasports?igsh=OTU0cWFhYnExbDZu" target="_blank" className="flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-[#833AB4]/10 via-[#FD1D1D]/10 to-[#FCA761]/10 border border-white/5 text-white/80 hover:text-white hover:border-white/20 rounded-xl transition-all text-sm font-medium group/ig">
-                            <Instagram size={16} className="group-hover/ig:-translate-y-0.5 transition-transform" />
-                            <span>انستقرام</span>
+                        <Link href="https://www.instagram.com/alsahasports?igsh=OTU0cWFhYnExbDZu" target="_blank" className="block">
+                             <Button variant="secondary" className="w-full bg-gradient-to-r from-[#833AB4]/10 via-[#FD1D1D]/10 to-[#FCA761]/10 border-white/5 text-white/80 hover:text-white hover:border-white/20" leftIcon={<Instagram size={16} />}>
+                                انستقرام
+                             </Button>
                         </Link>
                     </div>
                 </div>

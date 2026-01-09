@@ -1,56 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand Colors - Ultra Premium & Cinematic */
+  /* Brand Colors - Master Spec */
   --alsaha-green: #72bf44;
-  --alsaha-green-glow: rgba(114, 191, 68, 0.6);
-  --dark-base: #050505;
-  --dark-surface: #0b0b0b;
-  --dark-highlight: #1a1a1a;
+  --dark-base: #0b0b0b;
+  --dark-surface: #111111;
 
-  /* Accents */
-  --accent-silver: #e0e0e0;
-  --accent-grad-start: #72bf44;
-  --accent-grad-end: #4a8c2a;
-
-  /* Text Colors */
+  /* Text */
   --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #666666;
+  --text-secondary: #b3b3b3;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
 }
 
 @theme inline {
   --color-alsaha-green: var(--alsaha-green);
-  --color-alsaha-green-glow: var(--alsaha-green-glow);
   --color-dark-base: var(--dark-base);
   --color-dark-surface: var(--dark-surface);
-  --color-dark-highlight: var(--dark-highlight);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+
+  --color-border-subtle: var(--border-subtle);
 
   --font-cairo: var(--font-cairo);
-  --font-sans: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-slow: pulse-glow 4s ease-in-out infinite;
+  /* Smooth, subtle animations only */
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translate3d(0, 0, 0);
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
     }
-    50% {
-      transform: translate3d(0, -10px, 0);
-    }
-  }
-
-  @keyframes pulse-glow {
-    0%,
-    100% {
-      opacity: 0.8;
-      transform: scale(0.95);
-    }
-    50% {
+    to {
       opacity: 1;
-      transform: scale(1.05);
+      transform: translateY(0);
     }
   }
 }
@@ -59,88 +45,60 @@ body {
   background-color: var(--dark-base);
   color: var(--text-primary);
   font-family: var(--font-cairo);
-  font-weight: 400;
-  line-height: 1.6;
-  overflow-x: hidden;
+  font-weight: 400; /* Regular */
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Global Interaction Rules */
+/* Base Interactions */
 button,
-[role="button"],
 a {
-  cursor: pointer !important;
+  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* --- GLASSMORPHISM UTILITIES --- */
+/* --- GLASSMORPHISM SYSTEM --- */
 .glass {
   background: rgba(15, 15, 15, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
 }
 
 .glass-card {
   background: rgba(20, 20, 20, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
   background: rgba(30, 30, 30, 0.8);
   border-color: rgba(114, 191, 68, 0.3);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 .glass-dock {
   background: rgba(10, 10, 10, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-subtle);
   box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* --- TEXT UTILITIES --- */
-.text-glow {
-  text-shadow: 0 0 25px rgba(114, 191, 68, 0.5);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-green {
-  background: linear-gradient(135deg, #72bf44 0%, #4a8c2a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* --- LAYOUT UTILITIES --- */
-.section-padding {
-  @apply py-24 md:py-32 px-4 md:px-8 max-w-7xl mx-auto;
-}
-
-/* --- SCROLLBAR --- */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--dark-base);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 10px;
+  background: #222;
+  border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--alsaha-green);
 }
@@ -181,5 +139,11 @@ a {
 
 /* RTL Icon Flip Utility */
 .rtl-flip {
-  @apply transform rtl:rotate-180;
+  /* Default LTR (no rotation) */
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+[dir="rtl"] .rtl-flip {
+  transform: rotate(180deg);
 }

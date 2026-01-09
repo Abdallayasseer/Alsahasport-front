@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cairo } from "next/font/google";
 import "./globals.css";
 import NoiseOverlay from "@/components/layout/NoiseOverlay";
@@ -10,13 +10,52 @@ const cairo = Cairo({
   weight: ["300", "400", "600", "700", "900"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#0B0B0B",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "Alsaha Sport | اشتراكات رياضية مميزة",
-  description: "استمتع بالمباريات بثبات وجودة عالية مع الساحة سبورت. اشتراكات IPTV مميزة وتفعيل فوري.",
+  metadataBase: new URL("https://alsahasport-front.vercel.app"),
+  title: {
+    default: "الساحة سبورت | مشاهدة المباريات بجودة 4K",
+    template: "%s | الساحة سبورت",
+  },
+  description: "وجهتك الأولى لمشاهدة المباريات والقنوات العالمية بجودة عالية وبدون تقطيع. سيرفرات فائقة السرعة ودعم فني على مدار الساعة.",
+  keywords: ["IPTV", "مباريات اليوم", "بث مباشر", "الساحة سبورت", "مشاهدة مباريات", "4K", "رياضة"],
+  authors: [{ name: "Al Saha Sport Team" }],
+  openGraph: {
+    type: "website",
+    locale: "ar_EG",
+    url: "https://alsahasport-front.vercel.app",
+    siteName: "الساحة سبورت",
+    title: "الساحة سبورت | عالم الرياضة بين يديك",
+    description: "اشترك الآن واستمتع بأقوى السيرفرات الرياضية. ثبات تام، جودة 4K، ودعم فني محترف.",
+    images: [
+      {
+        url: "/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "Al Saha Sport Platform",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "الساحة سبورت | مشاهدة بلا حدود",
+    description: "منصتك الأولى لمشاهدة المباريات. اشترك الآن.",
+    images: ["/og-image.jpg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 import BottomNav from "@/components/layout/BottomNav";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/layout/Navbar";
 
 export default function RootLayout({
   children,
