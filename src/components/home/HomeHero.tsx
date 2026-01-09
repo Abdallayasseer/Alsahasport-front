@@ -56,13 +56,13 @@ export default function HomeHero() {
 
              {/* Actions */}
              <div className="flex items-center gap-4">
-                <Link href="/live/match-1">
+                <Link href="/live">
                     <Button variant="primary" size="lg" className="pl-6 pr-8">
                        <Play className="fill-black ml-2" size={20} />
                        شاهد المباراة
                     </Button>
                 </Link>
-                <Link href="/matches/1">
+                <Link href="/matches">
                     <Button variant="secondary" size="lg">
                        <Info size={20} className="ml-2" />
                        تفاصيل

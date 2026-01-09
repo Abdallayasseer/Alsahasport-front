@@ -120,7 +120,7 @@ export default function UpcomingMatches() {
                         transition={{ delay: idx * 0.1 }}
                         className="min-w-[85vw] md:min-w-[400px] snap-center md:snap-start"
                     >
-                        <Link href={`/matches/${match.id}`}>
+                        <Link href={match.status === 'LIVE' ? '/live' : '/matches'}>
                             <div className="glass-card h-full group relative overflow-hidden rounded-3xl p-5 md:p-6 transition-all duration-500 hover:shadow-[0_0_30px_rgba(114,191,68,0.1)]">
                                 
                                 {/* Hover Gradient Overlay */}
