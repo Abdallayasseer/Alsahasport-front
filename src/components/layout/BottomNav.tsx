@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Radio, Trophy, Zap } from "lucide-react";
+import { Home, Radio, Trophy, Zap, Headset } from "lucide-react";
 import { motion } from "framer-motion";
 export default function BottomNav() {
   const pathname = usePathname();
@@ -12,6 +12,7 @@ export default function BottomNav() {
     { name: "مباشر", href: "/live", Icon: Radio },
     { name: "المباريات", href: "/matches", Icon: Trophy },
     { name: "اشتراك", href: "/subscription", Icon: Zap },
+    { name: "الدعم", href: "/support", Icon: Headset },
   ];
 
   return (
