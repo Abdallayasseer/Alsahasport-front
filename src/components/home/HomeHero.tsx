@@ -44,36 +44,22 @@ export default function HomeHero() {
                 </span>
              </div>
 
-             {/* Matchup Visual (Logos + Text) */}
-             <div className="flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-10 mb-6">
+             {/* Matchup Visual (Text Only) */}
+             <div className="flex flex-col md:flex-row items-center md:items-end gap-2 md:gap-6 mb-6">
                 {/* Home Team */}
-                <div className="flex items-center gap-4">
-                     <div className="relative w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-b from-white/10 to-transparent p-[1px]">
-                        <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-2xl">
-                              <span className="text-xl md:text-3xl font-black text-white/80 uppercase tracking-tighter">RM</span>
-                        </div>
-                     </div>
-                     <h1 className="text-4xl md:text-7xl font-black text-white leading-none tracking-tight">
-                        Real Madrid
-                     </h1>
-                </div>
+                 <h1 className="text-4xl md:text-7xl font-black text-white leading-none tracking-tight">
+                    Real Madrid
+                 </h1>
 
                 {/* VS Badge */}
-                <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md rotate-3 md:rotate-0 md:mb-2 shrink-0">
+                <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md rotate-3 md:rotate-0 md:mb-2 shrink-0 my-2 md:my-0">
                     <span className="font-black italic text-xl md:text-2xl text-white/80">VS</span>
                 </div>
 
                 {/* Away Team */}
-                <div className="flex items-center gap-4 flex-row-reverse md:flex-row">
-                     <h1 className="text-4xl md:text-7xl font-black text-white leading-none tracking-tight text-right">
-                        Man City
-                     </h1>
-                     <div className="relative w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-b from-white/10 to-transparent p-[1px]">
-                        <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-2xl">
-                              <span className="text-xl md:text-3xl font-black text-white/80 uppercase tracking-tighter">MC</span>
-                        </div>
-                     </div>
-                </div>
+                 <h1 className="text-4xl md:text-7xl font-black text-white leading-none tracking-tight text-right">
+                    Man City
+                 </h1>
              </div>
 
              {/* Meta Info */}
