@@ -48,15 +48,10 @@ export default function HomeHero() {
              <div className="flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-10 mb-6">
                 {/* Home Team */}
                 <div className="flex items-center gap-4">
-                     <div className="relative w-16 h-16 md:w-24 md:h-24">
-                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl" />
-                        <Image 
-                            src="/images/teams/realmadrid.png" 
-                            alt="Real Madrid" 
-                            width={96} 
-                            height={96} 
-                            className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
-                        />
+                     <div className="relative w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-b from-white/10 to-transparent p-[1px]">
+                        <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-2xl">
+                              <span className="text-xl md:text-3xl font-black text-white/80 uppercase tracking-tighter">RM</span>
+                        </div>
                      </div>
                      <h1 className="text-4xl md:text-7xl font-black text-white leading-none tracking-tight">
                         Real Madrid
@@ -73,15 +68,10 @@ export default function HomeHero() {
                      <h1 className="text-4xl md:text-7xl font-black text-white leading-none tracking-tight text-right">
                         Man City
                      </h1>
-                     <div className="relative w-16 h-16 md:w-24 md:h-24">
-                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl" />
-                        <Image 
-                            src="/images/teams/mancity.png" 
-                            alt="Man City" 
-                            width={96} 
-                            height={96} 
-                            className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
-                        />
+                     <div className="relative w-16 h-16 md:w-24 md:h-24 rounded-full bg-gradient-to-b from-white/10 to-transparent p-[1px]">
+                        <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-2xl">
+                              <span className="text-xl md:text-3xl font-black text-white/80 uppercase tracking-tighter">MC</span>
+                        </div>
                      </div>
                 </div>
              </div>
