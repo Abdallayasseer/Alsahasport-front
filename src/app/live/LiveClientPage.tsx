@@ -18,7 +18,10 @@ export default function LiveClientPage() {
              
              {/* Player Wrapper */}
              <div className="flex-1 relative bg-black rounded-3xl overflow-hidden border border-white/5 shadow-2xl z-10">
-                <VideoPlayer channelName="beIN Sports 1 Premium" />
+                <VideoPlayer 
+                    channelName="beIN Sports 1 Premium" 
+                    onShowSidebar={() => setIsSidebarCollapsed(false)}
+                />
              </div>
              
              {/* Stream Info (Below Player) */}

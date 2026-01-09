@@ -121,43 +121,20 @@ export default function VideoPlayer({ channelName = "Channel" }: VideoPlayerProp
                     className="absolute inset-0 flex flex-col justify-between p-4 md:p-6 z-20 bg-gradient-to-t from-black/80 via-transparent to-black/60 pointer-events-none"
                 >
                     {/* Top Bar */}
-                    <div className="flex justify-between items-start pointer-events-auto w-full">
-                        <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0">
-                            <span className="px-2 py-1 bg-red-600 rounded-md text-[10px] font-black text-white flex items-center gap-1.5 shadow-lg tracking-wider shrink-0">
+                    <div className="flex justify-between items-start pointer-events-auto">
+                        <div className="flex items-center gap-4">
+                            <span className="px-2.5 py-1 bg-red-600 rounded-md text-[10px] font-black text-white flex items-center gap-1.5 shadow-lg tracking-wider">
                                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                                 LIVE
                             </span>
-                            <div className="flex flex-col min-w-0">
-                                <h3 className="font-bold text-white drop-shadow-md leading-none truncate text-sm md:text-base">{channelName}</h3>
-                                <span className="text-[10px] text-white/50 font-mono mt-0.5 md:mt-1 hidden md:block">1080p • 60FPS</span>
+                            <div className="flex flex-col">
+                                <h3 className="font-bold text-white drop-shadow-md leading-none">{channelName}</h3>
+                                <span className="text-[10px] text-white/50 font-mono mt-1">1080p • 60FPS</span>
                             </div>
                         </div>
-
-                        {/* Server & Cast Buttons */}
-                        <div className="flex items-center gap-2">
-                             {/* Server Selector */}
-                             <div className="relative group/server">
-                                <button className="flex items-center gap-2 px-3 py-1.5 bg-black/40 backdrop-blur-md hover:bg-alsaha-green/20 border border-white/10 hover:border-alsaha-green/50 rounded-lg text-xs font-bold text-white transition-all">
-                                    <div className="w-2 h-2 rounded-full bg-alsaha-green shadow-[0_0_8px_#72BF44]" />
-                                    <span>السيرفر 1</span>
-                                </button>
-                                
-                                {/* Dropdown */}
-                                <div className="absolute top-full right-0 mt-2 w-48 bg-black/90 border border-white/10 rounded-xl overflow-hidden shadow-2xl opacity-0 group-hover/server:opacity-100 pointer-events-none group-hover/server:pointer-events-auto transition-all transform origin-top-right scale-95 group-hover/server:scale-100 hidden md:block">
-                                    <div className="p-1">
-                                        {['السيرفر الرئيسي (4K)', 'سيرفر احتياطي 1 (FHD)', 'سيرفر احتياطي 2 (HD)', 'الجوال (SD)'].map((server, i) => (
-                                            <button key={i} className={`w-full text-right px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/10 transition-colors ${i===0 ? 'text-alsaha-green bg-alsaha-green/10' : 'text-white/80'}`}>
-                                                {server}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                             </div>
-
-                             <button className="p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white backdrop-blur-sm">
-                                <Cast size={18} className="md:w-5 md:h-5" />
-                             </button>
-                        </div>
+                        <button className="p-2.5 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white backdrop-blur-sm">
+                            <Cast size={20} />
+                        </button>
                     </div>
 
                     {/* Bottom Bar */}
