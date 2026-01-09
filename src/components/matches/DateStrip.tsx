@@ -44,7 +44,7 @@ export default function DateStrip({ dates, selectedDate, onSelectDate }: DateStr
                         `}
                     >
                         <span className={`text-xs font-bold mb-1 ${isActive ? "text-black/70" : "text-white/40"}`}>{item.day}</span>
-                        <span className={`text-xl font-black ${isActive ? "text-black" : "text-white"}`}>{item.date}</span>
+                        <span className={`text-xl md:text-3xl font-black ${isActive ? "text-black" : "text-white"}`}>{item.date}</span>
                         
                         {isActive && (
                             <motion.div 

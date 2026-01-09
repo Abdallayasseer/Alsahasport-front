@@ -45,7 +45,7 @@ export default function MatchCard({ match }: { match: MatchProps }) {
             <div className="shrink-0 w-16 md:w-20 text-center relative z-10">
                 {match.status === 'LIVE' || match.status === 'FINISHED' ? (
                     <span className={`
-                        px-2 md:px-3 py-1 rounded-lg font-mono font-bold tracking-widest text-sm md:text-xl whitespace-nowrap block
+                        px-2 md:px-4 py-1 rounded-lg font-mono font-bold tracking-widest text-sm md:text-3xl whitespace-nowrap block
                         ${match.status === 'LIVE' ? 'bg-dark-base border border-alsaha-green/30 text-white shadow-[0_0_10px_rgba(114,191,68,0.2)]' : 'bg-white/5 text-white/50'}
                     `} dir="ltr">
                         {match.score}
