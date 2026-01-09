@@ -42,7 +42,7 @@ export default function MatchCard({ match }: { match: MatchProps }) {
                 {match.home}
             </div>
             
-            <div className="shrink-0 w-16 md:w-20 text-center relative z-10">
+            <div className="shrink-0 w-auto min-w-[60px] md:min-w-[100px] text-center relative z-10">
                 {match.status === 'LIVE' || match.status === 'FINISHED' ? (
                     <span className={`
                         px-2 md:px-4 py-1 rounded-lg font-mono font-bold tracking-widest text-sm md:text-3xl whitespace-nowrap block
