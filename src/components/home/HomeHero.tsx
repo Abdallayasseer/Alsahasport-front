@@ -8,12 +8,12 @@ import Button from "@/components/ui/Button";
 
 export default function HomeHero() {
   return (
-    <section className="relative w-full h-[85vh] md:h-[80vh] flex items-end pb-12 md:pb-20 overflow-hidden">
+    <section className="relative w-full min-h-[65vh] md:h-[80vh] flex items-center md:items-end pb-12 md:pb-24 overflow-hidden pt-28 md:pt-0">
       
       {/* Background Image (Immersive) */}
       <div className="absolute inset-0 z-0 select-none">
         <Image
-          src="/images/pattern.png" // Using existing pattern asset
+          src="/images/pattern.png" 
           alt="Featured Match Background"
           fill
           className="object-cover object-center opacity-20"
@@ -21,20 +21,20 @@ export default function HomeHero() {
           draggable={false}
         />
         {/* Cinematic Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/20 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 md:px-6 relative z-10 w-full">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 w-full mb-8 md:mb-0">
         <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="max-w-3xl"
+            className="max-w-4xl mx-auto md:mx-0"
         >
              {/* Tag / Status */}
-             <div className="flex items-center gap-3 mb-4">
+             <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
                 <span className="px-3 py-1 rounded-full bg-red-600/90 text-white text-xs font-bold flex items-center gap-2 shadow-[0_0_15px_rgba(220,38,38,0.5)]">
                     <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                     LIVE NOW
@@ -44,34 +44,71 @@ export default function HomeHero() {
                 </span>
              </div>
 
-             {/* Title */}
-             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-4 drop-shadow-2xl">
-                Real Madrid <span className="text-2xl font-black italic text-white/90 bg-white/10 px-3 py-1 rounded-lg mx-3 translate-y-[-4px] inline-block border border-white/5">VS</span> Man City
-             </h1>
+             {/* Matchup Visual (Logos + Text) */}
+             <div className="flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-10 mb-6">
+                {/* Home Team */}
+                <div className="flex items-center gap-4">
+                     <div className="relative w-16 h-16 md:w-24 md:h-24">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl" />
+                        <Image 
+                            src="/images/teams/realmadrid.png" 
+                            alt="Real Madrid" 
+                            width={96} 
+                            height={96} 
+                            className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
+                        />
+                     </div>
+                     <h1 className="text-4xl md:text-7xl font-black text-white leading-none tracking-tight">
+                        Real Madrid
+                     </h1>
+                </div>
+
+                {/* VS Badge */}
+                <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md rotate-3 md:rotate-0 md:mb-2 shrink-0">
+                    <span className="font-black italic text-xl md:text-2xl text-white/80">VS</span>
+                </div>
+
+                {/* Away Team */}
+                <div className="flex items-center gap-4 flex-row-reverse md:flex-row">
+                     <h1 className="text-4xl md:text-7xl font-black text-white leading-none tracking-tight text-right">
+                        Man City
+                     </h1>
+                     <div className="relative w-16 h-16 md:w-24 md:h-24">
+                        <div className="absolute inset-0 bg-white/10 rounded-full blur-xl" />
+                        <Image 
+                            src="/images/teams/mancity.png" 
+                            alt="Man City" 
+                            width={96} 
+                            height={96} 
+                            className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
+                        />
+                     </div>
+                </div>
+             </div>
 
              {/* Meta Info */}
-             <p className="text-white/70 text-sm md:text-base font-medium mb-8 max-w-xl line-clamp-2">
+             <p className="text-white/70 text-sm md:text-lg font-medium mb-8 max-w-xl text-center md:text-right line-clamp-2 md:line-clamp-none mx-auto md:mx-0">
                 قمة دوري أبطال أوروبا في بث مباشر وحصري بجودة 4K. تعليق عربي، سيرفرات ثابتة، وتغطية شاملة للمباراة.
              </p>
 
              {/* Actions */}
-             <div className="flex items-center gap-4">
-                <Link href="/live">
-                    <Button variant="primary" size="lg" className="pl-6 pr-8">
-                       <Play className="fill-black ml-2" size={20} />
-                       شاهد المباراة
+             <div className="flex flex-col md:flex-row items-center gap-4 justify-center md:justify-start w-full md:w-auto">
+                <Link href="/live" className="w-full md:w-auto">
+                    <Button variant="primary" size="lg" className="pl-6 pr-8 w-full md:w-auto py-6 text-lg shadow-[0_0_30px_rgba(114,191,68,0.3)] animate-pulse-slow">
+                       <Play className="fill-black ml-2" size={24} />
+                       شاهد المباراة مجاناً
                     </Button>
                 </Link>
-                <Link href="/matches">
-                    <Button variant="secondary" size="lg">
-                       <Info size={20} className="ml-2" />
-                       تفاصيل
+                <Link href="/matches" className="w-full md:w-auto">
+                    <Button variant="secondary" size="lg" className="w-full md:w-auto py-6 text-lg bg-white/5 border-white/10 hover:bg-white/10">
+                       <Info size={24} className="ml-2" />
+                       تفاصيل المباراة
                     </Button>
                 </Link>
              </div>
              
              {/* Social Proof Badge */}
-             <div className="mt-8 flex items-center gap-4 animate-fade-in opacity-80">
+             <div className="mt-8 flex items-center justify-center md:justify-start gap-4 opacity-80">
                 <div className="flex -space-x-3 space-x-reverse">
                     {[1,2,3,4].map(i => (
                         <div key={i} className="w-8 h-8 rounded-full border-2 border-black bg-white/10 backdrop-blur-sm flex items-center justify-center text-[10px] text-white font-bold">
@@ -80,7 +117,7 @@ export default function HomeHero() {
                     ))}
                 </div>
                 <div className="text-sm font-medium text-white/80">
-                    أكثر من <span className="text-white font-bold">10,000 مشترك</span> يثقون بنا
+                    أكثر من <span className="text-white font-bold">10,000 مشاهد</span> الآن
                 </div>
              </div>
         </motion.div>
