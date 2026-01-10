@@ -39,7 +39,7 @@ export default function AuroraBackground() {
       />
 
       {/* Mobile Static Fallback - OPTIMIZED */}
-      <div className="md:hidden absolute top-[-10%] left-[-10%] w-[120%] h-[50%] bg-[#72BF44] blur-[100px] opacity-[0.08] rounded-full pointer-events-none" />
+      <div className="md:hidden absolute top-[-10%] left-[-10%] w-[120%] h-[50%] bg-[#72BF44] blur-[100px] opacity-[0.05] rounded-full pointer-events-none" />
 
       {/* Bottom Ambience */}
       <div className="absolute bottom-0 left-0 w-full h-[50vh] bg-gradient-to-t from-[#050505] to-transparent" />

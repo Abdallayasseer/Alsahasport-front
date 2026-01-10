@@ -17,20 +17,21 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="hidden md:flex fixed top-0 left-0 right-0 z-50 justify-center pt-6 px-4 pointer-events-none">
+    <nav className="hidden md:flex fixed top-6 left-0 right-0 z-50 justify-center px-4 pointer-events-none transition-all duration-300">
       <div 
           className="
               pointer-events-auto 
               container mx-auto max-w-5xl
               flex items-center justify-between 
-              bg-black/40 backdrop-blur-xl border border-white/10
-              rounded-full py-2.5 px-6
-              shadow-[0_8px_32px_rgba(0,0,0,0.2)]
-              transition-all duration-300
+              bg-black/60 backdrop-blur-2xl border border-white/10
+              rounded-full py-3 px-8
+              shadow-[0_8px_32px_rgba(0,0,0,0.4)]
+              hover:shadow-[0_8px_40px_rgba(114,191,68,0.15)] hover:border-white/20
+              transition-all duration-500 hover:scale-[1.01]
           "
       >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group flex-shrink-0 mr-4">
+          <Link href="/" className="flex items-center gap-2 group flex-shrink-0 me-4">
              <span className="font-black text-2xl tracking-tighter text-white group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all">
                 ALSAHA<span className="text-alsaha-green group-hover:drop-shadow-[0_0_15px_rgba(114,191,68,0.5)] transition-all">.SPORT</span>
              </span>
@@ -63,7 +64,7 @@ export default function Navbar() {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-4 flex-shrink-0 ml-4">
+          <div className="flex items-center gap-4 flex-shrink-0 ms-4">
               <Link href="/subscription">
                  <button className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-alsaha-green hover:bg-[#65aa3c] text-black text-sm font-black transition-all shadow-[0_0_20px_rgba(114,191,68,0.2)] hover:shadow-[0_0_30px_rgba(114,191,68,0.4)] transform hover:scale-105 active:scale-95">
                     <span>اشترك الآن</span>

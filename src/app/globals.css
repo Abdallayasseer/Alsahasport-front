@@ -6,6 +6,11 @@
   --dark-base: #0b0b0b;
   --dark-surface: #111111;
 
+  /* Spacing System */
+  --section-padding: 6rem;
+  --container-padding: 1.5rem;
+  --header-height: 80px;
+
   /* Text */
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
@@ -67,11 +72,33 @@ body {
   background-color: var(--dark-base);
   color: var(--text-primary);
   font-family: var(--font-cairo);
-  font-weight: 400;
-  line-height: 1.6;
+  font-weight: 500; /* Increased from 400 for better readability in Arabic */
+  line-height: 1.7; /* Increased for breathing room */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+}
+
+/* Typography Scale */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 2.25rem;
+}
+h3 {
+  font-size: 1.5rem;
 }
 
 /* Base Interactions */
@@ -92,10 +119,10 @@ a {
 
 .glass-card {
   background: rgba(20, 20, 20, 0.4);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Increased opacity slightly */
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.3); /* Deeper shadow */
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -183,10 +210,18 @@ a {
 /* RTL Icon Flip Utility */
 .rtl-flip {
   /* Default LTR (no rotation) */
-  transform: rotate(0deg);
+  transform: scaleX(1);
   transition: transform 0.3s;
 }
 
 [dir="rtl"] .rtl-flip {
-  transform: rotate(180deg);
+  transform: scaleX(-1);
+}
+
+/* Logical Margins Helper (if needed for older patterns) */
+.ms-auto {
+  margin-inline-start: auto;
+}
+.me-auto {
+  margin-inline-end: auto;
 }

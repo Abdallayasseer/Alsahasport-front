@@ -18,7 +18,7 @@ export default function PricingSection() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="relative bg-[#111]/80 backdrop-blur-2xl border border-alsaha-green/30 rounded-[2.5rem] p-8 md:p-14 text-center shadow-[0_0_80px_rgba(114,191,68,0.2)] overflow-hidden group"
+                className="relative bg-[#111]/80 backdrop-blur-2xl border border-alsaha-green/30 rounded-[2.5rem] p-6 md:p-12 text-center shadow-[0_0_80px_rgba(114,191,68,0.2)] overflow-hidden group"
             >
                 {/* Floating shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />

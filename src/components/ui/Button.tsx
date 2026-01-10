@@ -30,12 +30,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     // Base styles
     const baseStyles =
-      "relative flex items-center justify-center font-bold rounded-xl transition-all select-none disabled:opacity-50 disabled:cursor-not-allowed";
+      "relative flex items-center justify-center font-bold rounded-2xl transition-all select-none disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.96] hover:scale-[1.02]";
 
     // Variant styles
     const variants = {
       primary:
-        "bg-alsaha-green text-black shadow-[0_0_20px_rgba(114,191,68,0.2)] hover:shadow-[0_0_35px_rgba(114,191,68,0.4)] border border-alsaha-green hover:brightness-110",
+        "bg-alsaha-green text-black font-black shadow-[0_0_25px_rgba(114,191,68,0.25)] hover:shadow-[0_0_40px_rgba(114,191,68,0.5)] border border-alsaha-green",
       secondary:
         "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20 backdrop-blur-md",
       tertiary:
@@ -55,7 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <motion.button
         ref={ref}
-        whileTap={{ scale: disabled || isLoading ? 1 : 0.96 }}
+        // whileTap handled by CSS active:scale for consistency across all interactive elements
         className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
         disabled={disabled || isLoading}
         {...(props as HTMLMotionProps<"button">)}

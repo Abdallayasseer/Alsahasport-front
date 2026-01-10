@@ -1,7 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Search, Radio, ChevronRight, ChevronLeft } from "lucide-react";
+import { Search, Radio, ChevronRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 

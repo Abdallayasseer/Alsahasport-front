@@ -17,14 +17,13 @@ export default function MobileFloatingCTA() {
       const isExpired = Date.now() - parseInt(dismissedAt) > 24 * 60 * 60 * 1000;
       if (isExpired) {
         localStorage.removeItem("cta_dismissed_at");
-        setIsDismissed(false);
-      } else {
-        setIsDismissed(true);
-      }
+        if (isDismissed) setTimeout(() => setIsDismissed(false), 0);
+      } 
+      // Else: already true (default), no update needed
     } else {
-      setIsDismissed(false);
+      setTimeout(() => setIsDismissed(false), 0);
     }
-  }, []);
+  }, [isDismissed]);
 
   // Triggers: Scroll > 40%, Inactivity, Click triggers
   useEffect(() => {
@@ -92,16 +91,16 @@ export default function MobileFloatingCTA() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="md:hidden fixed bottom-[90px] left-4 right-4 z-40"
+          className="md:hidden fixed bottom-[100px] left-4 right-4 z-50 pb-safe"
         >
           <div className="relative group">
             {/* Dismiss Button */}
             <button
                 onClick={handleDismiss}
-                className="absolute -top-2 -right-2 z-50 bg-black/80 text-white/70 p-1 rounded-full border border-white/10 hover:bg-black hover:text-white transition-colors"
+                className="absolute -top-3 -right-3 z-50 bg-black/80 text-white/70 p-2 rounded-full border border-white/10 hover:bg-black hover:text-white transition-colors"
                 aria-label="Close"
             >
-                <X size={12} />
+                <X size={14} />
             </button>
 
             {/* Main CTA */}

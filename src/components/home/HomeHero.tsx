@@ -23,6 +23,8 @@ export default function HomeHero() {
         {/* Cinematic Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/30 to-transparent" />
+        {/* Spotlight Effect */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-alsaha-green/10 blur-[150px] rounded-full mix-blend-screen pointer-events-none -translate-y-1/2 translate-x-1/3" />
         <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
       </div>
 
@@ -36,26 +38,26 @@ export default function HomeHero() {
         >
              {/* Tag / Status */}
              <div className="flex items-center justify-center md:justify-start gap-3 mb-8">
-                <span className="px-4 py-1.5 rounded-full bg-red-600/90 text-white text-xs font-black tracking-wide flex items-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.6)] animate-pulse">
-                    <span className="w-2 h-2 rounded-full bg-white shadow-[0_0_10px_white]" />
+                <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-xs font-black tracking-widest flex items-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.4)] border border-red-500/30 animate-pulse">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_white]" />
                     LIVE NOW
                 </span>
-                <span className="px-4 py-1.5 rounded-full glass-card text-white/90 text-xs font-bold border border-white/10 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-alsaha-green" />
+                <span className="px-5 py-1.5 rounded-full glass text-white/90 text-xs font-bold border border-white/10 flex items-center gap-2 shadow-lg backdrop-blur-md">
+                    <span className="w-1.5 h-1.5 rounded-full bg-alsaha-green shadow-[0_0_10px_#72BF44]" />
                     Champions League
                 </span>
              </div>
 
              {/* Matchup Visual (Text Only) */}
-             <div className="flex flex-col md:flex-row items-center md:items-end gap-4 md:gap-8 mb-8">
+             <div className="flex flex-col md:flex-row items-center md:items-end gap-4 md:gap-10 mb-8">
                 {/* Home Team */}
                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 leading-[0.9] tracking-tighter drop-shadow-2xl whitespace-nowrap">
                     Real Madrid
                  </h1>
 
                 {/* VS Badge */}
-                <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-2xl glass border border-white/10 backdrop-blur-xl rotate-3 md:rotate-0 md:mb-4 shrink-0 my-3 md:my-0 shadow-[0_0_30px_rgba(0,0,0,0.5)] group hover:scale-110 transition-transform duration-500">
-                    <span className="font-black italic text-2xl md:text-3xl text-white/90 group-hover:text-alsaha-green transition-colors">VS</span>
+                <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-2xl glass border border-white/10 backdrop-blur-xl rotate-3 md:rotate-0 md:mb-4 shrink-0 my-3 md:my-0 shadow-[0_0_40px_rgba(0,0,0,0.6)] group hover:scale-110 transition-transform duration-500 hover:border-alsaha-green/30">
+                    <span className="font-black italic text-2xl md:text-3xl text-white/90 group-hover:text-alsaha-green transition-colors tracking-tighter">VS</span>
                 </div>
 
                 {/* Away Team */}

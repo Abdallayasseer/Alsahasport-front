@@ -119,13 +119,14 @@ export default function UpcomingMatches() {
                         className="min-w-[85vw] md:min-w-[420px] snap-center"
                     >
                         <Link href={match.status === 'LIVE' ? '/live' : '/matches'}>
-                            <div className="glass-card h-full group relative overflow-hidden rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:-translate-y-1 hover:border-alsaha-green/30">
+                            <div className="glass-card h-full group relative overflow-hidden rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.6)] hover:-translate-y-1 border border-white/5 hover:border-alsaha-green/20 bg-[#141414]/60 backdrop-blur-3xl">
                                 
                                 {/* Background Image/Texture for specific matches (Optional) */}
                                 <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
                                 
-                                {/* Hover Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-alsaha-green/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                {/* Hover Gradient Overlay & Shine */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-alsaha-green/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <div className="absolute top-0 -left-[100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 group-hover:left-[200%] transition-all duration-1000 ease-in-out" />
                                 
                                 <div className="flex flex-col gap-8 relative z-10 h-full justify-between">
                                 
@@ -171,7 +172,7 @@ export default function UpcomingMatches() {
                                         <div className="flex flex-col items-center justify-center relative z-10 px-1 md:px-4">
                                             {match.status === 'LIVE' ? (
                                                 <div className="flex flex-col items-center">
-                                                    <div className="w-max mx-auto text-3xl md:text-5xl font-black text-white font-mono mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] whitespace-nowrap direction-ltr" dir="ltr">
+                                                    <div className="w-max mx-auto text-3xl md:text-5xl font-black text-white font-mono mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] whitespace-nowrap" dir="ltr">
                                                         {match.score || "0 - 0"}
                                                     </div>
                                                     <span className="text-[10px] font-bold text-red-500 tracking-widest uppercase animate-pulse">On Air</span>

@@ -20,16 +20,17 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Auto-hide controls logic
+  // Auto-hide controls logic
   useEffect(() => {
     let timeout: NodeJS.Timeout;
     if (isPlaying && isHovering && !isLoading && !hasError) {
-        setShowControls(true);
+        if (!showControls) setTimeout(() => setShowControls(true), 0);
         timeout = setTimeout(() => setShowControls(false), 2500); // Faster fade 2.5s
     } else if (!isPlaying || isLoading || hasError) {
-        setShowControls(true);
+        if (!showControls) setTimeout(() => setShowControls(true), 0);
     }
     return () => clearTimeout(timeout);
-  }, [isPlaying, isHovering, isLoading, hasError]);
+  }, [isPlaying, isHovering, isLoading, hasError, showControls]);
   
   const togglePlay = () => {
       // ... (keep existing logic)

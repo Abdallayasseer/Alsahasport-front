@@ -36,13 +36,13 @@ export default function BottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className="relative group focus:outline-none flex flex-col items-center gap-1 min-w-[60px]"
+              className="relative group focus:outline-none flex flex-col items-center gap-1 min-w-[60px] active:scale-90 transition-transform duration-200"
             >
                 {/* Active Indicator */}
                 {isActive && (
                     <motion.div 
                         layoutId="active-pill"
-                        className="absolute -top-3 w-1 h-1 rounded-full bg-alsaha-green shadow-[0_0_8px_#72BF44]" 
+                        className="absolute -top-3 w-1.5 h-1.5 rounded-full bg-alsaha-green shadow-[0_0_12px_#72BF44]" 
                     />
                 )}
 
