@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 
@@ -25,7 +25,16 @@ const FAQS = [
 
 export default function SubscriptionFAQ({ limit }: { limit?: number }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const displayFaqs = limit ? FAQS.slice(0, limit) : FAQS;
+
+  useEffect(() => {
+     const checkMobile = () => setIsMobile(window.innerWidth < 768);
+     checkMobile();
+     window.addEventListener('resize', checkMobile);
+     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
 
   return (
     <section className="py-20 bg-black/20 relative">
@@ -54,10 +63,10 @@ export default function SubscriptionFAQ({ limit }: { limit?: number }) {
                         <AnimatePresence>
                             {openIndex === idx && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
+                                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.2 }}
+                                    exit={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+                                    transition={isMobile ? { duration: 0 } : { duration: 0.2 }}
                                 >
                                     <div className="p-5 pt-0 border-t border-white/5 text-text-secondary text-sm leading-7">
                                         {faq.a}
