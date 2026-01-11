@@ -34,7 +34,10 @@ export default function SubscriptionClientPage() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const containerVariants = isMobile ? {} : {
+  const containerVariants = isMobile ? {
+    hidden: { opacity: 1 },
+    visible: { opacity: 1 }
+  } : {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -45,7 +48,10 @@ export default function SubscriptionClientPage() {
     }
   };
 
-  const itemVariants = isMobile ? {} : {
+  const itemVariants = isMobile ? {
+    hidden: { opacity: 1, y: 0 },
+    visible: { opacity: 1, y: 0 }
+  } : {
     hidden: { opacity: 0, y: 15 },
     visible: { 
       opacity: 1, 
@@ -78,8 +84,8 @@ export default function SubscriptionClientPage() {
             
             {/* LEFT COLUMN: Activation Card (Luxury Glass Console) */}
             <motion.div 
-                initial={isMobile ? {} : { opacity: 0, x: -20 }}
-                animate={isMobile ? {} : { opacity: 1, x: 0 }}
+                initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
                 transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }}
                 className="rounded-2xl bg-black/40 backdrop-blur-xl border border-white/5 p-6 md:p-8 shadow-2xl relative overflow-hidden group"
             >
@@ -161,8 +167,8 @@ export default function SubscriptionClientPage() {
             {/* RIGHT COLUMN: Features List (Reassurance) */}
             <div className="pt-4 lg:pt-8 order-last lg:order-none">
                 <motion.div
-                    initial={isMobile ? {} : { opacity: 0, y: 10 }}
-                    animate={isMobile ? {} : { opacity: 1, y: 0 }}
+                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                    animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                     transition={isMobile ? { duration: 0 } : { duration: 0.5 }}
                     className="mb-8"
                 >

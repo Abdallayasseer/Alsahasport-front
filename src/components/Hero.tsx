@@ -33,15 +33,15 @@ export default function Hero() {
           
           {/* Text Content */}
           <motion.div 
-            initial={isMobile ? {} : { opacity: 0, y: 30 }}
-            animate={isMobile ? {} : { opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             transition={isMobile ? { duration: 0 } : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-7 flex flex-col items-center md:items-start text-center md:text-right"
           >
             {/* Premium Badge */}
             <motion.div 
-              initial={isMobile ? {} : { opacity: 0, scale: 0.9 }}
-              animate={isMobile ? {} : { opacity: 1, scale: 1 }}
+              initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              animate={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
               transition={isMobile ? { duration: 0 } : { delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-alsaha-green/5 border border-alsaha-green/10 text-alsaha-green text-xs font-bold mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(114,191,68,0.1)] hover:bg-alsaha-green/10 transition-colors cursor-default"
             >

@@ -111,15 +111,25 @@ body {
   overflow-x: hidden;
 }
 
-/* ⚡ MOBILE PERFORMANCE: GLOBAL KILL SWITCH ⚡ */
+/* ⚡ MOBILE PERFORMANCE: SAFE KILL SWITCH ⚡ */
 @media (max-width: 768px) {
   *,
   *::before,
   *::after {
     animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    scroll-behavior: auto !important;
+    transition-property: none !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+
+  /* 🔥 CRITICAL: FORCE VISIBILITY & OPACITY ON MOBILE 🔥 */
+  main,
+  section,
+  article,
+  [class*="opacity-0"],
+  [class*="invisible"] {
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   html,

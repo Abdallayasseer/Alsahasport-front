@@ -43,8 +43,8 @@ export default function HomeHero() {
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 w-full mb-8 md:mb-0">
         <motion.div 
-            initial={isMobile ? {} : { opacity: 0, y: 30 }}
-            animate={isMobile ? {} : { opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             transition={isMobile ? { duration: 0 } : { delay: 0.2, duration: 0.8 }}
             className="w-full mx-auto md:mx-0"
         >
