@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Button from "@/components/ui/Button";
 
 export default function TrustSection() {
   return (
@@ -40,9 +41,12 @@ export default function TrustSection() {
                  جاهز لبدء التجربة؟
                </h3>
                <Link href="/subscription">
-                 <button className="px-10 py-4 bg-alsaha-green text-white font-bold rounded-xl shadow-[0_10px_40px_rgba(114,191,68,0.3)] hover:scale-105 transition-all text-xl cursor-pointer">
+                 <Button 
+                    size="lg" 
+                    className="shadow-[0_10px_40px_rgba(114,191,68,0.3)] text-xl h-16 px-12 rounded-2xl"
+                 >
                    اشترك الآن
-                 </button>
+                 </Button>
                </Link>
              </div>
           </div>

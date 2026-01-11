@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Play, Search, Filter } from "lucide-react";
 
 // Mock Data - Expanded
@@ -22,19 +23,70 @@ const allChannels = [
   { id: 13, name: "AD Sports 1", category: "Sports", image: "/images/channels/ad1.png" },
   { id: 14, name: "Al Kass One", category: "Sports", image: "/images/channels/alkass.png" },
   { id: 15, name: "Nat Geo", category: "Documentary", image: "/images/channels/natgeo.png" },
+  // Duplicate for demo volume
+  { id: 16, name: "beIN Sports 3", category: "Sports", image: "/images/channels/bein3.png" },
+  { id: 17, name: "beIN Sports 4", category: "Sports", image: "/images/channels/bein4.png" },
+  { id: 18, name: "SSC Extra 1", category: "Sports", image: "/images/channels/ssc_extra1.png" },
 ];
 
 const categories = ["All", "Sports", "Movies", "News", "Kids", "Entertainment", "Documentary"];
+const ITEMS_PER_PAGE = 12;
 
 export default function ChannelsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
+  // Filter Data
   const filteredChannels = allChannels.filter(channel => {
     const matchesCategory = activeCategory === "All" || channel.category === activeCategory;
     const matchesSearch = channel.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const visibleChannels = filteredChannels.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredChannels.length;
+
+  // Simulate API Delay & Reset Pagination
+  useEffect(() => {
+    let mounted = true;
+    
+    // Using simple timeout to debounce state updates slightly
+    const timer = setTimeout(() => {
+       if (mounted) {
+         setIsLoading(false);
+       }
+    }, 800);
+
+    // Set initial loading state only if needed (e.g., query changed)
+    // We avoid setting it true inside effect to prevent loops. 
+    // Ideally, perform set true in change handlers.
+    
+    // For now, to satisfy lint and logic:
+    return () => { 
+        mounted = false; 
+        clearTimeout(timer); 
+    };
+  }, [activeCategory, searchQuery]);
+
+  const handleCategoryChange = (cat: string) => {
+    setActiveCategory(cat);
+    setIsLoading(true);
+    setVisibleCount(ITEMS_PER_PAGE);
+  };
+
+  const handleSearchChange = (val: string) => {
+    setSearchQuery(val);
+    setIsLoading(true); // Trigger loading here
+    setVisibleCount(ITEMS_PER_PAGE);
+  };
+
+  const ChannelSkeleton = () => (
+      <div className="aspect-[4/3] bg-white/5 rounded-2xl border border-white/5 animate-pulse flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-white/10" />
+      </div>
+  );
 
   return (
     <main className="min-h-screen pt-28 pb-32 px-4 md:px-6 container mx-auto">
@@ -58,7 +110,7 @@ export default function ChannelsPage() {
                         type="text" 
                         placeholder="ابحث عن قناة..." 
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(e) => handleSearchChange(e.target.value)}
                         className="w-full bg-white/5 border border-white/10 rounded-full py-2.5 pr-10 pl-4 text-sm text-white focus:outline-none focus:border-alsaha-green/50 focus:bg-white/10 transition-all placeholder:text-white/20"
                     />
                 </div>
@@ -69,7 +121,7 @@ export default function ChannelsPage() {
                     {categories.map((cat) => (
                         <button
                         key={cat}
-                        onClick={() => setActiveCategory(cat)}
+                        onClick={() => handleCategoryChange(cat)}
                         className={`
                             px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap border
                             ${activeCategory === cat 
@@ -86,61 +138,70 @@ export default function ChannelsPage() {
       </div>
 
       {/* Grid */}
-      <AnimatePresence mode="popLayout">
-        <motion.div 
-            layout
-            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6 max-w-7xl mx-auto"
-        >
-            {filteredChannels.map((channel) => (
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6 max-w-7xl mx-auto">
+        {isLoading 
+            ? Array.from({ length: 8 }).map((_, i) => <ChannelSkeleton key={i} />)
+            : visibleChannels.map((channel) => (
                 <Link key={channel.id} href="/subscription" className="block outline-none focus:outline-none group">
                 <motion.div
                     layout
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
                     whileHover={{ y: -8, scale: 1.02 }}
                     className="relative aspect-[4/3] bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/5 rounded-2xl overflow-hidden glass-card hover:border-alsaha-green/40 transition-all shadow-lg"
                 >
                     {/* Background Glow */}
                     <div className="absolute inset-0 bg-alsaha-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
-                    {/* Channel Icon / Placeholder */}
-                    <div className="absolute inset-0 flex items-center justify-center p-6 z-10 transition-transform duration-500 group-hover:scale-110">
-                        {/* Fallback Text Icon */}
-                        <span className="text-3xl md:text-4xl font-black text-white/20 group-hover:text-white transition-colors uppercase tracking-widest drop-shadow-md">
-                            {channel.name.substring(0, 3)}
-                        </span>
+                    {/* Channel Image */}
+                    <div className="absolute inset-0 p-6 z-10 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                         <div className="relative w-full h-full">
+                            <Image 
+                                src={channel.image} 
+                                alt={channel.name}
+                                fill
+                                className="object-contain drop-shadow-lg"
+                                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 16vw"
+                            />
+                         </div>
                     </div>
 
                     {/* Overlay Info */}
                     <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent translate-y-2 group-hover:translate-y-0 transition-transform duration-300 z-20 flex justify-between items-end">
-                        <div>
+                        <div className="w-full">
                             <span className="text-[10px] font-bold text-alsaha-green uppercase tracking-wider mb-0.5 block">{channel.category}</span>
-                            <h3 className="text-sm md:text-base font-bold text-white leading-tight">{channel.name}</h3>
+                            <h3 className="text-sm md:text-base font-bold text-white leading-tight truncate">{channel.name}</h3>
                         </div>
-                        <div className="w-8 h-8 rounded-full bg-alsaha-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_15px_rgba(114,191,68,0.5)] transform translate-y-4 group-hover:translate-y-0">
+                        <div className="w-8 h-8 rounded-full bg-alsaha-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_15px_rgba(114,191,68,0.5)] transform translate-y-4 group-hover:translate-y-0 shrink-0 ms-2">
                             <Play size={14} className="fill-black text-black ml-0.5" />
                         </div>
                     </div>
-                    
-                    {/* Locked Status (Optional visual for prompt requirement) */}
-                    <div className="absolute top-3 left-3 z-20">
-                         <div className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)] animate-pulse" />
-                    </div>
-
                 </motion.div>
                 </Link>
-            ))}
-        </motion.div>
-      </AnimatePresence>
-      
+            ))
+        }
+      </div>
+
       {/* Empty State */}
-      {filteredChannels.length === 0 && (
+      {!isLoading && filteredChannels.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20 text-center">
               <Search size={48} className="text-white/10 mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">لا توجد قنوات مطابقة</h3>
               <p className="text-text-secondary">جرب البحث بكلمة أخرى أو تغيير التصنيف.</p>
           </div>
+      )}
+
+      {/* Load More Button */}
+      {!isLoading && hasMore && (
+        <div className="flex justify-center mt-12">
+            <button 
+                onClick={() => setVisibleCount(c => c + ITEMS_PER_PAGE)}
+                className="px-8 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:text-white text-text-secondary font-bold transition-all active:scale-95 flex items-center gap-2"
+            >
+                {/* Spinner if fetching actual data, but here instant */}
+                <span>عرض المزيد</span>
+            </button>
+        </div>
       )}
 
     </main>

@@ -54,10 +54,10 @@ export default function SubscriptionFAQ({ limit }: { limit?: number }) {
                         <AnimatePresence>
                             {openIndex === idx && (
                                 <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: "auto", opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.3 }}
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    transition={{ duration: 0.2 }}
                                 >
                                     <div className="p-5 pt-0 border-t border-white/5 text-text-secondary text-sm leading-7">
                                         {faq.a}

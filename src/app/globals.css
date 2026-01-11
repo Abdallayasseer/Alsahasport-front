@@ -241,6 +241,10 @@ a {
   padding-block: var(--section-padding);
 }
 
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 /* Hide scrollbar for clean UI but keep functionality */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

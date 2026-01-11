@@ -30,10 +30,9 @@ export default function MobileFloatingCTA() {
     if (isDismissed) return;
 
     const handleScroll = () => {
-      // 1. Scroll Trigger (> 40% viewport height)
-      // A more robust check might be document height, but viewport relative is good for "start browsing"
-      const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-      if (scrollPercent > 0.15) { // Lowered slightly to ensure it appears reasonably fast on long pages
+      // Optimized: Avoid reading scrollHeight (reflow). Use simple pixel threshold or window height
+      // 1. Scroll Trigger (> 20% viewport height approx 150-200px)
+      if (window.scrollY > 200) {
          setIsVisible(true);
       }
     };
@@ -46,6 +45,16 @@ export default function MobileFloatingCTA() {
           }, 6000); // 6 seconds inactivity
       }
     };
+    
+    // Throttle helper for timer
+    let lastTimerReset = 0;
+    const throttledResetTimer = () => {
+        const now = Date.now();
+        if (now - lastTimerReset > 500) { // Only reset every 500ms max during scroll
+            resetInactivityTimer();
+            lastTimerReset = now;
+        }
+    };
 
     // 3. Click Trigger (Global listener for elements with specific data attribute)
     const handleClick = (e: MouseEvent) => {
@@ -56,9 +65,9 @@ export default function MobileFloatingCTA() {
         resetInactivityTimer();
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scroll", resetInactivityTimer);
-    window.addEventListener("touchstart", resetInactivityTimer);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", throttledResetTimer, { passive: true });
+    window.addEventListener("touchstart", throttledResetTimer, { passive: true });
     window.addEventListener("click", handleClick);
 
     // Initial timer start
@@ -66,8 +75,8 @@ export default function MobileFloatingCTA() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", resetInactivityTimer);
-      window.removeEventListener("touchstart", resetInactivityTimer);
+      window.removeEventListener("scroll", throttledResetTimer);
+      window.removeEventListener("touchstart", throttledResetTimer);
       window.removeEventListener("click", handleClick);
       if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
     };
@@ -95,12 +104,13 @@ export default function MobileFloatingCTA() {
         >
           <div className="relative group">
             {/* Dismiss Button */}
+            {/* Dismiss Button - Touch Target Optimized */}
             <button
                 onClick={handleDismiss}
-                className="absolute -top-3 -right-3 z-50 bg-black/80 text-white/70 p-2 rounded-full border border-white/10 hover:bg-black hover:text-white transition-colors"
+                className="absolute -top-4 -right-2 z-50 bg-black/80 text-white/70 w-11 h-11 flex items-center justify-center rounded-full border border-white/10 hover:bg-black hover:text-white transition-colors active:scale-90"
                 aria-label="Close"
             >
-                <X size={14} />
+                <X size={16} />
             </button>
 
             {/* Main CTA */}

@@ -34,10 +34,10 @@ export default function LiveSidebar({ isCollapsed, toggleCollapse }: { isCollaps
             
             <button 
                 onClick={toggleCollapse}
-                className="lg:hidden p-1.5 rounded-lg border border-white/5 bg-white/5 text-white/50 hover:bg-white/10 hover:text-white transition-all flex items-center justify-center"
+                className="lg:hidden w-11 h-11 rounded-xl border border-white/5 bg-white/5 text-white/50 hover:bg-white/10 hover:text-white transition-all flex items-center justify-center active:scale-95"
             >
                 {/* Mobile (Expanded): X to close */}
-                 <ChevronRight size={20} className="rtl-rotate-180 transition-transform" />
+                 <ChevronRight size={22} className="rtl-rotate-180 transition-transform" />
             </button>
         </div>
 
