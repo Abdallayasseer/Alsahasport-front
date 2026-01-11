@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 import { Skeleton } from "@/components/ui/Skeleton";
 import Button from "@/components/ui/Button";
@@ -129,9 +130,16 @@ export default function LiveChannels() {
                                     </h3>
                                 </div>
 
-                                {/* Placeholder Image */}
+                                {/* Channel Image */}
                                 <div className="absolute inset-0 bg-[#161616] flex items-center justify-center transition-transform duration-700 group-hover:scale-110">
-                                    <span className="text-white/5 font-black text-6xl uppercase tracking-tighter select-none">{channel.name.substring(0, 2)}</span>
+                                   <div className="relative w-full h-full">
+                                    <Image 
+                                        src={channel.image} 
+                                        alt={channel.name}
+                                        fill
+                                        className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                    />
+                                   </div>
                                 </div>
                             </div>
                         </Link>

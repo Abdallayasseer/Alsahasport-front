@@ -24,9 +24,9 @@ const allChannels = [
   { id: 14, name: "Al Kass One", category: "Sports", image: "https://ui-avatars.com/api/?name=Kass&background=b91c1c&color=fff&size=256&font-size=0.4" },
   { id: 15, name: "Nat Geo", category: "Documentary", image: "https://ui-avatars.com/api/?name=NatGeo&background=fbbf24&color=000&size=256&font-size=0.3" },
   // Duplicate for demo volume
-  { id: 16, name: "beIN Sports 3", category: "Sports", image: "https://ui-avatars.com/api/?name=beIN+3&background=5a2d82&color=fff&size=256&font-size=0.35&length=2" },
-  { id: 17, name: "beIN Sports 4", category: "Sports", image: "https://ui-avatars.com/api/?name=beIN+4&background=5a2d82&color=fff&size=256&font-size=0.35&length=2" },
-  { id: 18, name: "SSC Extra 1", category: "Sports", image: "https://ui-avatars.com/api/?name=SSC+Ex&background=FFD700&color=000&size=256&font-size=0.35" },
+  { id: 16, name: "beIN Sports 3", category: "Sports", image: "https://ui-avatars.com/api/?name=beIN+3&background=5a2d82&color=fff&size=256&font-size=0.35" },
+  { id: 17, name: "beIN Sports 4", category: "Sports", image: "https://ui-avatars.com/api/?name=beIN+4&background=5a2d82&color=fff&size=256&font-size=0.35" },
+  { id: 18, name: "SSC Extra 1", category: "Sports", image: "https://ui-avatars.com/api/?name=SSC+X&background=FFD700&color=000&size=256&font-size=0.35" },
 ];
 
 const categories = ["All", "Sports", "Movies", "News", "Kids", "Entertainment", "Documentary"];
@@ -167,10 +167,10 @@ export default function ChannelsPage() {
                     </div>
 
                     {/* Overlay Info */}
-                    <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent translate-y-2 group-hover:translate-y-0 transition-transform duration-300 z-20 flex justify-between items-end">
+                    <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/95 via-black/70 to-transparent translate-y-2 group-hover:translate-y-0 transition-transform duration-300 z-20 flex justify-between items-end">
                         <div className="w-full">
                             <span className="text-[10px] font-bold text-alsaha-green uppercase tracking-wider mb-0.5 block">{channel.category}</span>
-                            <h3 className="text-sm md:text-base font-bold text-white leading-tight truncate">{channel.name}</h3>
+                            <h3 className="text-sm md:text-base font-bold text-white leading-tight line-clamp-2">{channel.name}</h3>
                         </div>
                         <div className="w-8 h-8 rounded-full bg-alsaha-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-[0_0_15px_rgba(114,191,68,0.5)] transform translate-y-4 group-hover:translate-y-0 shrink-0 ms-2">
                             <Play size={14} className="fill-black text-black ml-0.5" />
