@@ -82,13 +82,11 @@ export default function LiveChannels() {
             </div>
         </div>
 
-        {/* Carousel */}
         <div 
             ref={containerRef}
             className="flex gap-6 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0"
         >
             {loading ? (
-                // Skeletons
                 Array.from({ length: 5 }).map((_, idx) => (
                     <div key={idx} className="min-w-[280px] md:min-w-[340px] snap-center">
                         <div className="aspect-[16/10] rounded-3xl bg-white/5 border border-white/5 p-6 flex flex-col justify-end relative overflow-hidden">
@@ -110,27 +108,22 @@ export default function LiveChannels() {
                     >
                         <Link href={`/live?channel=${channel.id}`}>
                             <div className="group relative aspect-[16/10] rounded-3xl overflow-hidden glass-card cursor-pointer border border-white/5 md:transition-all md:duration-500 md:hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.6)] md:hover:-translate-y-2 md:hover:border-alsaha-green/30">
-                                {/* Overlay Gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 md:group-hover:opacity-60 md:transition-all md:duration-500 z-10" />
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-alsaha-green/20 opacity-0 md:group-hover:opacity-100 md:transition-all md:duration-500 z-10" />
                                 
-                                {/* Shine Effect */}
                                 <div className="absolute top-0 -left-[100%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 md:group-hover:left-[200%] md:transition-all md:duration-700 md:ease-in-out z-20" />
                                 
-                                {/* Hover Play Button */}
                                 <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 md:group-hover:opacity-100 md:transition-all md:duration-500 transform md:translate-y-4 md:group-hover:translate-y-0">
                                     <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-lg md:group-hover:scale-110 md:transition-transform md:duration-300">
                                         <Play size={32} className="fill-white text-white ml-1 drop-shadow-lg" />
                                     </div>
                                 </div>
                                 
-                                {/* Live Badge */}
                                 <div className="absolute top-5 right-5 z-20 px-3 py-1.5 rounded-full bg-red-600/20 backdrop-blur-md border border-red-500/30 text-white text-[10px] font-black tracking-widest flex items-center gap-2 shadow-lg">
                                     <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(220,38,38,0.5)]" />
                                     LIVE
                                 </div>
 
-                                {/* Channel Info (Bottom) */}
                                 <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                                     <p className="text-alsaha-green/90 text-xs font-bold mb-2 tracking-widest uppercase">{channel.category}</p>
                                     <h3 className="text-2xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-alsaha-green transition-all duration-300 drop-shadow-lg">

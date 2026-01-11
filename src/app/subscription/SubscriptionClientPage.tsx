@@ -82,14 +82,12 @@ export default function SubscriptionClientPage() {
         <div className="container mx-auto px-4 max-w-[1100px] relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             
-            {/* LEFT COLUMN: Activation Card (Luxury Glass Console) */}
             <motion.div 
                 initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                 animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
                 transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }}
                 className="rounded-2xl bg-black/40 backdrop-blur-xl border border-white/5 p-6 md:p-8 shadow-2xl relative overflow-hidden group"
             >
-                {/* Inner Glow */}
                 <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-transparent via-alsaha-green/50 to-transparent opacity-50" />
                 
                 <div className="mb-8">
@@ -101,7 +99,6 @@ export default function SubscriptionClientPage() {
                     </p>
                 </div>
 
-                {/* Input Section */}
                 <div className="space-y-6">
                     <Input 
                         label="كود الاشتراك"
@@ -110,10 +107,9 @@ export default function SubscriptionClientPage() {
                         className="bg-black/60 shadow-inner py-4"
                     />
 
-                    {/* Primary Action */}
                     <div>
                         <Button 
-                            variant="primary" 
+                            variant="default" 
                             className="w-full py-4 text-sm font-bold shadow-[0_0_20px_rgba(114,191,68,0.2)] hover:shadow-[0_0_40px_rgba(114,191,68,0.6)] transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:brightness-110"
                             rightIcon={<CheckCircle2 size={18} />}
                         >
@@ -121,7 +117,6 @@ export default function SubscriptionClientPage() {
                         </Button>
                     </div>
 
-                    {/* Price Widget */}
                     <div className="bg-white/5 border border-white/5 rounded-xl p-5 flex items-center justify-between mt-8">
                         <div>
                             <p className="text-xs text-text-secondary mb-1">سعر الاشتراك</p>
@@ -133,12 +128,11 @@ export default function SubscriptionClientPage() {
                         </div>
                         <div className="text-left">
                             <span className="inline-block px-3 py-1 bg-alsaha-green/10 border border-alsaha-green/20 rounded-full text-[10px] text-alsaha-green font-bold">
-                                ✨ باقة مميزة
+                                باقة مميزة
                             </span>
                         </div>
                     </div>
 
-                    {/* Contact Divider */}
                     <div className="relative py-4">
                         <div className="absolute inset-0 flex items-center">
                             <div className="w-full border-t border-white/5"></div>
@@ -148,7 +142,6 @@ export default function SubscriptionClientPage() {
                         </div>
                     </div>
 
-                    {/* Contact Buttons */}
                     <div className="grid grid-cols-2 gap-4">
                         <Link href="https://t.me/fareedsaad" target="_blank" className="block">
                              <Button variant="secondary" className="w-full bg-[#229ED9]/10 border-[#229ED9]/20 text-[#229ED9] hover:bg-[#229ED9] hover:text-white" leftIcon={<Send size={16} />}>

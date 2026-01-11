@@ -21,24 +21,20 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 overflow-hidden">
-      {/* Background Ambience */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(114,191,68,0.08),transparent_40%)] z-0 pointer-events-none" />
       <div className="absolute right-0 bottom-0 w-[600px] h-[600px] bg-alsaha-green/5 blur-[120px] rounded-full z-0 pointer-events-none" />
       
-      {/* Texture Overlay */}
       <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.03] mix-blend-overlay pointer-events-none z-0" />
 
       <div className="container mx-auto px-6 z-10 max-w-7xl relative">
         <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center">
           
-          {/* Text Content */}
           <motion.div 
             initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             transition={isMobile ? { duration: 0 } : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-7 flex flex-col items-center md:items-start text-center md:text-right"
           >
-            {/* Premium Badge */}
             <motion.div 
               initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
               animate={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
@@ -76,14 +72,12 @@ export default function Hero() {
                </Link>
             </div>
             
-            {/* Trust Badges / Micro-Social Proof */}
             <motion.div 
                 initial={isMobile ? {} : { opacity: 0 }}
                 animate={isMobile ? {} : { opacity: 1 }}
                 transition={isMobile ? { duration: 0 } : { delay: 0.5 }}
                 className="mt-10 flex items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500"
             >
-                {/* Simple badges placeholder - can be logos later */}
                 <div className="flex items-center gap-2">
                     <span className="bg-white/20 w-px h-8" />
                     <span className="text-xs font-semibold text-white/50">+10,000 مشترك</span>
@@ -96,12 +90,9 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Visual Content - Deep Layered Parallax */}
           <div className="hidden md:flex md:col-span-5 relative justify-center items-center perspective-1000">
-             {/* Glow - Optimized */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-alsaha-green/15 blur-[120px] rounded-full animate-pulse-slow pointer-events-none" />
 
-             {/* Main Image Container */}
              <div className="relative z-10 w-full max-w-[550px] animate-float will-change-transform">
                 <div className="relative aspect-[4/5] w-full">
                     <Image
@@ -117,7 +108,6 @@ export default function Hero() {
                 </div>
              </div>
              
-             {/* Depth Element - Floating Blur Behind */}
              <div className="absolute -z-10 bottom-0 left-10 w-32 h-32 bg-alsaha-green/20 blur-[60px]" />
           </div>
 

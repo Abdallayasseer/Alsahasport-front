@@ -111,7 +111,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ⚡ MOBILE PERFORMANCE: SAFE KILL SWITCH ⚡ */
+/* Mobile Optimization */
 @media (max-width: 768px) {
   *,
   *::before,
@@ -122,7 +122,7 @@ body {
     transition-delay: 0s !important;
   }
 
-  /* 🔥 CRITICAL: FORCE VISIBILITY & OPACITY ON MOBILE 🔥 */
+  /* Force content visibility on mobile */
   main,
   section,
   article,

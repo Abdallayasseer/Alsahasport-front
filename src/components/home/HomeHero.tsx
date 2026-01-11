@@ -48,7 +48,6 @@ export default function HomeHero() {
             transition={isMobile ? { duration: 0 } : { delay: 0.2, duration: 0.8 }}
             className="w-full mx-auto md:mx-0"
         >
-             {/* Tag / Status */}
              <div className="flex items-center justify-center md:justify-start gap-3 mb-8">
                 <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-xs font-black tracking-widest flex items-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.4)] border border-red-500/30 md:animate-pulse">
                     <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_white]" />
@@ -60,30 +59,24 @@ export default function HomeHero() {
                 </span>
              </div>
 
-             {/* Matchup Visual (Text Only) */}
              <div className="flex flex-col md:flex-row items-center md:items-end gap-4 md:gap-10 mb-8">
-                {/* Home Team */}
                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 leading-[0.9] tracking-tighter drop-shadow-2xl whitespace-nowrap">
                     Real Madrid
                  </h1>
 
-                {/* VS Badge */}
                 <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-2xl glass border border-white/10 backdrop-blur-xl rotate-3 md:rotate-0 md:mb-4 shrink-0 my-3 md:my-0 shadow-[0_0_40px_rgba(0,0,0,0.6)] group md:hover:scale-110 md:transition-transform md:duration-500 hover:border-alsaha-green/30">
                     <span className="font-black italic text-2xl md:text-3xl text-white/90 group-hover:text-alsaha-green transition-colors tracking-tighter">VS</span>
                 </div>
 
-                {/* Away Team */}
                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 leading-[0.9] tracking-tighter text-right drop-shadow-2xl whitespace-nowrap">
                     Man City
                  </h1>
              </div>
 
-             {/* Meta Info */}
              <p className="text-white/80 text-base md:text-xl font-medium mb-10 max-w-xl text-center md:text-right line-clamp-2 md:line-clamp-none mx-auto md:mx-0 leading-relaxed md:mr-1">
                 قمة دوري أبطال أوروبا في بث مباشر وحصري بجودة 4K. تعليق عربي، سيرفرات ثابتة، وتغطية شاملة للمباراة.
              </p>
 
-             {/* Actions */}
              <div className="flex flex-col md:flex-row items-center gap-4 justify-center md:justify-start w-full md:w-auto">
                 <Link href="/live" className="w-full md:w-auto group" data-trigger-cta="true">
                     <Button variant="default" size="lg" className="pl-6 pr-8 w-full md:w-auto py-7 text-lg shadow-[0_0_30px_rgba(114,191,68,0.25)] hover:shadow-[0_0_50px_rgba(114,191,68,0.5)] md:transition-all md:duration-500 rounded-2xl">
@@ -99,7 +92,6 @@ export default function HomeHero() {
                 </Link>
              </div>
              
-             {/* Social Proof Badge */}
              <div className="mt-10 flex items-center justify-center md:justify-start gap-4 opacity-90">
                 <div className="flex -space-x-3 space-x-reverse">
                     {[1,2,3,4].map(i => (
