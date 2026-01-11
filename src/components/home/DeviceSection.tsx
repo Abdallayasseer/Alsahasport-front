@@ -13,7 +13,7 @@ export default function DeviceSection() {
   ];
 
   return (
-    <section className="py-24 border-y border-white/5 bg-white/[0.02]">
+    <section className="section-padding border-y border-white/5 bg-gradient-to-b from-white/[0.02] to-transparent relative overflow-hidden">
       <div className="container mx-auto px-4 text-center">
         
         <motion.div

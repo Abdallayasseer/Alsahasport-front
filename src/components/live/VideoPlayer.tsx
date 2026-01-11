@@ -85,7 +85,7 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
 
         {(isPlaying || isLoading) && !hasError && (
              <div className="absolute inset-0 flex items-center justify-center bg-black">
-                 <div className={`w-full h-full bg-[url('/images/hero-bg-stadium.jpg')] bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-30' : 'opacity-60'}`} />
+                 <div className={`w-full h-full bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center transition-opacity duration-1000 ${isLoading ? 'opacity-30' : 'opacity-60'}`} />
                  
                  {isLoading && (
                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-20">

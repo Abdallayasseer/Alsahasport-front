@@ -37,7 +37,7 @@ export default function LiveSidebar({ isCollapsed, toggleCollapse }: { isCollaps
                 className="lg:hidden p-1.5 rounded-lg border border-white/5 bg-white/5 text-white/50 hover:bg-white/10 hover:text-white transition-all flex items-center justify-center"
             >
                 {/* Mobile (Expanded): X to close */}
-                 <ChevronRight size={20} className="rtl-rotate-180" />
+                 <ChevronRight size={20} className="rtl-rotate-180 transition-transform" />
             </button>
         </div>
 
@@ -45,11 +45,11 @@ export default function LiveSidebar({ isCollapsed, toggleCollapse }: { isCollaps
         {!isCollapsed && (
             <div className="p-3 shrink-0 w-full">
                 <div className="relative group">
-                    <Search size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 group-focus-within:text-alsaha-green transition-colors" />
+                    <Search size={16} className="absolute end-3 top-1/2 -translate-y-1/2 text-white/30 group-focus-within:text-alsaha-green transition-colors" />
                     <input 
                         type="text" 
                         placeholder="ابحث عن قناة..." 
-                        className="w-full bg-black/20 border border-white/5 rounded-xl py-2.5 pr-10 pl-4 text-sm text-white focus:outline-none focus:border-alsaha-green/30 focus:bg-black/40 transition-all placeholder:text-white/20"
+                        className="w-full bg-black/20 border border-white/5 rounded-xl py-2.5 pe-10 ps-4 text-sm text-white focus:outline-none focus:border-alsaha-green/30 focus:bg-black/40 transition-all placeholder:text-white/20"
                     />
                 </div>
             </div>
@@ -93,7 +93,7 @@ export default function LiveSidebar({ isCollapsed, toggleCollapse }: { isCollaps
                             
                             {/* Tooltip for Collapsed State */}
                             {isCollapsed && (
-                                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-4 px-3 py-1.5 bg-dark-base border border-white/10 rounded-lg text-xs font-bold text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50 shadow-xl flex items-center gap-2">
+                                <div className="absolute right-full rtl:left-full rtl:right-auto top-1/2 -translate-y-1/2 mr-4 rtl:ml-4 rtl:mr-0 px-3 py-1.5 bg-dark-base border border-white/10 rounded-lg text-xs font-bold text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50 shadow-xl flex items-center gap-2">
                                     <span>{channel.name}</span>
                                     {isActive && <span className="w-1.5 h-1.5 bg-alsaha-green rounded-full animate-pulse" />}
                                 </div>

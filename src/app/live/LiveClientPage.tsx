@@ -3,6 +3,7 @@
 import { useState, Suspense } from "react";
 import VideoPlayer from "@/components/live/VideoPlayer";
 import LiveSidebar from "@/components/live/LiveSidebar";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 export default function LiveClientPage() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
@@ -54,11 +55,10 @@ export default function LiveClientPage() {
                 ${isSidebarCollapsed ? 'w-0 opacity-0 pointer-events-none' : 'w-[320px] opacity-100'}
             `}
         >
-             <Suspense fallback={<div className="w-full h-full bg-dark-surface/50 rounded-2xl animate-pulse" />}>
-                <div className="h-full rounded-2xl overflow-hidden border border-white/5 bg-black/20">
-                    <LiveSidebar isCollapsed={false} toggleCollapse={() => setIsSidebarCollapsed(true)} />
-                </div>
-             </Suspense>
+
+<Suspense fallback={<Skeleton className="w-full h-full rounded-2xl" />}>
+    <LiveSidebar isCollapsed={false} toggleCollapse={() => setIsSidebarCollapsed(true)} />
+</Suspense>
         </div>
 
         {/* Mobile Sidebar Overlay */}

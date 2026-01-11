@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Trophy, ChevronLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/Skeleton";
+import Button from "@/components/ui/Button";
 
 // Mock Data
 const MATCHES = [
@@ -213,10 +214,10 @@ export default function UpcomingMatches() {
         
         <div className="flex justify-center mt-12">
             <Link href="/matches">
-                <button className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-alsaha-green hover:border-alsaha-green text-white hover:text-black font-black text-sm transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-3 group shadow-[0_0_20px_rgba(0,0,0,0.2)] hover:shadow-[0_0_30px_rgba(114,191,68,0.4)]">
+                <Button variant="secondary" size="lg" className="px-8 py-4 bg-white/5 border border-white/10 hover:bg-alsaha-green hover:border-alsaha-green hover:text-black font-black text-sm transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-3 group shadow-[0_0_20px_rgba(0,0,0,0.2)] hover:shadow-[0_0_30px_rgba(114,191,68,0.4)]">
                     <span>عرض كل المباريات</span>
                     <ChevronLeft size={20} className="rtl-flip group-hover:-translate-x-1 transition-transform" />
-                </button>
+                </Button>
             </Link>
         </div>
 

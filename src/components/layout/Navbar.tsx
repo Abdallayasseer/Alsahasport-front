@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/Button";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -23,11 +24,10 @@ export default function Navbar() {
               pointer-events-auto 
               container mx-auto max-w-5xl
               flex items-center justify-between 
-              bg-black/60 backdrop-blur-2xl border border-white/10
+              glass
               rounded-full py-3 px-8
-              shadow-[0_8px_32px_rgba(0,0,0,0.4)]
-              hover:shadow-[0_8px_40px_rgba(114,191,68,0.15)] hover:border-white/20
-              transition-all duration-500 hover:scale-[1.01]
+              hover:border-white/20
+              transition-all duration-500 hover:scale-[1.005]
           "
       >
           {/* Logo */}
@@ -54,7 +54,7 @@ export default function Navbar() {
                      {isActive && (
                         <motion.span 
                             layoutId="navbar-active"
-                            className="absolute inset-0 bg-alsaha-green/20 border border-alsaha-green/30 rounded-full"
+                            className="absolute inset-0 bg-alsaha-green/10 border border-alsaha-green/20 rounded-full shadow-[0_0_10px_rgba(114,191,68,0.15)]"
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                         />
                      )}
@@ -66,9 +66,9 @@ export default function Navbar() {
           {/* Actions */}
           <div className="flex items-center gap-4 flex-shrink-0 ms-4">
               <Link href="/subscription">
-                 <button className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-alsaha-green hover:bg-[#65aa3c] text-black text-sm font-black transition-all shadow-[0_0_20px_rgba(114,191,68,0.2)] hover:shadow-[0_0_30px_rgba(114,191,68,0.4)] transform hover:scale-105 active:scale-95">
-                    <span>اشترك الآن</span>
-                 </button>
+                 <Button size="sm" className="rounded-full px-6 text-sm font-black shadow-alsaha-green/20">
+                    اشترك الآن
+                 </Button>
               </Link>
           </div>
       </div>

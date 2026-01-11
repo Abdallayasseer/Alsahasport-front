@@ -28,7 +28,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="section-padding bg-dark-surface/30 relative">
+    <section className="section-padding bg-dark-surface/30 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -45,11 +45,11 @@ export default function Features() {
               transition={{ delay: idx * 0.1 }}
               className="glass-card p-8 rounded-2xl flex flex-col items-start gap-4 hover:bg-white/5 transition-all group"
             >
-              <div className="p-3 bg-white/5 rounded-xl group-hover:bg-alsaha-green/20 transition-colors">
+              <div className="p-3 bg-white/5 rounded-xl group-hover:bg-alsaha-green/20 transition-colors shadow-inner">
                 {feature.icon}
               </div>
-              <h2 className="text-xl font-bold text-white">{feature.title}</h2>
-              <p className="text-text-secondary leading-relaxed">
+              <h2 className="text-xl font-bold text-white group-hover:text-alsaha-green transition-colors">{feature.title}</h2>
+              <p className="text-text-secondary leading-relaxed text-sm">
                 {feature.desc}
               </p>
             </motion.div>

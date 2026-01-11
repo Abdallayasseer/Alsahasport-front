@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function CTASection() {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="section-padding relative overflow-hidden">
         {/* Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-alsaha-green/20 via-black to-black md:from-alsaha-green/10" />
         
@@ -26,10 +26,10 @@ export default function CTASection() {
                 <div className="flex-shrink-0">
                     <Link href="/subscription">
                         <Button 
-                            variant="primary" 
+                            variant="default" 
                             size="lg" 
                             className="bg-white text-black hover:bg-white/90 border-transparent shadow-[0_0_30px_rgba(255,255,255,0.2)] px-6 py-4 md:px-10 md:py-6 text-base md:text-lg whitespace-nowrap w-full md:w-auto"
-                            rightIcon={<ArrowRight className="mr-2" />}
+                            rightIcon={<ArrowRight />}
                         >
                             ابدأ اشتراكك اليوم
                         </Button>

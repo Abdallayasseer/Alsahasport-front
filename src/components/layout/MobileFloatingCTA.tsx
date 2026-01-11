@@ -91,7 +91,7 @@ export default function MobileFloatingCTA() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="md:hidden fixed bottom-[100px] left-4 right-4 z-50 pb-safe"
+          className="md:hidden fixed bottom-[110px] left-4 right-4 z-[90] pb-safe"
         >
           <div className="relative group">
             {/* Dismiss Button */}

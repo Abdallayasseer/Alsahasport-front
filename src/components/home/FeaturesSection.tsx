@@ -43,7 +43,7 @@ export default function FeaturesSection() {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="section-padding relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         
         <div className="text-center mb-16">
@@ -73,7 +73,7 @@ export default function FeaturesSection() {
             <motion.div 
               key={idx}
               variants={item}
-              className="group relative bg-[#111]/40 backdrop-blur-md border border-white/5 rounded-[2rem] p-8 hover:bg-white/[0.03] hover:border-alsaha-green/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
+              className="glass-card group relative rounded-[2rem] p-8 hover:border-alsaha-green/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
             >
               {/* Hover Glow */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-alsaha-green/10 blur-[60px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 import { Skeleton } from "@/components/ui/Skeleton";
+import Button from "@/components/ui/Button";
 
 const CHANNELS = [
   { id: 1, name: "beIN Sports 1", image: "/images/channels/bein1.png", category: "Sports" },
@@ -141,9 +142,9 @@ export default function LiveChannels() {
 
         <div className="flex justify-center mt-8 md:hidden">
             <Link href="/channels">
-                <button className="btn-secondary w-full">
+                <Button variant="secondary" className="w-full">
                     <span>عرض كل القنوات</span>
-                </button>
+                </Button>
             </Link>
         </div>
 

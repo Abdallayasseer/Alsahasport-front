@@ -9,7 +9,7 @@ export default function NewsHero() {
         {/* Background Image Placeholder */}
         <div className="absolute inset-0 bg-neutral-900">
              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10" />
-             <div className="absolute inset-0 bg-[url('/images/placeholder-news.jpg')] bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-700 ease-out" />
+             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556816214-6d9b35b6c367?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-60 group-hover:scale-105 transition-transform duration-700 ease-out" />
         </div>
 
         {/* Content */}

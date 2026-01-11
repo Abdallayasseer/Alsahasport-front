@@ -20,7 +20,7 @@ export default function NewsCard({ id, title, category, time, excerpt }: NewsCar
             <div className="relative aspect-video bg-neutral-800 overflow-hidden">
                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
                  {/* Placeholder for now */}
-                 <div className="absolute inset-0 bg-[url('/images/placeholder-news.jpg')] bg-cover bg-center opacity-70 group-hover:scale-110 transition-transform duration-500 ease-out" />
+                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556816214-6d9b35b6c367?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center opacity-70 group-hover:scale-110 transition-transform duration-500 ease-out" />
                  
                  <div className="absolute top-3 right-3 z-20">
                      <span className="bg-black/60 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold px-2 py-1 rounded-lg">
