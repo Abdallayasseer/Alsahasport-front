@@ -76,7 +76,7 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsPlaying(true)}
-                    className="relative z-10 w-24 h-24 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center shadow-[0_0_40px_rgba(114,191,68,0.2)] group-hover:bg-alsaha-green group-hover:border-alsaha-green transition-all duration-300"
+                    className="relative z-10 w-24 h-24 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_40px_rgba(114,191,68,0.2)] group-hover:bg-alsaha-green group-hover:border-alsaha-green transition-all duration-300"
                  >
                      <Play size={40} className="fill-white text-white ml-2 group-hover:fill-black group-hover:text-black transition-colors" />
                  </motion.button>
@@ -97,7 +97,7 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
         )}
 
         {hasError && (
-            <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/90 backdrop-blur-xl">
+            <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/95">
                  <AlertCircle size={48} className="text-red-500 mb-4" />
                  <h3 className="text-xl font-bold text-white mb-2">Stream Connection Lost</h3>
                  <p className="text-white/40 mb-6 text-sm">Unable to connect to the secure streaming server.</p>
@@ -146,7 +146,7 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
                                 <span className="text-[10px] text-white/50 font-mono mt-0.5 md:mt-1">1080p • 60FPS</span>
                             </div>
                         </div>
-                        <button className="p-2.5 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white backdrop-blur-sm">
+                        <button className="p-2.5 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white">
                             <Cast size={20} />
                         </button>
                     </div>
