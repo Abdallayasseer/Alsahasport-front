@@ -8,12 +8,12 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import Button from "@/components/ui/Button";
 
 const CHANNELS = [
-  { id: 1, name: "beIN Sports 1", image: "/images/channels/bein1.png", category: "Sports" },
-  { id: 2, name: "SSC 1", image: "/images/channels/ssc1.png", category: "Sports" },
-  { id: 3, name: "MBC Action", image: "/images/channels/mbc.png", category: "Entertainment" },
-  { id: 4, name: "OSN Movies", image: "/images/channels/osn.png", category: "Movies" },
-  { id: 5, name: "Abu Dhabi Sports", image: "/images/channels/ad.png", category: "Sports" },
-  { id: 6, name: "Al Kass One", image: "/images/channels/alkass.png", category: "Sports" },
+  { id: 1, name: "beIN Sports 1", image: "https://ui-avatars.com/api/?name=beIN+1&background=5a2d82&color=fff&size=256&font-size=0.35&length=2", category: "Sports" },
+  { id: 2, name: "SSC 1", image: "https://ui-avatars.com/api/?name=SSC+1&background=FFD700&color=000&size=256&font-size=0.4", category: "Sports" },
+  { id: 3, name: "MBC Action", image: "https://ui-avatars.com/api/?name=MBC+A&background=e3001b&color=fff&size=256&font-size=0.4", category: "Entertainment" },
+  { id: 4, name: "OSN Movies", image: "https://ui-avatars.com/api/?name=OSN+M&background=000000&color=fff&size=256&font-size=0.4", category: "Movies" },
+  { id: 5, name: "Abu Dhabi Sports", image: "https://ui-avatars.com/api/?name=AD+S&background=0284c7&color=fff&size=256&font-size=0.4", category: "Sports" },
+  { id: 6, name: "Al Kass One", image: "https://ui-avatars.com/api/?name=Kass&background=b91c1c&color=fff&size=256&font-size=0.4", category: "Sports" },
 ];
 
 export default function LiveChannels() {
