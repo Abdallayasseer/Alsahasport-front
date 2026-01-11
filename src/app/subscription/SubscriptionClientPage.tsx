@@ -77,7 +77,7 @@ export default function SubscriptionClientPage() {
         <section className="min-h-screen pt-32 pb-20 relative overflow-hidden flex items-center justify-center">
         
         {/* Subtle Background Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-alsaha-green/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
+        <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-alsaha-green/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
 
         <div className="container mx-auto px-4 max-w-[1100px] relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">

@@ -49,17 +49,15 @@ export default function LiveChannels() {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-alsaha-green/5 blur-[100px] rounded-full pointer-events-none -translate-y-1/2" />
+      <div className="hidden md:block absolute top-1/2 right-0 w-[500px] h-[500px] bg-alsaha-green/5 blur-[100px] rounded-full pointer-events-none -translate-y-1/2" />
       
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         
-        {/* Header */}
         <div className="flex items-end justify-between mb-12">
             <div>
                 <motion.div 
-                    initial={isMobile ? {} : { opacity: 0, x: 20 }}
-                    whileInView={isMobile ? {} : { opacity: 1, x: 0 }}
+                    initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                    whileInView={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold mb-4"
                 >
@@ -100,8 +98,8 @@ export default function LiveChannels() {
                 CHANNELS.map((channel, idx) => (
                     <motion.div 
                         key={channel.id}
-                        initial={isMobile ? {} : { opacity: 0, scale: 0.9 }}
-                        whileInView={isMobile ? {} : { opacity: 1, scale: 1 }}
+                        initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                        whileInView={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={isMobile ? { duration: 0 } : { delay: idx * 0.1 }}
                         className="min-w-[280px] md:min-w-[340px] snap-center"
