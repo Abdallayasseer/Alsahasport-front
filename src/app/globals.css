@@ -118,7 +118,14 @@ body {
   *::after {
     animation: none !important;
     transition: none !important;
+    transform: none !important;
     scroll-behavior: auto !important;
+  }
+
+  html,
+  body {
+    scroll-behavior: auto !important;
+    overflow-x: hidden !important;
   }
 }
 

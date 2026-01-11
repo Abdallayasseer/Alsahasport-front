@@ -1,8 +1,7 @@
 "use client";
-
-import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 import { Skeleton } from "@/components/ui/Skeleton";
@@ -20,11 +19,20 @@ const CHANNELS = [
 export default function LiveChannels() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check mobile
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     // Simulate loading
     const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
+    return () => {
+        clearTimeout(timer);
+        window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const scrollLeft = () => {
@@ -50,8 +58,8 @@ export default function LiveChannels() {
         <div className="flex items-end justify-between mb-12">
             <div>
                 <motion.div 
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={isMobile ? {} : { opacity: 0, x: 20 }}
+                    whileInView={isMobile ? {} : { opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold mb-4"
                 >
@@ -94,14 +102,14 @@ export default function LiveChannels() {
                 CHANNELS.map((channel, idx) => (
                     <motion.div 
                         key={channel.id}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={isMobile ? {} : { opacity: 0, scale: 0.9 }}
+                        whileInView={isMobile ? {} : { opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 }}
+                        transition={isMobile ? { duration: 0 } : { delay: idx * 0.1 }}
                         className="min-w-[280px] md:min-w-[340px] snap-center"
                     >
                         <Link href={`/live?channel=${channel.id}`}>
-                            <div className="group relative aspect-[16/10] rounded-3xl overflow-hidden glass-card cursor-pointer border border-white/5 transition-all duration-500 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.6)] hover:-translate-y-2 hover:border-alsaha-green/30">
+                            <div className="group relative aspect-[16/10] rounded-3xl overflow-hidden glass-card cursor-pointer border border-white/5 md:transition-all md:duration-500 md:hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.6)] md:hover:-translate-y-2 md:hover:border-alsaha-green/30">
                                 {/* Overlay Gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500 z-10" />
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-alsaha-green/20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10" />

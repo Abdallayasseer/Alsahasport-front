@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Calendar, Tv, CreditCard, Headset } from "lucide-react";
-import { motion } from "framer-motion";
 
 export default function BottomNav() {
   const pathname = usePathname();
@@ -38,24 +37,22 @@ export default function BottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className="relative group focus:outline-none flex flex-1 flex-col items-center gap-1.5 min-w-[50px] py-1 active:scale-90 transition-transform duration-200 tap-highlight-transparent"
+              className="relative group focus:outline-none flex flex-1 flex-col items-center gap-1.5 min-w-[50px] py-1 tap-highlight-transparent"
             >
                 {/* Active Indicator Pips */}
                 {isActive && (
-                    <motion.div 
-                        layoutId="active-pill"
+                    <div 
                         className="absolute -top-3 w-8 h-1 rounded-full bg-alsaha-green shadow-[0_0_15px_#72BF44]"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                 )}
 
                 <Icon 
                   size={24} 
                   strokeWidth={isActive ? 2.5 : 1.5} 
-                  className={`transition-all duration-300 ${isActive ? "text-alsaha-green drop-shadow-[0_0_10px_rgba(114,191,68,0.5)]" : "text-white/40 group-hover:text-white/80"}`}
+                  className={`${isActive ? "text-alsaha-green drop-shadow-[0_0_10px_rgba(114,191,68,0.5)]" : "text-white/40 group-hover:text-white/80"}`}
                 />
                 
-                <span className={`text-[10px] font-bold transition-colors duration-300 ${isActive ? "text-white" : "text-white/40"}`}>
+                <span className={`text-[10px] font-bold ${isActive ? "text-white" : "text-white/40"}`}>
                     {item.name}
                 </span>
             </Link>

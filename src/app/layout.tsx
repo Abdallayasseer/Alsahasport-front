@@ -74,7 +74,7 @@ export default function RootLayout({
           <NoiseOverlay />
           <AuroraBackground />
           <Navbar />
-          <main className="flex-grow mb-32 md:mb-0">
+          <main className="flex-grow mb-32 transition-none md:transition-all md:duration-300 md:mb-0">
             {children}
           </main>
           

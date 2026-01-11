@@ -1,12 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function Hero() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 overflow-hidden">
       {/* Background Ambience */}
@@ -21,16 +33,16 @@ export default function Hero() {
           
           {/* Text Content */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={isMobile ? {} : { opacity: 0, y: 30 }}
+            animate={isMobile ? {} : { opacity: 1, y: 0 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-7 flex flex-col items-center md:items-start text-center md:text-right"
           >
             {/* Premium Badge */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
+              initial={isMobile ? {} : { opacity: 0, scale: 0.9 }}
+              animate={isMobile ? {} : { opacity: 1, scale: 1 }}
+              transition={isMobile ? { duration: 0 } : { delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-alsaha-green/5 border border-alsaha-green/10 text-alsaha-green text-xs font-bold mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(114,191,68,0.1)] hover:bg-alsaha-green/10 transition-colors cursor-default"
             >
                <span className="w-1.5 h-1.5 rounded-full bg-alsaha-green animate-pulse shadow-[0_0_10px_rgba(114,191,68,0.6)]" />
@@ -66,9 +78,9 @@ export default function Hero() {
             
             {/* Trust Badges / Micro-Social Proof */}
             <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
+                initial={isMobile ? {} : { opacity: 0 }}
+                animate={isMobile ? {} : { opacity: 1 }}
+                transition={isMobile ? { duration: 0 } : { delay: 0.5 }}
                 className="mt-10 flex items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500"
             >
                 {/* Simple badges placeholder - can be logos later */}
@@ -96,7 +108,7 @@ export default function Hero() {
                         src="/images/green-new.png"
                         alt="Premium Sports Streaming"
                         fill
-                        className="object-contain drop-shadow-[0_50px_80px_rgba(0,0,0,0.6)] transform hover:scale-[1.02] transition-transform duration-700 ease-out"
+                        className="object-contain drop-shadow-[0_50px_80px_rgba(0,0,0,0.6)] transform md:hover:scale-[1.02] md:transition-transform md:duration-700 md:ease-out"
                         priority
                         loading="eager"
                         sizes="(max-width: 768px) 0vw, 50vw"
