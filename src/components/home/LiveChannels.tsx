@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
@@ -19,19 +19,11 @@ const CHANNELS = [
 export default function LiveChannels() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
-    // Check mobile
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
     // Simulate loading
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => {
         clearTimeout(timer);
-        window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -55,15 +47,12 @@ export default function LiveChannels() {
         
         <div className="flex items-end justify-between mb-12">
             <div>
-                <motion.div 
-                    initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                    whileInView={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold mb-4"
+                <div 
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold mb-4 opacity-100 md:opacity-0 md:animate-fade-in"
                 >
-                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                    <span className="w-2 h-2 rounded-full bg-red-500 md:animate-pulse" />
                     <span>بث مباشر الآن</span>
-                </motion.div>
+                </div>
                 <h2 className="text-3xl md:text-5xl font-black text-white mb-3 tracking-tight">
                     قنوات <span className="text-transparent bg-clip-text bg-gradient-to-l from-alsaha-green to-white">التلفزيون</span>
                 </h2>
@@ -96,13 +85,10 @@ export default function LiveChannels() {
                 ))
             ) : (
                 CHANNELS.map((channel, idx) => (
-                    <motion.div 
+                    <div 
                         key={channel.id}
-                        initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-                        whileInView={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={isMobile ? { duration: 0 } : { delay: idx * 0.1 }}
-                        className="min-w-[280px] md:min-w-[340px] snap-center"
+                        className="min-w-[280px] md:min-w-[340px] snap-center opacity-100 md:opacity-0 md:animate-scale-in"
+                        style={{ animationDelay: `${idx * 100}ms` }}
                     >
                         <Link href={`/live?channel=${channel.id}`}>
                             <div className="group relative aspect-[16/10] rounded-3xl overflow-hidden glass-card cursor-pointer border border-white/5 md:transition-all md:duration-500 md:hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.6)] md:hover:-translate-y-2 md:hover:border-alsaha-green/30">
@@ -118,32 +104,32 @@ export default function LiveChannels() {
                                 </div>
                                 
                                 <div className="absolute top-5 right-5 z-20 px-3 py-1.5 rounded-full bg-red-600/20 backdrop-blur-md border border-red-500/30 text-white text-[10px] font-black tracking-widest flex items-center gap-2 shadow-lg">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_10px_rgba(220,38,38,0.5)]" />
+                                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 md:animate-pulse shadow-[0_0_10px_rgba(220,38,38,0.5)]" />
                                     LIVE
                                 </div>
 
-                                <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                                <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-2 group-hover:translate-y-0 md:transition-transform md:duration-500">
                                     <p className="text-alsaha-green/90 text-xs font-bold mb-2 tracking-widest uppercase">{channel.category}</p>
-                                    <h3 className="text-2xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-alsaha-green transition-all duration-300 drop-shadow-lg">
+                                    <h3 className="text-2xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-alsaha-green md:transition-all md:duration-300 drop-shadow-lg">
                                         {channel.name}
                                     </h3>
                                 </div>
 
                                 {/* Channel Image */}
-                                <div className="absolute inset-0 bg-[#161616] flex items-center justify-center transition-transform duration-700 group-hover:scale-110">
+                                <div className="absolute inset-0 bg-[#161616] flex items-center justify-center md:transition-transform md:duration-700 group-hover:scale-110">
                                    <div className="relative w-full h-full">
                                     <Image 
                                         src={channel.image} 
                                         alt={channel.name}
                                         fill
                                         sizes="(max-width: 768px) 80vw, (max-width: 1200px) 25vw, 20vw"
-                                        className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                        className="object-cover opacity-80 group-hover:opacity-100 md:transition-opacity"
                                     />
                                    </div>
                                 </div>
                             </div>
                         </Link>
-                    </motion.div>
+                    </div>
                 ))
             )}
         </div>

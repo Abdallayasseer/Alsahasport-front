@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
@@ -13,12 +13,8 @@ export default function PricingSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-lg mx-auto">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="relative bg-[#111]/80 backdrop-blur-2xl border border-alsaha-green/30 rounded-[2.5rem] p-6 md:p-12 text-center shadow-[0_0_80px_rgba(114,191,68,0.2)] overflow-hidden group"
+            <div
+                className="relative bg-[#111]/80 backdrop-blur-2xl border border-alsaha-green/30 rounded-[2.5rem] p-6 md:p-12 text-center shadow-none md:shadow-[0_0_80px_rgba(114,191,68,0.2)] overflow-hidden group opacity-100 md:opacity-0 md:animate-scale-in"
             >
                 {/* Floating shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -62,9 +58,9 @@ export default function PricingSection() {
 
                 <Link href="/subscription" className="block w-full relative z-20">
                     <Button 
-                        variant="primary" 
+                        variant="default" 
                         size="lg" 
-                        className="w-full py-6 text-xl shadow-[0_0_40px_rgba(114,191,68,0.3)] hover:shadow-[0_0_60px_rgba(114,191,68,0.5)] animate-pulse-slow rounded-2xl"
+                        className="w-full py-6 text-xl shadow-none md:shadow-[0_0_40px_rgba(114,191,68,0.3)] md:hover:shadow-[0_0_60px_rgba(114,191,68,0.5)] md:animate-pulse-slow rounded-2xl"
                     >
                         اشترك الآن
                     </Button>
@@ -72,7 +68,7 @@ export default function PricingSection() {
                 
                 <p className="mt-6 text-xs text-white/30 font-medium">ضمان استرجاع الأموال في حال عدم الرضا</p>
 
-            </motion.div>
+            </div>
         </div>
       </div>
     </section>

@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 // import { motion, AnimatePresence } from "framer-motion"; // Removed for Mobile Optimization
 import Link from "next/link";
 import { Zap, X } from "lucide-react";
 
 export default function MobileFloatingCTA() {
-  const [isVisible, setIsVisible] = useState(false);
+  // Mobile Stone Mode: Static display, no scroll triggers, persistence logic only
   const [isDismissed, setIsDismissed] = useState(true); // Start dismissed until mounted/verified
-  const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
+
 
   // Check dismissal state on mount
   useEffect(() => {
@@ -19,83 +19,24 @@ export default function MobileFloatingCTA() {
         localStorage.removeItem("cta_dismissed_at");
         if (isDismissed) setTimeout(() => setIsDismissed(false), 0);
       } 
-      // Else: already true (default), no update needed
     } else {
       setTimeout(() => setIsDismissed(false), 0);
     }
   }, [isDismissed]);
 
-  // Triggers: Scroll > 40%, Inactivity, Click triggers
-  useEffect(() => {
-    if (isDismissed) return;
-
-    const handleScroll = () => {
-      // Optimized: Avoid reading scrollHeight (reflow). Use simple pixel threshold or window height
-      // 1. Scroll Trigger (> 20% viewport height approx 150-200px)
-      if (window.scrollY > 200) {
-         setIsVisible(true);
-      }
-    };
-
-    const resetInactivityTimer = () => {
-      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
-      if (!isVisible) {
-          inactivityTimerRef.current = setTimeout(() => {
-            setIsVisible(true);
-          }, 6000); // 6 seconds inactivity
-      }
-    };
-    
-    // Throttle helper for timer
-    let lastTimerReset = 0;
-    const throttledResetTimer = () => {
-        const now = Date.now();
-        if (now - lastTimerReset > 500) { // Only reset every 500ms max during scroll
-            resetInactivityTimer();
-            lastTimerReset = now;
-        }
-    };
-
-    // 3. Click Trigger (Global listener for elements with specific data attribute)
-    const handleClick = (e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        if (target.closest('[data-trigger-cta="true"]')) {
-            setIsVisible(true);
-        }
-        resetInactivityTimer();
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("scroll", throttledResetTimer, { passive: true });
-    window.addEventListener("touchstart", throttledResetTimer, { passive: true });
-    window.addEventListener("click", handleClick);
-
-    // Initial timer start
-    resetInactivityTimer();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", throttledResetTimer);
-      window.removeEventListener("touchstart", throttledResetTimer);
-      window.removeEventListener("click", handleClick);
-      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
-    };
-  }, [isDismissed, isVisible]);
-
   const handleDismiss = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsVisible(false);
     setIsDismissed(true);
     localStorage.setItem("cta_dismissed_at", Date.now().toString());
   };
 
   if (isDismissed) return null;
 
-  if (!isVisible) return null;
+  if (isDismissed) return null;
 
   return (
-    <div className="md:hidden fixed bottom-[110px] left-4 right-4 z-[90] pb-safe">
+    <div className="md:hidden fixed bottom-[110px] left-4 right-4 z-[90] pb-safe opacity-100 visible">
         <div className="relative group">
         {/* Dismiss Button */}
         <button

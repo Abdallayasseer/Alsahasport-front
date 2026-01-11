@@ -1,23 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+// import { motion } from "framer-motion";
+// import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Play, Info } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 export default function HomeHero() {
-  const [isMobile, setIsMobile] = useState(false);
+  // Mobile optimization: Pure CSS approach, no JS state needed
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   return (
     <section className="relative w-full min-h-[70vh] md:h-[85vh] flex items-center md:items-end pb-16 md:pb-32 overflow-hidden pt-32 md:pt-0 md:mt-24">
@@ -42,12 +34,7 @@ export default function HomeHero() {
 
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10 w-full mb-8 md:mb-0">
-        <motion.div 
-            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-            transition={isMobile ? { duration: 0 } : { delay: 0.2, duration: 0.8 }}
-            className="w-full mx-auto md:mx-0"
-        >
+        <div className="w-full mx-auto md:mx-0 opacity-100 md:opacity-0 md:animate-fade-up">
              <div className="flex items-center justify-center md:justify-start gap-3 mb-8">
                 <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-xs font-black tracking-widest flex items-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.4)] border border-red-500/30 md:animate-pulse">
                     <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_white]" />
@@ -64,8 +51,8 @@ export default function HomeHero() {
                     Real Madrid
                  </h1>
 
-                <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-2xl glass border border-white/10 backdrop-blur-xl rotate-3 md:rotate-0 md:mb-4 shrink-0 my-3 md:my-0 shadow-[0_0_40px_rgba(0,0,0,0.6)] group md:hover:scale-110 md:transition-transform md:duration-500 hover:border-alsaha-green/30">
-                    <span className="font-black italic text-2xl md:text-3xl text-white/90 group-hover:text-alsaha-green transition-colors tracking-tighter">VS</span>
+                <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-2xl glass border border-white/10 backdrop-blur-xl rotate-3 md:rotate-0 md:mb-4 shrink-0 my-3 md:my-0 shadow-[0_0_40px_rgba(0,0,0,0.6)] group md:hover:scale-110 md:transition-transform md:duration-500 hover:border-alsaha-green/30 md:transition-colors">
+                    <span className="font-black italic text-2xl md:text-3xl text-white/90 group-hover:text-alsaha-green md:transition-colors tracking-tighter">VS</span>
                 </div>
 
                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 leading-[0.9] tracking-tighter text-right drop-shadow-2xl whitespace-nowrap">
@@ -104,7 +91,7 @@ export default function HomeHero() {
                     أكثر من <span className="text-white font-bold ml-1">10,000 مشاهد</span> الآن يتابعون المباراة
                 </div>
              </div>
-        </motion.div>
+        </div>
 
         {/* Floating Carousel Indicators (Optional polish) */}
         <div className="absolute right-6 bottom-32 md:bottom-32 z-20 hidden md:flex flex-col gap-3">

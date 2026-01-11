@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 
 const FAQS = [
@@ -25,15 +25,9 @@ const FAQS = [
 
 export default function SubscriptionFAQ({ limit }: { limit?: number }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  // Mobile optimization: Pure CSS, no JS state
   const displayFaqs = limit ? FAQS.slice(0, limit) : FAQS;
 
-  useEffect(() => {
-     const checkMobile = () => setIsMobile(window.innerWidth < 768);
-     checkMobile();
-     window.addEventListener('resize', checkMobile);
-     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
 
   return (
@@ -49,31 +43,27 @@ export default function SubscriptionFAQ({ limit }: { limit?: number }) {
 
             <div className="space-y-4">
                 {displayFaqs.map((faq, idx) => (
-                    <div key={idx} className="border border-white/5 bg-white/5 rounded-2xl overflow-hidden hover:border-alsaha-green/20 transition-all">
+                    <div key={idx} className="border border-white/5 bg-white/5 rounded-2xl overflow-hidden hover:border-alsaha-green/20 md:transition-all">
                         <button 
                             onClick={() => setOpenIndex(disk => disk === idx ? null : idx)}
-                            className="w-full flex items-center justify-between p-5 text-right font-bold text-white transition-colors hover:text-alsaha-green"
+                            className="w-full flex items-center justify-between p-5 text-right font-bold text-white md:transition-colors hover:text-alsaha-green"
                         >
                             <span className="text-sm md:text-base leading-relaxed">{faq.q}</span>
                             <ChevronDown 
                                 size={20} 
-                                className={`transition-transform duration-300 ${openIndex === idx ? "rotate-180 text-alsaha-green" : "text-white/40"}`} 
+                                className={`md:transition-transform md:duration-300 ${openIndex === idx ? "rotate-180 text-alsaha-green" : "text-white/40"}`} 
                             />
                         </button>
-                        <AnimatePresence>
-                            {openIndex === idx && (
-                                <motion.div
-                                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-                                    transition={isMobile ? { duration: 0 } : { duration: 0.2 }}
-                                >
-                                    <div className="p-5 pt-0 border-t border-white/5 text-text-secondary text-sm leading-7">
-                                        {faq.a}
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                        
+                        {openIndex === idx && (
+                            <div
+                                className="opacity-100 md:opacity-0 md:animate-fade-in"
+                            >
+                                <div className="p-5 pt-0 border-t border-white/5 text-text-secondary text-sm leading-7">
+                                    {faq.a}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>

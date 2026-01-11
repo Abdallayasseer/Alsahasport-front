@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+// import { motion } from "framer-motion";
+// import { useEffect, useState } from "react";
 import { 
   Tv, 
   Trophy, 
@@ -23,42 +23,8 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 
 export default function SubscriptionClientPage() {
-  const [isMobile, setIsMobile] = useState(false);
+  // Mobile optimization: Pure CSS, no JS state
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const containerVariants = isMobile ? {
-    hidden: { opacity: 1 },
-    visible: { opacity: 1 }
-  } : {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = isMobile ? {
-    hidden: { opacity: 1, y: 0 },
-    visible: { opacity: 1, y: 0 }
-  } : {
-    hidden: { opacity: 0, y: 15 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.4 }
-    }
-  };
 
   const features = [
     { icon: Tv, text: "49 قناة رياضية مباشرة" },
@@ -82,11 +48,8 @@ export default function SubscriptionClientPage() {
         <div className="container mx-auto px-4 max-w-[1100px] relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             
-            <motion.div 
-                initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                animate={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-                transition={isMobile ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }}
-                className="rounded-2xl bg-black/40 backdrop-blur-xl border border-white/5 p-6 md:p-8 shadow-2xl relative overflow-hidden group"
+            <div 
+                className="rounded-2xl bg-black/40 backdrop-blur-xl border border-white/5 p-6 md:p-8 shadow-none md:shadow-2xl relative overflow-hidden group opacity-100 md:opacity-0 md:animate-fade-in"
             >
                 <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-transparent via-alsaha-green/50 to-transparent opacity-50" />
                 
@@ -110,7 +73,7 @@ export default function SubscriptionClientPage() {
                     <div>
                         <Button 
                             variant="default" 
-                            className="w-full py-4 text-sm font-bold shadow-[0_0_20px_rgba(114,191,68,0.2)] hover:shadow-[0_0_40px_rgba(114,191,68,0.6)] transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:brightness-110"
+                            className="w-full py-4 text-sm font-bold shadow-none md:shadow-[0_0_20px_rgba(114,191,68,0.2)] md:hover:shadow-[0_0_40px_rgba(114,191,68,0.6)] md:transition-all md:duration-300 hover:scale-[1.02] active:scale-95 hover:brightness-110"
                             rightIcon={<CheckCircle2 size={18} />}
                         >
                             تفعيل الاشتراك
@@ -155,34 +118,28 @@ export default function SubscriptionClientPage() {
                         </Link>
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
             {/* RIGHT COLUMN: Features List (Reassurance) */}
             <div className="pt-4 lg:pt-8 order-last lg:order-none">
-                <motion.div
-                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                    animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                    transition={isMobile ? { duration: 0 } : { duration: 0.5 }}
-                    className="mb-8"
+                <div
+                    className="mb-8 opacity-100 md:opacity-0 md:animate-fade-in"
                 >
                     <h3 className="text-xl font-bold text-white flex items-center gap-2 mb-2">
                         <span className="w-8 h-1 bg-alsaha-green rounded-full block" />
                         مميزات الموقع
                     </h3>
                     <p className="text-text-secondary text-sm">لماذا يختارنا الآلاف من المشتركين؟</p>
-                </motion.div>
+                </div>
 
-                <motion.div 
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
+                <div 
                     className="space-y-3"
                 >
                     {features.map((feature, idx) => (
-                        <motion.div
+                        <div
                             key={idx}
-                            variants={itemVariants}
-                            className="flex items-center gap-4 p-3 rounded-lg bg-white/4 border border-white/5 hover:bg-white/5 transition-colors group cursor-default"
+                            className="flex items-center gap-4 p-3 rounded-lg bg-white/4 border border-white/5 hover:bg-white/5 transition-colors group cursor-default opacity-100 md:opacity-0 md:animate-scale-in"
+                            style={{ animationDelay: `${idx * 100}ms` }}
                         >
                             <div className="w-10 h-10 rounded-full bg-alsaha-green/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                 <feature.icon size={18} className="text-alsaha-green" />
@@ -190,9 +147,9 @@ export default function SubscriptionClientPage() {
                             <span className="text-sm text-white/90 font-medium leading-relaxed">
                                 {feature.text}
                             </span>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
 
             </div>
