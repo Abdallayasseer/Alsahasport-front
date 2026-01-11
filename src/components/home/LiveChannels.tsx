@@ -137,6 +137,7 @@ export default function LiveChannels() {
                                         src={channel.image} 
                                         alt={channel.name}
                                         fill
+                                        sizes="(max-width: 768px) 80vw, (max-width: 1200px) 25vw, 20vw"
                                         className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                     />
                                    </div>
