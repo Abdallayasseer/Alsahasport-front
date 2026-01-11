@@ -17,7 +17,6 @@ export default function BottomNav() {
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] md:hidden w-full max-w-[90%] pointer-events-none pb-[env(safe-area-inset-bottom)]">
-       {/* Use a container with max-w to avoid spanning full width on tablets/landscape mobile */}
       <nav 
         className="
           pointer-events-auto 
@@ -39,7 +38,6 @@ export default function BottomNav() {
               href={item.href}
               className="relative group focus:outline-none flex flex-1 flex-col items-center gap-1.5 min-w-[50px] py-1 tap-highlight-transparent"
             >
-                {/* Active Indicator Pips */}
                 {isActive && (
                     <div 
                         className="absolute -top-3 w-8 h-1 rounded-full bg-alsaha-green shadow-[0_0_15px_#72BF44]"
