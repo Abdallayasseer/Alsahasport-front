@@ -69,10 +69,9 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
         }}
     >
         {/* ... (Start Screen, Active Player, Error Fallback - Unchanged) ... */}
-        {!isPlaying && !isLoading && !hasError && (
-            <div className="absolute inset-0 flex items-center justify-center bg-zinc-900 overflow-hidden">
-                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-40" />
-                 <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/20 to-black/60" />
+            <div className="absolute inset-0 flex items-center justify-center bg-zinc-800 overflow-hidden">
+                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-70" />
+                 <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/40" />
                  <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
@@ -120,7 +119,7 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute inset-0 flex flex-col justify-between p-4 md:p-6 z-20 bg-gradient-to-t from-black/60 via-transparent to-black/40 pointer-events-none"
+                    className="absolute inset-0 flex flex-col justify-between p-4 md:p-6 z-20 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none"
                 >
                     {/* Top Bar */}
                     <div className="flex justify-between items-start pointer-events-auto w-full gap-4">
