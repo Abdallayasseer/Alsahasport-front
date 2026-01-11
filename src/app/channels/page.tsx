@@ -8,25 +8,25 @@ import { Play, Search, Filter } from "lucide-react";
 
 // Mock Data - Expanded
 const allChannels = [
-  { id: 1, name: "beIN Sports 1", category: "Sports", image: "/images/channels/bein1.png" },
-  { id: 2, name: "beIN Sports 2", category: "Sports", image: "/images/channels/bein2.png" },
-  { id: 3, name: "SSC 1", category: "Sports", image: "/images/channels/ssc1.png" },
-  { id: 4, name: "SSC 5", category: "Sports", image: "/images/channels/ssc5.png" },
-  { id: 5, name: "MBC Action", category: "Entertainment", image: "/images/channels/mbc.png" },
-  { id: 6, name: "MBC 2", category: "Movies", image: "/images/channels/mbc2.png" },
-  { id: 7, name: "OSN Movies", category: "Movies", image: "/images/channels/osn.png" },
-  { id: 8, name: "Al Jazeera", category: "News", image: "/images/channels/jazeera.png" },
-  { id: 9, name: "Al Arabiya", category: "News", image: "/images/channels/arabiya.png" },
-  { id: 10, name: "Spacetoon", category: "Kids", image: "/images/channels/spacetoon.png" },
-  { id: 11, name: "CN Arabic", category: "Kids", image: "/images/channels/cn.png" },
-  { id: 12, name: "Rotana Cinema", category: "Movies", image: "/images/channels/rotana.png" },
-  { id: 13, name: "AD Sports 1", category: "Sports", image: "/images/channels/ad1.png" },
-  { id: 14, name: "Al Kass One", category: "Sports", image: "/images/channels/alkass.png" },
-  { id: 15, name: "Nat Geo", category: "Documentary", image: "/images/channels/natgeo.png" },
+  { id: 1, name: "beIN Sports 1", category: "Sports", image: "https://ui-avatars.com/api/?name=beIN+1&background=5a2d82&color=fff&size=256&font-size=0.35&length=2" },
+  { id: 2, name: "beIN Sports 2", category: "Sports", image: "https://ui-avatars.com/api/?name=beIN+2&background=5a2d82&color=fff&size=256&font-size=0.35&length=2" },
+  { id: 3, name: "SSC 1", category: "Sports", image: "https://ui-avatars.com/api/?name=SSC+1&background=FFD700&color=000&size=256&font-size=0.4" },
+  { id: 4, name: "SSC 5", category: "Sports", image: "https://ui-avatars.com/api/?name=SSC+5&background=FFD700&color=000&size=256&font-size=0.4" },
+  { id: 5, name: "MBC Action", category: "Entertainment", image: "https://ui-avatars.com/api/?name=MBC+A&background=e3001b&color=fff&size=256&font-size=0.4" },
+  { id: 6, name: "MBC 2", category: "Movies", image: "https://ui-avatars.com/api/?name=MBC+2&background=e3001b&color=fff&size=256&font-size=0.4" },
+  { id: 7, name: "OSN Movies", category: "Movies", image: "https://ui-avatars.com/api/?name=OSN+M&background=000000&color=fff&size=256&font-size=0.4" },
+  { id: 8, name: "Al Jazeera", category: "News", image: "https://ui-avatars.com/api/?name=AJ&background=e86c00&color=fff&size=256&font-size=0.5" },
+  { id: 9, name: "Al Arabiya", category: "News", image: "https://ui-avatars.com/api/?name=AA&background=7c3aed&color=fff&size=256&font-size=0.5" },
+  { id: 10, name: "Spacetoon", category: "Kids", image: "https://ui-avatars.com/api/?name=ST&background=facc15&color=000&size=256&font-size=0.5" },
+  { id: 11, name: "CN Arabic", category: "Kids", image: "https://ui-avatars.com/api/?name=CN&background=000000&color=fff&size=256&font-size=0.5" },
+  { id: 12, name: "Rotana Cinema", category: "Movies", image: "https://ui-avatars.com/api/?name=Rotana&background=16a34a&color=fff&size=256&font-size=0.3" },
+  { id: 13, name: "AD Sports 1", category: "Sports", image: "https://ui-avatars.com/api/?name=AD+1&background=0284c7&color=fff&size=256&font-size=0.4" },
+  { id: 14, name: "Al Kass One", category: "Sports", image: "https://ui-avatars.com/api/?name=Kass&background=b91c1c&color=fff&size=256&font-size=0.4" },
+  { id: 15, name: "Nat Geo", category: "Documentary", image: "https://ui-avatars.com/api/?name=NatGeo&background=fbbf24&color=000&size=256&font-size=0.3" },
   // Duplicate for demo volume
-  { id: 16, name: "beIN Sports 3", category: "Sports", image: "/images/channels/bein3.png" },
-  { id: 17, name: "beIN Sports 4", category: "Sports", image: "/images/channels/bein4.png" },
-  { id: 18, name: "SSC Extra 1", category: "Sports", image: "/images/channels/ssc_extra1.png" },
+  { id: 16, name: "beIN Sports 3", category: "Sports", image: "https://ui-avatars.com/api/?name=beIN+3&background=5a2d82&color=fff&size=256&font-size=0.35&length=2" },
+  { id: 17, name: "beIN Sports 4", category: "Sports", image: "https://ui-avatars.com/api/?name=beIN+4&background=5a2d82&color=fff&size=256&font-size=0.35&length=2" },
+  { id: 18, name: "SSC Extra 1", category: "Sports", image: "https://ui-avatars.com/api/?name=SSC+Ex&background=FFD700&color=000&size=256&font-size=0.35" },
 ];
 
 const categories = ["All", "Sports", "Movies", "News", "Kids", "Entertainment", "Documentary"];
