@@ -69,6 +69,7 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
         }}
     >
         {/* ... (Start Screen, Active Player, Error Fallback - Unchanged) ... */}
+        {!isPlaying && !isLoading && !hasError && (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-800 overflow-hidden">
                  <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-70" />
                  <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/40" />
