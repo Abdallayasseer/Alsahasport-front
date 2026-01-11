@@ -63,7 +63,7 @@ export default function LiveClientPage() {
 
         {/* Mobile Sidebar Overlay */}
         <div className={`fixed inset-0 z-[60] lg:hidden transition-all duration-300 ${isSidebarCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-            <div className="absolute inset-0 bg-black/80" onClick={() => setIsSidebarCollapsed(true)} />
+            <div className="absolute inset-0 bg-black/40" onClick={() => setIsSidebarCollapsed(true)} />
             <div className={`absolute left-0 top-0 bottom-0 w-[85%] max-w-[320px] h-full bg-dark-base border-r border-white/5 transform transition-transform duration-300 z-[70] ${isSidebarCollapsed ? '-translate-x-full' : 'translate-x-0'}`}>
                 <div className="h-full">
                     <Suspense fallback={<div className="w-full h-full bg-dark-surface/50 rounded-2xl animate-pulse" />}>

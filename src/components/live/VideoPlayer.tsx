@@ -70,13 +70,14 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
     >
         {/* ... (Start Screen, Active Player, Error Fallback - Unchanged) ... */}
         {!isPlaying && !isLoading && !hasError && (
-            <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
-                 <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/20 to-black/80" />
+            <div className="absolute inset-0 flex items-center justify-center bg-zinc-900 overflow-hidden">
+                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-40" />
+                 <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/20 to-black/60" />
                  <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsPlaying(true)}
-                    className="relative z-10 w-24 h-24 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-[0_0_40px_rgba(114,191,68,0.2)] group-hover:bg-alsaha-green group-hover:border-alsaha-green transition-all duration-300"
+                    className="relative z-10 w-24 h-24 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shadow-[0_0_40px_rgba(114,191,68,0.2)] group-hover:bg-alsaha-green group-hover:border-alsaha-green transition-all duration-300"
                  >
                      <Play size={40} className="fill-white text-white ml-2 group-hover:fill-black group-hover:text-black transition-colors" />
                  </motion.button>
@@ -119,7 +120,7 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute inset-0 flex flex-col justify-between p-4 md:p-6 z-20 bg-gradient-to-t from-black/80 via-transparent to-black/60 pointer-events-none"
+                    className="absolute inset-0 flex flex-col justify-between p-4 md:p-6 z-20 bg-gradient-to-t from-black/60 via-transparent to-black/40 pointer-events-none"
                 >
                     {/* Top Bar */}
                     <div className="flex justify-between items-start pointer-events-auto w-full gap-4">
