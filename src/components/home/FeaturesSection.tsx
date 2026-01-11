@@ -73,14 +73,14 @@ export default function FeaturesSection() {
             <motion.div 
               key={idx}
               variants={item}
-              className="glass-card group relative rounded-[2rem] p-8 hover:border-alsaha-green/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
+              className="glass-card group relative rounded-[2rem] p-8 md:hover:border-alsaha-green/20 md:transition-all md:duration-500 md:hover:-translate-y-2 md:hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
             >
               {/* Hover Glow */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-alsaha-green/10 blur-[60px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-alsaha-green/10 blur-[60px] rounded-full pointer-events-none opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-500" />
               
               <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-alsaha-green group-hover:rotate-3 transition-all duration-500 border border-white/5 group-hover:border-alsaha-green/50 shadow-lg">
-                    <feature.icon className="text-alsaha-green w-7 h-7 group-hover:text-black transition-colors duration-300" />
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 md:group-hover:scale-110 md:group-hover:bg-alsaha-green md:group-hover:rotate-3 md:transition-all md:duration-500 border border-white/5 md:group-hover:border-alsaha-green/50 shadow-lg">
+                    <feature.icon className="text-alsaha-green w-7 h-7 md:group-hover:text-black md:transition-colors md:duration-300" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-4 group-hover:text-alsaha-green transition-colors">{feature.title}</h3>
                   <p className="text-white/50 leading-relaxed text-sm group-hover:text-white/80 transition-colors">

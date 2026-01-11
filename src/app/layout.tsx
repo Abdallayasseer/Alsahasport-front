@@ -58,6 +58,7 @@ import BottomNav from "@/components/layout/BottomNav";
 import Navbar from "@/components/layout/Navbar";
 
 import MobileFloatingCTA from "@/components/layout/MobileFloatingCTA";
+import MobileAnimationProvider from "@/components/providers/MobileAnimationProvider";
 
 export default function RootLayout({
   children,
@@ -69,17 +70,19 @@ export default function RootLayout({
       <body
         className={`${cairo.variable} antialiased min-h-screen pb-32 md:pb-0 relative overflow-x-hidden`}
       >
-        <NoiseOverlay />
-        <AuroraBackground />
-        <Navbar />
-        <main className="flex-grow mb-32 md:mb-0">
-          {children}
-        </main>
-        
-        {/* Mobile Floating Subscribe CTA */}
-        <MobileFloatingCTA />
+        <MobileAnimationProvider>
+          <NoiseOverlay />
+          <AuroraBackground />
+          <Navbar />
+          <main className="flex-grow mb-32 md:mb-0">
+            {children}
+          </main>
+          
+          {/* Mobile Floating Subscribe CTA */}
+          <MobileFloatingCTA />
 
-        <BottomNav />
+          <BottomNav />
+        </MobileAnimationProvider>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// import { motion, AnimatePresence } from "framer-motion"; // Removed for Mobile Optimization
 import Link from "next/link";
 import { Zap, X } from "lucide-react";
 
@@ -92,56 +92,47 @@ export default function MobileFloatingCTA() {
 
   if (isDismissed) return null;
 
+  if (!isVisible) return null;
+
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="md:hidden fixed bottom-[110px] left-4 right-4 z-[90] pb-safe"
+    <div className="md:hidden fixed bottom-[110px] left-4 right-4 z-[90] pb-safe">
+        <div className="relative group">
+        {/* Dismiss Button */}
+        <button
+            onClick={handleDismiss}
+            className="absolute -top-4 -right-2 z-50 bg-black/80 text-white/70 w-11 h-11 flex items-center justify-center rounded-full border border-white/10 hover:bg-black hover:text-white transition-colors active:scale-90"
+            aria-label="Close"
         >
-          <div className="relative group">
-            {/* Dismiss Button */}
-            {/* Dismiss Button - Touch Target Optimized */}
-            <button
-                onClick={handleDismiss}
-                className="absolute -top-4 -right-2 z-50 bg-black/80 text-white/70 w-11 h-11 flex items-center justify-center rounded-full border border-white/10 hover:bg-black hover:text-white transition-colors active:scale-90"
-                aria-label="Close"
-            >
-                <X size={16} />
-            </button>
+            <X size={16} />
+        </button>
 
-            {/* Main CTA */}
-            <Link href="/subscription" className="block w-full">
-              <div className="
-                w-full h-[44px] 
-                bg-alsaha-green 
-                rounded-full 
-                shadow-lg shadow-alsaha-green/20
-                flex items-center justify-between px-1.5
-                active:scale-[0.98] transition-all
-              ">
-                {/* Icon Circle */}
-                <div className="w-[34px] h-[34px] bg-black/10 rounded-full flex items-center justify-center shrink-0">
-                    <Zap size={18} className="text-black fill-black/20" />
-                </div>
+        {/* Main CTA */}
+        <Link href="/subscription" className="block w-full">
+            <div className="
+            w-full h-[44px] 
+            bg-alsaha-green 
+            rounded-full 
+            shadow-lg shadow-alsaha-green/20
+            flex items-center justify-between px-1.5
+            active:scale-[0.98] transition-all
+            ">
+            {/* Icon Circle */}
+            <div className="w-[34px] h-[34px] bg-black/10 rounded-full flex items-center justify-center shrink-0">
+                <Zap size={18} className="text-black fill-black/20" />
+            </div>
 
-                {/* Text */}
-                <span className="flex-1 text-center text-black font-black text-sm tracking-wide">
-                  ⚡ مشاهدة بدون تقطيع
-                </span>
+            {/* Text */}
+            <span className="flex-1 text-center text-black font-black text-sm tracking-wide">
+                ⚡ مشاهدة بدون تقطيع
+            </span>
 
-                {/* Price Pill */}
-                <div className="bg-black/10 px-3 py-1 rounded-full h-[34px] flex items-center justify-center shrink-0">
-                   <span className="text-[11px] font-bold text-black">5000 د.ع</span>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            {/* Price Pill */}
+            <div className="bg-black/10 px-3 py-1 rounded-full h-[34px] flex items-center justify-center shrink-0">
+                <span className="text-[11px] font-bold text-black">5000 د.ع</span>
+            </div>
+            </div>
+        </Link>
+        </div>
+    </div>
   );
 }

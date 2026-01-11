@@ -111,6 +111,17 @@ body {
   overflow-x: hidden;
 }
 
+/* ⚡ MOBILE PERFORMANCE: GLOBAL KILL SWITCH ⚡ */
+@media (max-width: 768px) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Typography Scale */
 h1,
 h2,

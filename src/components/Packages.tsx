@@ -54,10 +54,10 @@ export default function Packages() {
         {packages.map((pkg, idx) => (
           <div
             key={idx}
-            className={`relative p-8 md:p-12 rounded-3xl border transition-all duration-300 group w-full md:max-w-lg glass-card flex flex-col items-center ${
+            className={`relative p-8 md:p-12 rounded-3xl border md:transition-all md:duration-300 group w-full md:max-w-lg glass-card flex flex-col items-center ${
               pkg.popular
-                ? "bg-gradient-to-b from-white/5 to-transparent border-alsaha-green/30 shadow-[0_0_50px_rgba(114,191,68,0.1)] hover:border-alsaha-green/50 transform hover:-translate-y-2"
-                : "bg-white/4 border-white/5 hover:border-alsaha-green/30"
+                ? "bg-gradient-to-b from-white/5 to-transparent border-alsaha-green/30 shadow-[0_0_50px_rgba(114,191,68,0.1)] md:hover:border-alsaha-green/50 transform md:hover:-translate-y-2"
+                : "bg-white/4 border-white/5 md:hover:border-alsaha-green/30"
             }`}
           >
             {pkg.popular && (

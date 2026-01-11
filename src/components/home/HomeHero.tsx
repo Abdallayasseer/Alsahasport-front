@@ -38,7 +38,7 @@ export default function HomeHero() {
         >
              {/* Tag / Status */}
              <div className="flex items-center justify-center md:justify-start gap-3 mb-8">
-                <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-xs font-black tracking-widest flex items-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.4)] border border-red-500/30 animate-pulse">
+                <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-xs font-black tracking-widest flex items-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.4)] border border-red-500/30 md:animate-pulse">
                     <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_white]" />
                     LIVE NOW
                 </span>
@@ -56,7 +56,7 @@ export default function HomeHero() {
                  </h1>
 
                 {/* VS Badge */}
-                <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-2xl glass border border-white/10 backdrop-blur-xl rotate-3 md:rotate-0 md:mb-4 shrink-0 my-3 md:my-0 shadow-[0_0_40px_rgba(0,0,0,0.6)] group hover:scale-110 transition-transform duration-500 hover:border-alsaha-green/30">
+                <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-2xl glass border border-white/10 backdrop-blur-xl rotate-3 md:rotate-0 md:mb-4 shrink-0 my-3 md:my-0 shadow-[0_0_40px_rgba(0,0,0,0.6)] group md:hover:scale-110 md:transition-transform md:duration-500 hover:border-alsaha-green/30">
                     <span className="font-black italic text-2xl md:text-3xl text-white/90 group-hover:text-alsaha-green transition-colors tracking-tighter">VS</span>
                 </div>
 
@@ -74,8 +74,8 @@ export default function HomeHero() {
              {/* Actions */}
              <div className="flex flex-col md:flex-row items-center gap-4 justify-center md:justify-start w-full md:w-auto">
                 <Link href="/live" className="w-full md:w-auto group" data-trigger-cta="true">
-                    <Button variant="primary" size="lg" className="pl-6 pr-8 w-full md:w-auto py-7 text-lg shadow-[0_0_30px_rgba(114,191,68,0.25)] hover:shadow-[0_0_50px_rgba(114,191,68,0.5)] transition-all duration-500 rounded-2xl">
-                       <Play className="fill-black ml-2 group-hover:scale-110 transition-transform" size={24} />
+                    <Button variant="default" size="lg" className="pl-6 pr-8 w-full md:w-auto py-7 text-lg shadow-[0_0_30px_rgba(114,191,68,0.25)] hover:shadow-[0_0_50px_rgba(114,191,68,0.5)] md:transition-all md:duration-500 rounded-2xl">
+                       <Play className="fill-black ml-2 md:group-hover:scale-110 md:transition-transform" size={24} />
                        شاهد المباراة مجاناً
                     </Button>
                 </Link>
@@ -105,7 +105,7 @@ export default function HomeHero() {
         {/* Floating Carousel Indicators (Optional polish) */}
         <div className="absolute right-6 bottom-32 md:bottom-32 z-20 hidden md:flex flex-col gap-3">
             {[0, 1, 2].map((i) => (
-                <div key={i} className={`w-1.5 rounded-full ${i === 0 ? 'bg-alsaha-green h-8 shadow-[0_0_10px_rgba(114,191,68,0.5)]' : 'bg-white/20 h-1.5 hover:bg-white/50'} transition-all duration-500 cursor-pointer`} />
+                <div key={i} className={`w-1.5 rounded-full ${i === 0 ? 'bg-alsaha-green h-8 shadow-[0_0_10px_rgba(114,191,68,0.5)]' : 'bg-white/20 h-1.5 hover:bg-white/50'} md:transition-all md:duration-500 cursor-pointer`} />
             ))}
         </div>
       </div>

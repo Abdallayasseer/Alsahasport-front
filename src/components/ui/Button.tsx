@@ -4,14 +4,14 @@ import React from "react";
 import { Loader2 } from "lucide-react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-2xl text-base font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alsaha-green disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]",
+  "inline-flex items-center justify-center rounded-2xl text-base font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alsaha-green disabled:opacity-50 disabled:pointer-events-none md:active:scale-[0.98]",
   {
     variants: {
       variant: {
         default:
-          "bg-alsaha-green text-black shadow-[0_0_20px_rgba(114,191,68,0.25)] hover:shadow-[0_0_40px_rgba(114,191,68,0.5)] border border-alsaha-green hover:scale-[1.03]",
+          "bg-alsaha-green text-black shadow-[0_0_20px_rgba(114,191,68,0.25)] hover:shadow-[0_0_40px_rgba(114,191,68,0.5)] border border-alsaha-green md:hover:scale-[1.03]",
         secondary:
-          "bg-white/5 text-white border border-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/20 hover:scale-[1.03]",
+          "bg-white/5 text-white border border-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/20 md:hover:scale-[1.03]",
         ghost: "hover:bg-white/5 text-white hover:text-alsaha-green",
         link: "text-white underline-offset-4 hover:underline",
       },
