@@ -6,6 +6,7 @@ import { CalendarDays, Trophy } from "lucide-react";
 import DateStrip from "@/components/matches/DateStrip";
 import MatchCard, { MatchProps } from "@/components/matches/MatchCard";
 import { Skeleton } from "@/components/ui/Skeleton";
+import { useMobile } from "@/hooks/useMobile";
 
 // Helper to generate dates
 const generateDates = () => {
@@ -58,6 +59,7 @@ const getMatchesForDate = (date: string) => {
 };
 
 export default function MatchesClientPage() {
+  const isMobile = useMobile();
   const [selectedDate, setSelectedDate] = useState(TODAY_DATE);
   const [isLoading, setIsLoading] = useState(true);
   const [activeMatches, setActiveMatches] = useState<any[]>([]);
@@ -98,9 +100,10 @@ export default function MatchesClientPage() {
              {isLoading ? (
                  <motion.div 
                     key="skeleton"
-                    initial={{ opacity: 0 }}
+                    initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    exit={isMobile ? { opacity: 1 } : { opacity: 0 }}
+                    transition={isMobile ? { duration: 0 } : {}}
                     className="space-y-6"
                  >
                     {[1, 2].map((i) => (
@@ -119,10 +122,10 @@ export default function MatchesClientPage() {
              ) : (
                 <motion.div
                     key={selectedDate}
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
+                    exit={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
+                    transition={isMobile ? { duration: 0 } : { duration: 0.2 }}
                     className="space-y-6"
                 >
                     {activeMatches.length === 0 ? (

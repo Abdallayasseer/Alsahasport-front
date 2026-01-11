@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Play, Search, Filter } from "lucide-react";
+import { useMobile } from "@/hooks/useMobile";
 
 // Mock Data - Expanded
 const allChannels = [
@@ -33,6 +34,7 @@ const categories = ["All", "Sports", "Movies", "News", "Kids", "Entertainment", 
 const ITEMS_PER_PAGE = 12;
 
 export default function ChannelsPage() {
+  const isMobile = useMobile();
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -92,7 +94,7 @@ export default function ChannelsPage() {
     <main className="min-h-screen pt-28 pb-32 px-4 md:px-6 container mx-auto">
       
       {/* Header & Controls */}
-      <div className="sticky top-20 z-30 bg-dark-base/80 backdrop-blur-xl -mx-4 px-4 py-4 mb-8 border-b border-white/5 shadow-md">
+      <div className="md:sticky static top-20 z-30 bg-dark-base/80 backdrop-blur-xl -mx-4 px-4 py-4 mb-8 border-b border-white/5 shadow-md">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 max-w-7xl mx-auto">
             
             {/* Title */}
@@ -144,10 +146,11 @@ export default function ChannelsPage() {
             : visibleChannels.map((channel) => (
                 <Link key={channel.id} href="/subscription" className="block outline-none focus:outline-none group">
                 <motion.div
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    layout={!isMobile}
+                    initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    whileHover={{ y: -8, scale: 1.02 }}
+                    whileHover={isMobile ? {} : { y: -8, scale: 1.02 }}
+                    transition={isMobile ? { duration: 0 } : {}}
                     className="relative aspect-[4/3] bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/5 rounded-2xl overflow-hidden glass-card hover:border-alsaha-green/40 transition-all shadow-lg"
                 >
                     {/* Background Glow */}

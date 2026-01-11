@@ -111,7 +111,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Mobile Optimization */
 /* Mobile Optimization - PURE STONE MODE */
 @media (max-width: 768px) {
   *,
@@ -119,39 +118,35 @@ body {
   *::after {
     animation: none !important;
     transition: none !important;
-    transition-property: none !important;
-    transition-duration: 0s !important;
-    transition-delay: 0s !important;
+    transform: none !important; /* Kill all transforms including translateY */
     scroll-behavior: auto !important;
-    box-shadow: none !important;
     backdrop-filter: none !important;
-    filter: none !important;
+    view-transition-name: none !important;
   }
 
-  /* Force content visibility on mobile */
-  main,
-  section,
-  article,
-  [class*="opacity-0"],
-  [class*="invisible"] {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important; /* Only resetting transform for these containers to prevent side-entry */
-  }
-
+  /* Force Static Viewport */
   html,
   body {
-    scroll-behavior: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
     overflow-x: hidden !important;
-    width: 100% !important;
+    scroll-behavior: auto !important;
+    overscroll-behavior: none !important;
   }
 
+  /* Layout Resets */
+  main,
   section,
-  main {
-    position: relative !important;
-    overflow-x: hidden !important;
-    width: 100% !important;
+  header,
+  footer {
+    transform: none !important;
+    will-change: auto !important;
   }
+
+  /* Kill Fixed/Sticky on Mobile if needed per component base, but globally resets can be risky. 
+     The prompt asked for Phase 8 specific class changes. 
+     Phase 7 is Force Static Viewport, which is done here. 
+  */
 }
 
 /* Typography Scale */

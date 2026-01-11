@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import NewsHero from "@/components/news/NewsHero";
 import NewsCard from "@/components/news/NewsCard";
 import { Filter } from "lucide-react";
+import { useMobile } from "@/hooks/useMobile";
 
 // Mock Data
 const MOCK_NEWS = [
@@ -19,6 +20,7 @@ const MOCK_NEWS = [
 const CATEGORIES = ["الكل", "انتقالات", "الدوري الإنجليزي", "الدوري الإسباني", "الدوري السعودي", "تحليل"];
 
 export default function NewsPage() {
+  const isMobile = useMobile();
   const [activeCategory, setActiveCategory] = useState("الكل");
 
   const filteredNews = activeCategory === "الكل" 
@@ -62,18 +64,18 @@ export default function NewsPage() {
 
       {/* Grid Section */}
       <motion.div 
-         layout
+         layout={!isMobile}
          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
          <AnimatePresence>
              {filteredNews.map((news) => (
                  <motion.div
                     key={news.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    layout={!isMobile}
+                    initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.2 }}
+                    exit={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                    transition={isMobile ? { duration: 0 } : { duration: 0.2 }}
                  >
                      <NewsCard {...news} />
                  </motion.div>
