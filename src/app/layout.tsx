@@ -54,10 +54,10 @@ export const metadata: Metadata = {
   },
 };
 
-import BottomNav from "@/components/layout/BottomNav";
 import Navbar from "@/components/layout/Navbar";
 
-import MobileFloatingCTA from "@/components/layout/MobileFloatingCTA";
+import MobileTopBar from "@/components/layout/MobileTopBar";
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import MobileAnimationProvider from "@/components/providers/MobileAnimationProvider";
 
 export default function RootLayout({
@@ -68,20 +68,24 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body
-        className={`${cairo.variable} antialiased min-h-screen pb-32 md:pb-0 relative overflow-x-hidden`}
+        className={`${cairo.variable} antialiased min-h-screen pb-20 md:pb-0 relative overflow-x-hidden`}
       >
         <MobileAnimationProvider>
           <NoiseOverlay />
           <AuroraBackground />
+          
+          {/* Mobile Top Bar */}
+          <MobileTopBar />
+          
           <Navbar />
-          <main className="flex-grow mb-32 transition-none md:transition-all md:duration-300 md:mb-0">
+          
+          <main className="flex-grow mb-20 transition-none md:transition-all md:duration-300 md:mb-0">
             {children}
           </main>
           
-          {/* Mobile Floating Subscribe CTA */}
-          <MobileFloatingCTA />
+          {/* Mobile Bottom Navigation (Replaces old BottomNav & CTA) */}
+          <MobileBottomNav />
 
-          <BottomNav />
         </MobileAnimationProvider>
       </body>
     </html>
