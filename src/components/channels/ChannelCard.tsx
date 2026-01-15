@@ -1,78 +1,84 @@
 "use client";
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import Image from "next/image";
-import Link from "next/link";
-import { Play } from "lucide-react";
-
-interface Channel {
-  id: number;
+// INTERFACE
+interface ChannelProps {
+  id: string | number;
   name: string;
-  category: string;
-  image: string;
-  quality?: "HD" | "4K" | "SD";
-  isLive?: boolean;
+  logoUrl?: string; // Optional
+  // Additional props from the grid might be passed, but the interface needs to match usage.
+  // The mock data has 'image', not 'logoUrl', and passes the whole object as 'channel'.
+  // I need to adapt the component to match the usage in page.tsx or update page.tsx to match this.
+  // The prompt gives specific code for ChannelCard with { id, name, logoUrl }.
+  // Existing page.tsx passes <ChannelCard channel={channel} />.
+  // I will adapt the new code to accept the 'channel' prop to minimize breakage,
+  // OR update page.tsx to pass properties individually.
+  // Given "Rewrite the ChannelCard.tsx ... using this EXACT logic", I should follow the logic but ensure props align.
+  // The prompt's provided code exports `ChannelCard({ id, name, logoUrl }: ChannelProps)`.
+  // I will use THAT interface, and update page.tsx to pass the correct props.
 }
 
 interface ChannelCardProps {
-  channel: Channel;
+    channel: any; // Adapter to keep it working if I don't want to change page.tsx too much, OR I just update page.tsx.
 }
 
-export default function ChannelCard({ channel }: ChannelCardProps) {
+// I'll stick to the user's provided code structure but wrapped to work with the existing app flow if needed.
+// Actually, I'll update page.tsx to pass { id: channel.id, name: channel.name, logoUrl: channel.image } to fit the new component signature.
+
+export default function ChannelCard({ id, name, logoUrl }: ChannelProps) {
+  const [imgError, setImgError] = useState(false);
+
+  // LOGIC: If no url provided, treat as error immediately
+  const hasValidUrl = logoUrl && logoUrl.trim() !== '';
+  const showFallback = !hasValidUrl || imgError;
+
   return (
-    <Link href="/subscription" className="block h-full group perspective-1000">
-      <div className="relative h-full aspect-[4/3] rounded-[24px] overflow-hidden bg-[#080808] border border-white/5 transition-all duration-500 group-hover:border-alsaha-green/30 group-hover:shadow-[0_0_30px_rgba(114,191,68,0.15)] group-hover:-translate-y-1">
+    <Link href={`/live/${id}`} className="group relative aspect-[4/3] flex flex-col overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-br from-[#1a1a1a] to-[#050505] transition-all duration-300 hover:-translate-y-1 hover:border-[#72BF44]/50 hover:shadow-[0_10px_40px_-10px_rgba(114,191,68,0.15)]">
+      
+      {/* CARD BODY (Image or Monogram) */}
+      <div className="relative flex-1 flex items-center justify-center p-6">
         
-        {/* Hover Glow Background */}
-        <div className="absolute inset-0 bg-alsaha-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-        {/* Top Badges */}
-        <div className="absolute top-3 left-3 right-3 z-20 flex justify-between items-start pointer-events-none">
-             {/* Quality Badge */}
-             {channel.quality && (
-                <div className="bg-black/40 backdrop-blur-md px-2 py-1 rounded-lg text-[10px] font-black text-white/50 border border-white/5 group-hover:border-white/10 transition-colors">
-                    {channel.quality}
-                </div>
-            )}
-
-            {/* Live Indicator */}
-            {channel.isLive && (
-                <div className="flex items-center gap-1.5 bg-red-600/10 backdrop-blur-md px-2.5 py-1 rounded-full border border-red-500/20 shadow-lg">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shadow-[0_0_5px_rgba(220,38,38,0.5)]" />
-                    <span className="text-[9px] font-black text-white uppercase tracking-wider">LIVE</span>
-                </div>
-            )}
-        </div>
-
-        {/* Logo Container */}
-        <div className="absolute inset-0 p-8 pb-14 flex items-center justify-center z-10">
-          <div className="relative w-full h-full max-w-[75%] max-h-[75%] transition-transform duration-700 ease-out group-hover:scale-110">
-            <Image
-              src={channel.image}
-              alt={channel.name}
-              fill
-              className="object-contain drop-shadow-2xl"
-              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 16vw"
-            />
-          </div>
-        </div>
-        
-        {/* Play Icon Overlay (Fade in on hover) */}
-        <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-             <div className="w-12 h-12 rounded-full bg-alsaha-green/90 backdrop-blur-sm flex items-center justify-center shadow-[0_0_20px_rgba(114,191,68,0.4)] scale-75 group-hover:scale-100 transition-transform duration-300 delay-75">
-                 <Play size={20} className="fill-black text-black ml-1" />
-             </div>
-        </div>
-
-        {/* Bottom Gradient & Info */}
-        <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black via-black/90 to-transparent z-20 flex flex-col justify-end min-h-[40%] translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-            <h3 className="text-sm font-bold text-white text-center leading-tight line-clamp-1 group-hover:text-alsaha-green transition-colors duration-300">
-              {channel.name}
-            </h3>
-            <p className="text-[10px] text-white/40 text-center font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                {channel.category}
-            </p>
-        </div>
+        {!showFallback ? (
+          <Image 
+            src={logoUrl!} 
+            alt={name}
+            fill
+            className="object-contain p-6 transition-transform duration-500 group-hover:scale-110"
+            onError={() => setImgError(true)}
+            sizes="(max-width: 768px) 50vw, 20vw"
+            unoptimized
+          />
+        ) : (
+          /* FALLBACK UI: Massive Letter + Center Name */
+          <>
+            {/* Artistic Background Letter */}
+            <span className="absolute -bottom-2 -right-2 text-9xl font-black text-white/[0.03] select-none leading-none">
+              {name.charAt(0).toUpperCase()}
+            </span>
+            {/* Centered Name (High Contrast) */}
+            <div className="z-10 flex flex-col items-center gap-2">
+                <span className="p-3 rounded-full bg-white/5 border border-white/10 text-[#72BF44]">
+                    {/* Generic TV Icon */}
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </span>
+                <span className="text-white font-bold text-lg text-center px-2">{name}</span>
+            </div>
+          </>
+        )}
       </div>
+
+      {/* FOOTER LABEL (Always Visible) */}
+      <div className="w-full bg-black/60 backdrop-blur-md border-t border-white/5 py-3 px-4 flex items-center justify-between">
+        <span className="text-gray-300 text-sm font-medium truncate w-full text-center group-hover:text-white transition-colors">
+          {name}
+        </span>
+      </div>
+
+      {/* HOVER GLOW EFFECT (Visual Polish) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#72BF44]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      
     </Link>
   );
 }
