@@ -79,7 +79,7 @@ export default function RootLayout({
           
           <Navbar />
           
-          <main className="flex-grow mb-20 transition-none md:transition-all md:duration-300 md:mb-0">
+          <main className="flex-grow mb-20 md:mb-0">
             {children}
           </main>
           

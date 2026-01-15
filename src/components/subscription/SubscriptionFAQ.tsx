@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 
 const FAQS = [
@@ -25,10 +24,7 @@ const FAQS = [
 
 export default function SubscriptionFAQ({ limit }: { limit?: number }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  // Mobile optimization: Pure CSS, no JS state
   const displayFaqs = limit ? FAQS.slice(0, limit) : FAQS;
-
-
 
   return (
     <section className="py-20 bg-black/20 relative">
@@ -43,25 +39,21 @@ export default function SubscriptionFAQ({ limit }: { limit?: number }) {
 
             <div className="space-y-4">
                 {displayFaqs.map((faq, idx) => (
-                    <div key={idx} className="border border-white/5 bg-white/5 rounded-2xl overflow-hidden hover:border-alsaha-green/20 md:transition-all">
+                    <div key={idx} className="border border-white/5 bg-white/5 rounded-2xl overflow-hidden">
                         <button 
-                            onClick={() => setOpenIndex(disk => disk === idx ? null : idx)}
-                            className="w-full flex items-center justify-between p-5 text-right font-bold text-white md:transition-colors hover:text-alsaha-green"
+                            onClick={() => setOpenIndex(prev => prev === idx ? null : idx)}
+                            className="w-full flex items-center justify-between p-5 text-right font-bold text-white"
                         >
                             <span className="text-sm md:text-base leading-relaxed">{faq.q}</span>
                             <ChevronDown 
                                 size={20} 
-                                className={`md:transition-transform md:duration-300 ${openIndex === idx ? "rotate-180 text-alsaha-green" : "text-white/40"}`} 
+                                className={`${openIndex === idx ? "rotate-180 text-alsaha-green" : "text-white/40"}`} 
                             />
                         </button>
                         
                         {openIndex === idx && (
-                            <div
-                                className="opacity-100 md:opacity-0 md:animate-fade-in"
-                            >
-                                <div className="p-5 pt-0 border-t border-white/5 text-text-secondary text-sm leading-7">
-                                    {faq.a}
-                                </div>
+                            <div className="p-5 pt-0 border-t border-white/5 text-text-secondary text-sm leading-7">
+                                {faq.a}
                             </div>
                         )}
                     </div>

@@ -25,7 +25,7 @@ export default function MobileTopBar() {
             
 
             
-            <span className="drop-shadow-sm">اشترك الآن</span>
+            <span className="drop-shadow-sm">الباقات</span>
           </Link>
 
           {/* Search Button - Ghost Icon */}

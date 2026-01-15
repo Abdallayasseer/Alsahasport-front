@@ -1,75 +1,126 @@
 "use client";
 
-// import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Star, Shield, Zap } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
+import { cn } from "@/lib/utils"; // Assuming you have a cn utility, if not I will use template literals
+
+const PLANS = [
+  {
+    name: "الباقة الأساسية",
+    price: "3500",
+    period: "شهر",
+    description: "للتجربة والمشاهدة السريعة",
+    features: ["4000 قناة", "جودة FHD", "جهاز واحد", "دعم فني عادي"],
+    highlight: false,
+    icon: Star
+  },
+  {
+    name: "الباقة الشاملة",
+    price: "5000",
+    period: "3 أشهر",
+    description: "الأكثر طلباً وتوفيراً",
+    features: ["+8000 قناة مشفرة", "مكتبة أفلام (VOD) 4K", "جهازين في نفس الوقت", "جودة 4K حقيقية", "دعم فني VIP 24/7"],
+    highlight: true,
+    icon: Zap
+  },
+  {
+    name: "الباقة السنوية",
+    price: "15000",
+    period: "سنة",
+    description: "راحة بال، اشتراك مرة واحدة",
+    features: ["كل مميزات الشاملة", "أولوية في السيرفرات", "اشتراك إضافي مجاني", "خصم 20% للتجديد", "وصول مبكر للقنوات"],
+    highlight: false,
+    icon: Shield
+  }
+];
 
 export default function PricingSection() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-alsaha-green/20 blur-[150px] rounded-full pointer-events-none mix-blend-screen" />
+    <section className="py-24 md:py-32 relative overflow-hidden bg-[#050505]">
+       {/* 🌑 PHASE 7: PRICING ATMOSPHERE */}
+       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-alsaha-green/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-lg mx-auto">
-            <div
-                className="relative bg-[#111]/80 backdrop-blur-2xl border border-alsaha-green/30 rounded-[2.5rem] p-6 md:p-12 text-center shadow-none md:shadow-[0_0_80px_rgba(114,191,68,0.2)] overflow-hidden group opacity-100 md:opacity-0 md:animate-scale-in"
-            >
-                {/* Floating shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                
-                {/* Badge */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-alsaha-green to-[#65aa3c] text-black font-black text-sm py-2 px-6 rounded-b-2xl uppercase tracking-widest shadow-[0_5px_15px_rgba(114,191,68,0.4)]">
-                    Most Popular
-                </div>
-
-                <div className="mt-6 mb-8">
-                    <h2 className="text-4xl font-black text-white mb-3 tracking-tight">الباقة <span className="text-alsaha-green">الشاملة</span></h2>
-                    <p className="text-white/60 text-lg">كل ما تحتاجه في اشتراك واحد</p>
-                </div>
-
-                <div className="flex items-baseline justify-center gap-1 mb-12 direction-ltr">
-                    <span className="text-7xl font-black text-white tracking-tighter drop-shadow-md">5000</span>
-                    <div className="flex flex-col items-start leading-none ml-2">
-                        <span className="text-xl font-bold text-alsaha-green">د.ع</span>
-                        <span className="text-xs text-white/40 font-medium">/ شهرياً</span>
-                    </div>
-                </div>
-
-                {/* Features List */}
-                <ul className="space-y-5 text-right mb-12 inline-block mx-auto w-full">
-                    {[
-                        "أكثر من 8000 قناة مشفرة ومفتوحة",
-                        "مكتبة أفلام ومسلسلات ضخمة (VOD)",
-                        "جودة 4K / FHD / HD حقيقية",
-                        "يعمل على الجوال، الشاشة، والكمبيوتر",
-                        "الدوري الإنجليزي، الإسباني، وأبطال أوروبا",
-                        "دعم فني وتحديثات مستمرة 24/7"
-                    ].map((item, i) => (
-                        <li key={i} className="flex items-center gap-4 text-white/90 group/item">
-                            <span className="w-8 h-8 rounded-full bg-alsaha-green/10 flex items-center justify-center flex-shrink-0 border border-alsaha-green/20 group-hover/item:bg-alsaha-green group-hover/item:text-black transition-colors duration-300">
-                                <Check size={16} className="text-alsaha-green group-hover/item:text-black transition-colors" />
-                            </span>
-                            <span className="font-bold text-sm md:text-base">{item}</span>
-                        </li>
-                    ))}
-                </ul>
-
-                <Link href="/subscription" className="block w-full relative z-20">
-                    <Button 
-                        variant="default" 
-                        size="lg" 
-                        className="w-full py-6 text-xl shadow-none md:shadow-[0_0_40px_rgba(114,191,68,0.3)] md:hover:shadow-[0_0_60px_rgba(114,191,68,0.5)] md:animate-pulse-slow rounded-2xl"
-                    >
-                        اشترك الآن
-                    </Button>
-                </Link>
-                
-                <p className="mt-6 text-xs text-white/30 font-medium">ضمان استرجاع الأموال في حال عدم الرضا</p>
-
-            </div>
+      <div className="container mx-auto px-5 md:px-8 relative z-10 max-w-7xl">
+        
+        <div className="text-center mb-16 md:mb-24">
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tighter">
+                اختر خطتك <span className="text-transparent bg-clip-text bg-gradient-to-br from-alsaha-green to-white">المناسبة</span>
+            </h2>
+            <p className="text-white/50 text-xl max-w-2xl mx-auto">
+                استمتع بأفضل تجربة مشاهدة مع باقات مصممة لتناسب احتياجاتك
+            </p>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            {PLANS.map((plan, idx) => (
+                <div 
+                    key={idx}
+                    className={cn(
+                        "relative flex flex-col p-8 rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 group",
+                        plan.highlight 
+                            ? "bg-gradient-to-b from-[#72BF44]/10 to-black/40 border-alsaha-green/50 scale-100 md:scale-110 md:-translate-y-4 shadow-[0_0_50px_rgba(114,191,68,0.15)] z-10"
+                            : "bg-white/5 border-white/5 md:hover:scale-105 md:hover:bg-white/10"
+                    )}
+                >
+                    {plan.highlight && (
+                        <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-alsaha-green to-[#65aa3c] text-black font-black text-sm py-2 px-6 rounded-full uppercase tracking-widest shadow-lg flex items-center gap-2">
+                           <Star size={14} className="fill-black" />
+                           الأكثر شيوعاً
+                        </div>
+                    )}
+
+                    <div className="mb-8 p-4 rounded-2xl bg-white/5 w-fit border border-white/5">
+                        <plan.icon size={32} className={plan.highlight ? "text-alsaha-green" : "text-white/70"} />
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+                    <p className="text-white/50 text-sm mb-8 font-medium">{plan.description}</p>
+
+                    <div className="flex items-baseline gap-1 mb-8 direction-ltr">
+                        <span className={cn(
+                            "font-black text-white tracking-tighter",
+                            plan.highlight ? "text-6xl" : "text-5xl"
+                        )}>
+                            {plan.price}
+                        </span>
+                        <div className="flex flex-col text-xs font-bold text-white/40">
+                            <span>د.ع</span>
+                            <span>/ {plan.period}</span>
+                        </div>
+                    </div>
+
+                    <ul className="space-y-4 mb-10 flex-1">
+                        {plan.features.map((feature, i) => (
+                             <li key={i} className="flex items-start gap-3">
+                                <div className={cn(
+                                    "mt-1 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0",
+                                    plan.highlight ? "bg-alsaha-green text-black" : "bg-white/10 text-white/60"
+                                )}>
+                                    <Check size={12} strokeWidth={4} />
+                                 </div>
+                                 <span className={cn("text-sm font-medium", plan.highlight ? "text-white" : "text-white/70")}>{feature}</span>
+                             </li>
+                        ))}
+                    </ul>
+
+                    <Link href="/subscription" className="w-full">
+                        <Button 
+                            variant={plan.highlight ? "default" : "secondary"}
+                            className={cn(
+                                "w-full py-6 text-lg font-bold rounded-xl",
+                                plan.highlight 
+                                    ? "shadow-[0_4px_20px_rgba(114,191,68,0.3)] hover:shadow-[0_6px_30px_rgba(114,191,68,0.5)]" 
+                                    : "bg-white/5 border border-white/10 hover:bg-white/10"
+                            )}
+                        >
+                            اشترك الآن
+                        </Button>
+                    </Link>
+                </div>
+            ))}
+        </div>
+
       </div>
     </section>
   );

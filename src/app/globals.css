@@ -44,6 +44,7 @@
   --animate-fade-in: fade-in 0.6s ease-out forwards;
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-scale-in: scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-scale-slow: scale-slow 20s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
   --animate-float: float 6s ease-in-out infinite;
 
@@ -75,6 +76,16 @@
     to {
       opacity: 1;
       transform: scale(1);
+    }
+  }
+
+  @keyframes scale-slow {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
     }
   }
 
@@ -111,42 +122,95 @@ body {
   overflow-x: hidden;
 }
 
-/* Mobile Optimization - PURE STONE MODE */
-@media (max-width: 768px) {
+/* ===============================================
+   📱 MOBILE LOCKDOWN (Strictly < 768px)
+   =============================================== */
+@media (max-width: 767px) {
   *,
   *::before,
   *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable ALL animation classes on mobile */
+  [class*="animate-"] {
     animation: none !important;
-    transition: none !important;
-    transform: none !important; /* Kill all transforms including translateY */
-    scroll-behavior: auto !important;
-    backdrop-filter: none !important;
-    view-transition-name: none !important;
+  }
+}
+
+/* ===============================================
+   🎨 ATMOSPHERE & TEXTURES
+   =============================================== */
+.bg-noise {
+  position: relative;
+}
+
+.bg-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* ===============================================
+   🖥️ DESKTOP UNLOCK (>= 768px)
+   =============================================== */
+@media (min-width: 768px) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: initial !important;
+    animation-delay: initial !important;
+    transition-duration: initial !important;
+    transition-delay: initial !important;
   }
 
-  /* Force Static Viewport */
-  html,
-  body {
-    height: auto !important;
-    min-height: 0 !important;
-    overflow-x: hidden !important;
-    scroll-behavior: auto !important;
-    overscroll-behavior: none !important;
+  /* Explicitly allow animations on desktop */
+  .md\:animate-fade-up {
+    animation: var(--animate-fade-up) !important;
   }
 
-  /* Layout Resets */
-  main,
-  section,
-  header,
-  footer {
-    transform: none !important;
-    will-change: auto !important;
+  .md\:animate-fade-in {
+    animation: var(--animate-fade-in) !important;
   }
 
-  /* Kill Fixed/Sticky on Mobile if needed per component base, but globally resets can be risky. 
-     The prompt asked for Phase 8 specific class changes. 
-     Phase 7 is Force Static Viewport, which is done here. 
-  */
+  .md\:animate-scale-slow {
+    animation: var(--animate-scale-slow) !important;
+  }
+
+  .md\:animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+  }
+
+  .md\:animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite !important;
+  }
+
+  .animate-spin,
+  .md\:animate-spin {
+    animation: spin 1s linear infinite !important;
+  }
+}
+
+/* Global Layout Performance (All Devices) */
+html,
+body {
+  overflow-x: hidden !important;
+}
+
+main,
+section,
+header,
+footer {
+  will-change: auto !important;
 }
 
 /* Typography Scale */

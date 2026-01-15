@@ -70,7 +70,7 @@ export default function UpcomingMatches() {
              viewport={{ once: true }}
              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-alsaha-green/10 border border-alsaha-green/20 text-alsaha-green text-sm font-black mb-6 shadow-[0_0_20px_rgba(114,191,68,0.1)]"
           >
-             <Trophy size={16} className="animate-pulse" />
+             <Trophy size={16} className="md:animate-pulse" />
              <span>أهم مباريات اليوم</span>
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
@@ -142,7 +142,7 @@ export default function UpcomingMatches() {
                                         {/* Status Badge */}
                                         {match.status === 'LIVE' ? (
                                              <div className="px-3 py-1 rounded-full bg-red-600/10 border border-red-600/20 text-red-500 text-[10px] font-black tracking-widest flex items-center gap-2">
-                                                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                                                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 md:animate-pulse" />
                                                  LIVE
                                              </div>
                                         ) : (
@@ -176,7 +176,7 @@ export default function UpcomingMatches() {
                                                     <div className="w-max mx-auto text-3xl md:text-5xl font-black text-white font-mono mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] whitespace-nowrap" dir="ltr">
                                                         {match.score || "0 - 0"}
                                                     </div>
-                                                    <span className="text-[10px] font-bold text-red-500 tracking-widest uppercase animate-pulse">On Air</span>
+                                                    <span className="text-[10px] font-bold text-red-500 tracking-widest uppercase md:animate-pulse">On Air</span>
                                                 </div>
                                             ) : (
                                                 <div className="flex flex-col items-center gap-1">

@@ -20,7 +20,7 @@ export default function MatchCard({ match }: { match: MatchProps }) {
         <div className="w-12 md:w-24 text-center shrink-0">
             {match.status === 'LIVE' ? (
                 <div className="flex flex-col items-center gap-1">
-                    <span className="text-red-500 font-black text-[10px] md:text-xs animate-pulse">مباشر</span>
+                    <span className="text-red-500 font-black text-[10px] md:text-xs md:animate-pulse">مباشر</span>
                     <span className="text-alsaha-green text-[10px] font-bold">45&apos;</span>
                 </div>
             ) : match.status === 'FINISHED' ? (

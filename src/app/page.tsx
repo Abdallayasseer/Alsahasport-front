@@ -16,31 +16,45 @@ const Footer = dynamic(() => import("@/components/Footer"));
 export default function Home() {
   return (
     <main className="min-h-screen relative overflow-hidden bg-dark-base text-white">
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section - Premium Entry Point */}
       <HomeHero />
 
-      {/* 2. Why Us? */}
-      <FeaturesSection />
+      {/* Content Sections - Vertical Rhythm & Visual Separation */}
+      <div className="space-y-20 md:space-y-28 py-12 md:py-16">
+        
+        {/* 2. Why Us - Value Proposition */}
+        <section className="border-t border-white/5">
+          <FeaturesSection />
+        </section>
 
-      {/* 3. Live Content Teasers */}
-      <div className="space-y-0">
-         <LiveChannels />
-         <UpcomingMatches />
+        {/* 3. Live Content Teasers - Engagement Layer */}
+        <div className="space-y-0 border-t border-white/5 bg-dark-surface/30">
+           <LiveChannels />
+           <UpcomingMatches />
+        </div>
+
+        {/* 4. Pricing - Conversion Point */}
+        <section className="border-t border-white/5">
+          <PricingSection />
+        </section>
+
+        {/* 5. Device Compatibility - Technical Confidence */}
+        <section className="border-t border-white/5 bg-dark-surface/30">
+          <DeviceSection />
+        </section>
+
+        {/* 6. FAQ - Trust Building */}
+        <section className="border-t border-white/5">
+          <SubscriptionFAQ limit={3} />
+        </section>
+
+        {/* 7. Final CTA - Last Conversion Opportunity */}
+        <section className="border-t border-white/5 bg-dark-surface/30">
+          <CTASection />
+        </section>
       </div>
-
-      {/* 4. Pricing (The Killer Section) */}
-      <PricingSection />
-
-      {/* 5. Device Compatibility */}
-      <DeviceSection />
-
-      {/* 6. FAQ (Mini Version) */}
-      <SubscriptionFAQ limit={3} />
-
-      {/* 7. Final CTA */}
-      <CTASection />
       
-      {/* Retain Footer */}
+      {/* Footer */}
       <Footer />
     </main>
   );

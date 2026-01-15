@@ -1,95 +1,74 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Zap, Tv, Globe, Headset } from "lucide-react";
 
 export default function FeaturesSection() {
   const features = [
     {
       icon: Zap,
-      title: "سيرفرات فائقة السرعة",
-      desc: "تقنية بث متطورة تضمن لك مشاهدة مستقرة بدون تقطيع حتى في أوقات الذروة."
+      title: "سيرفرات مستقرة",
+      desc: "بنية تحتية مصممة للاستقرار والتوافر المستمر."
     },
     {
       icon: Tv,
-      title: "جودة سينمائية حقيقية",
-      desc: "استمتع بدقة 4K Ultra HD وتفاصيل ألوان مذهلة تجعلك في قلب الحدث."
+      title: "جودة بث عالية",
+      desc: "دقة تصل إلى 4K Ultra HD مع دعم HDR."
     },
     {
       icon: Globe,
       title: "تغطية شاملة",
-      desc: "جميع الدوريات العالمية، القنوات الرياضية، والأفلام في اشتراك واحد."
+      desc: "49 قناة رياضية مباشرة وتغطية للدوريات العالمية."
     },
     {
       icon: Headset,
-      title: "دعم فني لحظي",
-      desc: "فريق متخصص جاهز لمساعدتك وحل أي مشكلة تقنية على مدار 24 ساعة."
+      title: "دعم فني متواصل",
+      desc: "فريق دعم متاح على مدار 24 ساعة."
     }
   ];
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 }
-  };
-
   return (
-    <section className="section-padding relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="py-20 md:py-28 relative overflow-hidden">
+      <div className="container mx-auto px-5 md:px-8 relative z-10 max-w-7xl">
         
-        <div className="text-center mb-16">
-          <motion.div
-             initial={{ opacity: 0, scale: 0.9 }}
-             whileInView={{ opacity: 1, scale: 1 }}
-             viewport={{ once: true }}
-             className="inline-block mb-4"
-          >
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">
-                لماذا يختارنا <span className="text-transparent bg-clip-text bg-gradient-to-r from-alsaha-green to-white">الآلاف؟</span>
-              </h2>
-          </motion.div>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
-            تجربة مشاهدة لا تضاهى مع مميزات حصرية صممت خصيصاً لعشاق الرياضة
+        {/* Section Header - Mobile: Visible, Desktop: Fade Up */}
+        <div className="text-center mb-16 md:mb-20 opacity-100 md:opacity-0 md:animate-fade-up">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-6 tracking-tight leading-[1.1]">
+            ما يميز{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-l from-alsaha-green to-white">
+              الخدمة
+            </span>
+          </h2>
+          <p className="text-white/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            مميزات مصممة للوضوح والاستقرار
           </p>
         </div>
 
-        <motion.div 
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
+        {/* Feature Cards Grid - Mobile: Visible, Desktop: Staggered Fade In + Hover Lift */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {features.map((feature, idx) => (
-            <motion.div 
+            <div 
               key={idx}
-              variants={item}
-              className="glass-card group relative rounded-[2rem] p-8 md:hover:border-alsaha-green/20 md:transition-all md:duration-500 md:hover:-translate-y-2 md:hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
+              className="flex flex-col p-8 rounded-2xl bg-black/30 border border-white/5 opacity-100 md:opacity-0 md:animate-fade-in md:hover:-translate-y-2 md:hover:border-white/10 md:transition-all md:duration-300"
+              style={{ 
+                // @ts-expect-error CSS custom property
+                '--animation-delay': `${idx * 100}ms`,
+                animationDelay: 'var(--animation-delay)'
+              }}
             >
-              {/* Hover Glow */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-alsaha-green/10 blur-[60px] rounded-full pointer-events-none opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-500" />
-              
-              <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 md:group-hover:scale-110 md:group-hover:bg-alsaha-green md:group-hover:rotate-3 md:transition-all md:duration-500 border border-white/5 md:group-hover:border-alsaha-green/50 shadow-lg">
-                    <feature.icon className="text-alsaha-green w-7 h-7 md:group-hover:text-black md:transition-colors md:duration-300" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-alsaha-green transition-colors">{feature.title}</h3>
-                  <p className="text-white/50 leading-relaxed text-sm group-hover:text-white/80 transition-colors">
-                    {feature.desc}
-                  </p>
+              <div className="p-4 bg-alsaha-green/10 rounded-xl w-fit mb-6">
+                <feature.icon size={32} className="text-alsaha-green" />
               </div>
-            </motion.div>
+              
+              <h3 className="text-xl font-bold text-white mb-3 leading-tight">
+                {feature.title}
+              </h3>
+              
+              <p className="text-white/60 text-sm leading-relaxed">
+                {feature.desc}
+              </p>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>

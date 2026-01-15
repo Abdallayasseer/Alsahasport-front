@@ -67,7 +67,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4 flex-shrink-0 ms-4">
               <Link href="/subscription">
                  <Button size="sm" className="rounded-full px-6 text-sm font-black shadow-alsaha-green/20">
-                    اشترك الآن
+                    الاشتراك
                  </Button>
               </Link>
           </div>

@@ -23,8 +23,14 @@ export default function MobileAnimationProvider({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Mobile: NO motion context at all - pure static rendering
+  if (isMobile) {
+    return <>{children}</>;
+  }
+
+  // Desktop: Keep motion animations
   return (
-    <MotionConfig transition={isMobile ? { duration: 0, ease: "linear" } : undefined}>
+    <MotionConfig>
       {children}
     </MotionConfig>
   );

@@ -18,7 +18,7 @@ export default function NotFound() {
             transition={{ duration: 0.5 }}
         >
             <div className="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/10">
-                <AlertCircle size={48} className="text-alsaha-green animate-pulse" />
+                <AlertCircle size={48} className="text-alsaha-green md:animate-pulse" />
             </div>
             
             <h1 className="text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 mb-2">404</h1>

@@ -96,67 +96,112 @@ export default function MatchesClientPage() {
 
       {/* Matches List */}
       <div className="min-h-[300px]">
-          <AnimatePresence mode="wait">
-             {isLoading ? (
-                 <motion.div 
-                    key="skeleton"
-                    initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={isMobile ? { opacity: 1 } : { opacity: 0 }}
-                    transition={isMobile ? { duration: 0 } : {}}
-                    className="space-y-6"
-                 >
-                    {[1, 2].map((i) => (
-                        <div key={i} className="bg-dark-surface/50 border border-white/5 rounded-3xl overflow-hidden shadow-lg p-6 space-y-4">
-                             <div className="flex items-center gap-3 mb-4">
-                                 <Skeleton className="w-1.5 h-6 rounded-full" />
-                                 <Skeleton className="w-32 h-6 rounded-md" />
-                             </div>
-                             <div className="space-y-3">
-                                 <Skeleton className="w-full h-20 rounded-xl" />
-                                 <Skeleton className="w-full h-20 rounded-xl" />
-                             </div>
+          {/* Mobile: No AnimatePresence wrapper */}
+          {isMobile ? (
+            <div className="space-y-6">
+              {isLoading ? (
+                <div className="space-y-6">
+                  {[1, 2].map((i) => (
+                    <div key={i} className="bg-dark-surface/50 border border-white/5 rounded-3xl overflow-hidden shadow-lg p-6 space-y-4">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Skeleton className="w-1.5 h-6 rounded-full" />
+                        <Skeleton className="w-32 h-6 rounded-md" />
+                      </div>
+                      <div className="space-y-3">
+                        <Skeleton className="w-full h-20 rounded-xl" />
+                        <Skeleton className="w-full h-20 rounded-xl" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {activeMatches.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-20 bg-white/5 rounded-3xl border border-white/5">
+                      <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6">
+                        <Trophy size={40} className="text-white/20" />
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-2">لا توجد مباريات</h3>
+                      <p className="text-text-secondary">لا توجد مباريات مجدولة لهذا اليوم.</p>
+                    </div>
+                  ) : (
+                    activeMatches.map((leagueGroup, idx) => (
+                      <div key={idx} className="bg-dark-surface/50 border border-white/5 rounded-3xl overflow-hidden backdrop-blur-sm shadow-xl">
+                        <div className="bg-white/5 px-6 py-4 flex items-center gap-3 border-b border-white/5">
+                          <div className="w-1.5 h-6 bg-alsaha-green rounded-full shadow-[0_0_10px_#72BF44]" />
+                          <h2 className="font-bold text-white text-lg">{leagueGroup.league}</h2>
                         </div>
-                    ))}
-                 </motion.div>
-             ) : (
-                <motion.div
-                    key={selectedDate}
-                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-                    transition={isMobile ? { duration: 0 } : { duration: 0.2 }}
-                    className="space-y-6"
+                        <div className="divide-y divide-white/5">
+                          {leagueGroup.matches.map((match: any, mIdx: number) => (
+                            <MatchCard key={mIdx} match={match} />
+                          ))}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+          ) : (
+            /* Desktop: AnimatePresence with motion.div */
+            <AnimatePresence mode="wait">
+              {isLoading ? (
+                <motion.div 
+                  key="skeleton"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="space-y-6"
                 >
-                    {activeMatches.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center py-20 bg-white/5 rounded-3xl border border-white/5">
-                            <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6">
-                                <Trophy size={40} className="text-white/20" />
-                            </div>
-                            <h3 className="text-xl font-bold text-white mb-2">لا توجد مباريات</h3>
-                            <p className="text-text-secondary">لا توجد مباريات مجدولة لهذا اليوم.</p>
-                        </div>
-                    ) : (
-                        activeMatches.map((leagueGroup, idx) => (
-                            <div key={idx} className="bg-dark-surface/50 border border-white/5 rounded-3xl overflow-hidden backdrop-blur-sm shadow-xl">
-                                {/* League Header */}
-                                <div className="bg-white/5 px-6 py-4 flex items-center gap-3 border-b border-white/5">
-                                    <div className="w-1.5 h-6 bg-alsaha-green rounded-full shadow-[0_0_10px_#72BF44]" />
-                                    <h2 className="font-bold text-white text-lg">{leagueGroup.league}</h2>
-                                </div>
-                                
-                                {/* Matches */}
-                                <div className="divide-y divide-white/5">
-                                    {leagueGroup.matches.map((match: any, mIdx: number) => (
-                                        <MatchCard key={mIdx} match={match} />
-                                    ))}
-                                </div>
-                            </div>
-                        ))
-                    )}
+                  {[1, 2].map((i) => (
+                    <div key={i} className="bg-dark-surface/50 border border-white/5 rounded-3xl overflow-hidden shadow-lg p-6 space-y-4">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Skeleton className="w-1.5 h-6 rounded-full" />
+                        <Skeleton className="w-32 h-6 rounded-md" />
+                      </div>
+                      <div className="space-y-3">
+                        <Skeleton className="w-full h-20 rounded-xl" />
+                        <Skeleton className="w-full h-20 rounded-xl" />
+                      </div>
+                    </div>
+                  ))}
                 </motion.div>
-             )}
-          </AnimatePresence>
+              ) : (
+                <motion.div
+                  key={selectedDate}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="space-y-6"
+                >
+                  {activeMatches.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-20 bg-white/5 rounded-3xl border border-white/5">
+                      <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6">
+                        <Trophy size={40} className="text-white/20" />
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-2">لا توجد مباريات</h3>
+                      <p className="text-text-secondary">لا توجد مباريات مجدولة لهذا اليوم.</p>
+                    </div>
+                  ) : (
+                    activeMatches.map((leagueGroup, idx) => (
+                      <div key={idx} className="bg-dark-surface/50 border border-white/5 rounded-3xl overflow-hidden backdrop-blur-sm shadow-xl">
+                        <div className="bg-white/5 px-6 py-4 flex items-center gap-3 border-b border-white/5">
+                          <div className="w-1.5 h-6 bg-alsaha-green rounded-full shadow-[0_0_10px_#72BF44]" />
+                          <h2 className="font-bold text-white text-lg">{leagueGroup.league}</h2>
+                        </div>
+                        <div className="divide-y divide-white/5">
+                          {leagueGroup.matches.map((match: any, mIdx: number) => (
+                            <MatchCard key={mIdx} match={match} />
+                          ))}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
       </div>
 
     </main>

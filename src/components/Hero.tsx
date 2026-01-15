@@ -41,7 +41,7 @@ export default function Hero() {
               transition={isMobile ? { duration: 0 } : { delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-alsaha-green/5 border border-alsaha-green/10 text-alsaha-green text-xs font-bold mb-8 backdrop-blur-md shadow-[0_0_20px_rgba(114,191,68,0.1)] hover:bg-alsaha-green/10 transition-colors cursor-default"
             >
-               <span className="w-1.5 h-1.5 rounded-full bg-alsaha-green animate-pulse shadow-[0_0_10px_rgba(114,191,68,0.6)]" />
+               <span className="w-1.5 h-1.5 rounded-full bg-alsaha-green md:animate-pulse shadow-[0_0_10px_rgba(114,191,68,0.6)]" />
                <span className="tracking-wide">#1 منصة بث في الوطن العربي</span>
             </motion.div>
 
@@ -91,7 +91,7 @@ export default function Hero() {
           </motion.div>
 
           <div className="hidden md:flex md:col-span-5 relative justify-center items-center perspective-1000">
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-alsaha-green/15 blur-[120px] rounded-full animate-pulse-slow pointer-events-none" />
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-alsaha-green/15 blur-[120px] rounded-full md:animate-pulse-slow pointer-events-none" />
 
              <div className="relative z-10 w-full max-w-[550px] animate-float will-change-transform">
                 <div className="relative aspect-[4/5] w-full">

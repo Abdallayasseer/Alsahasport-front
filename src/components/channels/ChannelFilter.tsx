@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { Filter } from "lucide-react";
-import { motion } from "framer-motion";
 
 interface ChannelFilterProps {
   categories: string[];
@@ -18,7 +17,7 @@ export default function ChannelFilter({
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="sticky top-16 md:top-20 z-40 bg-dark-base/80 backdrop-blur-xl border-b border-white/5 py-4 w-full">
+    <div className="sticky top-16 md:top-20 z-40 bg-dark-base/90 border-b border-white/5 py-4 w-full">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center gap-3">
           {/* Filter Icon */}
@@ -36,20 +35,13 @@ export default function ChannelFilter({
                 key={cat}
                 onClick={() => onCategoryChange(cat)}
                 className={`
-                  relative px-5 py-2 rounded-full text-xs font-bold transition-all duration-300 whitespace-nowrap border
+                  relative px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap border
                   ${activeCategory === cat 
-                    ? "bg-alsaha-green text-black border-alsaha-green shadow-[0_0_15px_rgba(114,191,68,0.4)] scale-105" 
-                    : "bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20"}
+                    ? "bg-alsaha-green text-black border-alsaha-green shadow-[0_4px_12px_rgba(114,191,68,0.3)]" 
+                    : "bg-white/5 border-white/5 text-gray-400"}
                 `}
               >
                  {cat === "All" ? "الكل" : cat}
-                 {activeCategory === cat && (
-                    <motion.div
-                        layoutId="activeFilter"
-                        className="absolute inset-0 rounded-full bg-white/10"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                 )}
               </button>
             ))}
           </div>

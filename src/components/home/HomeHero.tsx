@@ -1,103 +1,91 @@
 "use client";
 
-// import { motion } from "framer-motion";
-// import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Play, Info } from "lucide-react";
+import { Play, Calendar } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 export default function HomeHero() {
-  // Mobile optimization: Pure CSS approach, no JS state needed
-
-
   return (
-    <section className="relative w-full min-h-[70vh] md:h-[85vh] flex items-center md:items-end pb-16 md:pb-32 overflow-hidden pt-32 md:pt-0 md:mt-24">
+    <section className="relative w-full min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden pt-24 md:pt-0 bg-[#050505] bg-noise">
       
-      {/* Background Image (Immersive) */}
-      <div className="absolute inset-0 z-0 select-none">
-        <Image
-          src="/images/pattern.png" 
-          alt="Featured Match Background"
-          fill
-          className="object-cover object-center opacity-30 mix-blend-overlay"
-          priority
-          draggable={false}
-        />
-        {/* Cinematic Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/30 to-transparent" />
-        {/* Spotlight Effect */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-alsaha-green/10 blur-[150px] rounded-full mix-blend-screen pointer-events-none -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
-      </div>
-
-      {/* Content */}
-      <div className="container mx-auto px-4 md:px-6 relative z-10 w-full mb-8 md:mb-0">
-        <div className="w-full mx-auto md:mx-0 opacity-100 md:opacity-0 md:animate-fade-up">
-             <div className="flex items-center justify-center md:justify-start gap-3 mb-8">
-                <span className="px-4 py-1.5 rounded-full bg-red-600 text-white text-xs font-black tracking-widest flex items-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.4)] border border-red-500/30 md:animate-pulse">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_white]" />
-                    LIVE NOW
-                </span>
-                <span className="px-5 py-1.5 rounded-full glass text-white/90 text-xs font-bold border border-white/10 flex items-center gap-2 shadow-lg backdrop-blur-md">
-                    <span className="w-1.5 h-1.5 rounded-full bg-alsaha-green shadow-[0_0_10px_#72BF44]" />
-                    Champions League
-                </span>
-             </div>
-
-             <div className="flex flex-col md:flex-row items-center md:items-end gap-4 md:gap-10 mb-8">
-                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 leading-[0.9] tracking-tighter drop-shadow-2xl whitespace-nowrap">
-                    Real Madrid
-                 </h1>
-
-                <div className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 rounded-2xl glass border border-white/10 backdrop-blur-xl rotate-3 md:rotate-0 md:mb-4 shrink-0 my-3 md:my-0 shadow-[0_0_40px_rgba(0,0,0,0.6)] group md:hover:scale-110 md:transition-transform md:duration-500 hover:border-alsaha-green/30 md:transition-colors">
-                    <span className="font-black italic text-2xl md:text-3xl text-white/90 group-hover:text-alsaha-green md:transition-colors tracking-tighter">VS</span>
-                </div>
-
-                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 leading-[0.9] tracking-tighter text-right drop-shadow-2xl whitespace-nowrap">
-                    Man City
-                 </h1>
-             </div>
-
-             <p className="text-white/80 text-base md:text-xl font-medium mb-10 max-w-xl text-center md:text-right line-clamp-2 md:line-clamp-none mx-auto md:mx-0 leading-relaxed md:mr-1">
-                قمة دوري أبطال أوروبا في بث مباشر وحصري بجودة 4K. تعليق عربي، سيرفرات ثابتة، وتغطية شاملة للمباراة.
-             </p>
-
-             <div className="flex flex-col md:flex-row items-center gap-4 justify-center md:justify-start w-full md:w-auto">
-                <Link href="/live" className="w-full md:w-auto group" data-trigger-cta="true">
-                    <Button variant="default" size="lg" className="pl-6 pr-8 w-full md:w-auto py-7 text-lg shadow-[0_0_30px_rgba(114,191,68,0.25)] hover:shadow-[0_0_50px_rgba(114,191,68,0.5)] md:transition-all md:duration-500 rounded-2xl">
-                       <Play className="fill-black ml-2 md:group-hover:scale-110 md:transition-transform" size={24} />
-                       شاهد المباراة مجاناً
-                    </Button>
-                </Link>
-                <Link href="/matches" className="w-full md:w-auto">
-                    <Button variant="secondary" size="lg" className="w-full md:w-auto py-7 text-lg glass-card hover:bg-white/10 rounded-2xl border-white/10">
-                       <Info size={24} className="ml-2" />
-                       تفاصيل المباراة
-                    </Button>
-                </Link>
-             </div>
-             
-             <div className="mt-10 flex items-center justify-center md:justify-start gap-4 opacity-90">
-                <div className="flex -space-x-3 space-x-reverse">
-                    {[1,2,3,4].map(i => (
-                        <div key={i} className="w-9 h-9 rounded-full border-2 border-[#0B0B0B] bg-white/10 backdrop-blur-md flex items-center justify-center text-[10px] text-white font-bold first:bg-alsaha-green first:text-black">
-                            {i === 4 ? '+10k' : ''}
-                        </div>
-                    ))}
-                </div>
-                <div className="text-sm font-medium text-white/80">
-                    أكثر من <span className="text-white font-bold ml-1">10,000 مشاهد</span> الآن يتابعون المباراة
-                </div>
-             </div>
+      {/* 🌑 PHASE 2: THE HEROSCAPE AND ATMOSPHERE */}
+      <div className="absolute inset-0 z-0">
+        {/* Cinematic Background Image - Static Mobile / Scale Desktop */}
+        <div className="relative w-full h-full md:animate-scale-slow">
+          <Image
+            src="/images/hero-bg.jpg"
+            alt="Stadium Atmosphere"
+            fill
+            className="object-cover object-top opacity-40 select-none"
+            priority
+            draggable={false}
+          />
         </div>
 
-        {/* Floating Carousel Indicators (Optional polish) */}
-        <div className="absolute right-6 bottom-32 md:bottom-32 z-20 hidden md:flex flex-col gap-3">
-            {[0, 1, 2].map((i) => (
-                <div key={i} className={`w-1.5 rounded-full ${i === 0 ? 'bg-alsaha-green h-8 shadow-[0_0_10px_rgba(114,191,68,0.5)]' : 'bg-white/20 h-1.5 hover:bg-white/50'} md:transition-all md:duration-500 cursor-pointer`} />
-            ))}
+        {/* Cinematic Overlay: Deep Black Gradient from Bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
+        
+        {/* Cinematic Overlay: RTL Reading Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent" />
+
+        {/* 🟢 SPOTLIGHT: Signature Green Glow (Top Left) */}
+        <div className="absolute -top-[20%] -left-[10%] w-[800px] h-[800px] bg-[#72BF44]/20 blur-[150px] rounded-full pointer-events-none mix-blend-screen opacity-60" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10 w-full max-w-[1400px]">
+        <div className="max-w-4xl">
+          
+          {/* Badges - Desktop Fade In */}
+          <div className="flex flex-wrap items-center gap-3 mb-8 opacity-100 md:opacity-0 md:animate-fade-in md:delay-200">
+            <span className="px-4 py-1.5 rounded-full bg-red-600/90 text-white text-xs md:text-sm font-bold tracking-wider flex items-center gap-2 shadow-[0_0_20px_rgba(220,38,38,0.4)] border border-white/5">
+              <span className="w-2 h-2 rounded-full bg-white md:animate-pulse" />
+              LIVE NOW
+            </span>
+            <span className="px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white/80 text-xs md:text-sm font-medium">
+              4K Ultra HD
+            </span>
+          </div>
+
+          {/* Typography - Desktop Fade Up */}
+          <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white leading-[0.9] tracking-tighter mb-6 opacity-100 md:opacity-0 md:animate-fade-up md:delay-300">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-br from-white to-white/50">
+              المشاهدة
+            </span>
+            <span className="block text-gradient-green drop-shadow-[0_0_40px_rgba(114,191,68,0.3)]">
+              الحية والرياضة
+            </span>
+          </h1>
+
+          <p className="text-lg md:text-2xl text-white/60 font-medium leading-relaxed max-w-2xl mb-10 opacity-100 md:opacity-0 md:animate-fade-up md:delay-400">
+            أكبر منصة ترفيهية رياضية في الشرق الأوسط. شاهد مبارياتك المفضلة بجودة 4K وبدون تقطيع.
+          </p>
+
+          {/* CTAs - Desktop Fade In */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 opacity-100 md:opacity-0 md:animate-fade-in md:delay-500">
+             <Link href="/live" className="flex-1 sm:flex-initial">
+              <Button 
+                variant="default" 
+                size="lg" 
+                className="w-full sm:w-auto h-16 px-10 text-xl font-bold rounded-2xl shadow-[0_0_30px_rgba(114,191,68,0.3)] border border-[#72BF44]/50 md:hover:scale-105 md:transition-transform"
+              >
+                <Play className="fill-black ml-3 w-6 h-6" />
+                اشترك وابدأ المشاهدة
+              </Button>
+            </Link>
+            
+            <Link href="/matches" className="flex-1 sm:flex-initial">
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                className="w-full sm:w-auto h-16 px-10 text-lg font-bold bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl text-white hover:bg-white/10 md:hover:scale-105 md:transition-transform"
+              >
+                <Calendar className="ml-3 w-6 h-6" />
+                جدول المباريات
+              </Button>
+            </Link>
+          </div>
+
         </div>
       </div>
     </section>
