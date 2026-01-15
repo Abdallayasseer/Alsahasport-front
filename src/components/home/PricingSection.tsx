@@ -1,54 +1,61 @@
 "use client";
 
-import { Check, Star, Shield, Zap } from "lucide-react";
+import { Check, ShieldCheck, Crown, Zap } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
-import { cn } from "@/lib/utils"; // Assuming you have a cn utility, if not I will use template literals
+import { cn } from "@/lib/utils";
 
 const PLANS = [
   {
     name: "الباقة الأساسية",
     price: "3500",
     period: "شهر",
-    description: "للتجربة والمشاهدة السريعة",
-    features: ["4000 قناة", "جودة FHD", "جهاز واحد", "دعم فني عادي"],
+    description: "للبداية وتجربة الخدمة",
+    features: ["4000 قناة مباشرة", "جودة FHD", "جهاز واحد", "دعم فني قياسي"],
     highlight: false,
-    icon: Star
+    icon: Zap,
+    color: "gray"
   },
   {
-    name: "الباقة الشاملة",
+    name: "باقة المحترفين (VIP)",
     price: "5000",
     period: "3 أشهر",
-    description: "الأكثر طلباً وتوفيراً",
-    features: ["+8000 قناة مشفرة", "مكتبة أفلام (VOD) 4K", "جهازين في نفس الوقت", "جودة 4K حقيقية", "دعم فني VIP 24/7"],
+    description: "الأكثر طلباً للأبطال الحقيقيين",
+    features: ["+9000 قناة VIP مشفرة", "مكتبة أفلام 4K ضخمة", "جهازين في وقت واحد", "جودة 4K HDR حقيقية", "دعم فني خاص على واتساب"],
     highlight: true,
-    icon: Zap
+    icon: Crown,
+    color: "gold"
   },
   {
     name: "الباقة السنوية",
     price: "15000",
     period: "سنة",
-    description: "راحة بال، اشتراك مرة واحدة",
-    features: ["كل مميزات الشاملة", "أولوية في السيرفرات", "اشتراك إضافي مجاني", "خصم 20% للتجديد", "وصول مبكر للقنوات"],
+    description: "راحة بال واقتصاد ذكي",
+    features: ["كل مميزات VIP", "سيرفرات خاصة للأحداث الكبرى", "اشتراك إضافي هدية", "خصم 30% عند التجديد", "وصول حصري للميزات الجديدة"],
     highlight: false,
-    icon: Shield
+    icon: ShieldCheck,
+    color: "blue"
   }
 ];
 
 export default function PricingSection() {
   return (
     <section className="py-24 md:py-32 relative overflow-hidden bg-[#050505]">
-       {/* 🌑 PHASE 7: PRICING ATMOSPHERE */}
+       {/* 🌑 ATMOSPHERE */}
        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-alsaha-green/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-5 md:px-8 relative z-10 max-w-7xl">
         
         <div className="text-center mb-16 md:mb-24">
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tighter">
-                اختر خطتك <span className="text-transparent bg-clip-text bg-gradient-to-br from-alsaha-green to-white">المناسبة</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs font-bold mb-6 backdrop-blur-md">
+                <ShieldCheck size={14} className="text-alsaha-green" />
+                <span>ضمان استعادة الأموال لمدة 7 أيام</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">
+                اختر خطة <span className="text-transparent bg-clip-text bg-gradient-to-br from-yellow-400 via-alsaha-green to-white">البطولات</span>
             </h2>
-            <p className="text-white/50 text-xl max-w-2xl mx-auto">
-                استمتع بأفضل تجربة مشاهدة مع باقات مصممة لتناسب احتياجاتك
+            <p className="text-white/50 text-xl max-w-2xl mx-auto leading-relaxed">
+                استثمر في متعتك الكروية مع باقات صممت لتعطيك أفضل قيمة وأعلى جودة ممكنة.
             </p>
         </div>
 
@@ -57,30 +64,48 @@ export default function PricingSection() {
                 <div 
                     key={idx}
                     className={cn(
-                        "relative flex flex-col p-8 rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 group",
+                        "relative flex flex-col p-8 rounded-[2.5rem] border backdrop-blur-2xl transition-all duration-500 group",
+                        // Base styles
+                        "bg-[#0A0A0A]/80",
+
+                        // Highlight Logic (The Trophy Effect)
                         plan.highlight 
-                            ? "bg-gradient-to-b from-[#72BF44]/10 to-black/40 border-alsaha-green/50 scale-100 md:scale-110 md:-translate-y-4 shadow-[0_0_50px_rgba(114,191,68,0.15)] z-10"
-                            : "bg-white/5 border-white/5 md:hover:scale-105 md:hover:bg-white/10"
+                            ? "border-yellow-500/50 shadow-[0_0_60px_rgba(234,179,8,0.15)] md:scale-110 z-10" 
+                            : "border-white/5 hover:border-white/10 hover:bg-[#111] z-0 md:hover:scale-[1.02]"
                     )}
                 >
+                    {/* 🏆 RIBBON FOR VIP */}
                     {plan.highlight && (
-                        <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-alsaha-green to-[#65aa3c] text-black font-black text-sm py-2 px-6 rounded-full uppercase tracking-widest shadow-lg flex items-center gap-2">
-                           <Star size={14} className="fill-black" />
-                           الأكثر شيوعاً
+                        <div className="absolute -top-6 left-1/2 -translate-x-1/2">
+                             <div className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-600 text-black font-black text-xs py-2 px-8 rounded-full uppercase tracking-widest shadow-[0_0_20px_rgba(234,179,8,0.4)] flex items-center gap-2 ring-4 ring-black">
+                                <Crown size={14} className="fill-black" />
+                                القيمة الأفضل
+                            </div>
                         </div>
                     )}
 
-                    <div className="mb-8 p-4 rounded-2xl bg-white/5 w-fit border border-white/5">
-                        <plan.icon size={32} className={plan.highlight ? "text-alsaha-green" : "text-white/70"} />
+                    {/* Header */}
+                    <div className="mb-8">
+                        <div className={cn(
+                            "w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 shadow-2xl",
+                            plan.highlight ? "bg-gradient-to-br from-yellow-400/20 to-yellow-600/5 border border-yellow-500/30" : "bg-white/5 border border-white/5"
+                        )}>
+                            <plan.icon size={28} className={cn(
+                                "transition-colors duration-300", 
+                                plan.highlight ? "text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.5)]" : "text-white/50 group-hover:text-white"
+                            )} />
+                        </div>
+                        <h3 className={cn("text-xl font-bold mb-2", plan.highlight ? "text-white" : "text-white/90")}>{plan.name}</h3>
+                        <p className="text-white/40 text-sm font-medium">{plan.description}</p>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                    <p className="text-white/50 text-sm mb-8 font-medium">{plan.description}</p>
-
-                    <div className="flex items-baseline gap-1 mb-8 direction-ltr">
+                    {/* Price */}
+                    <div className="flex items-baseline gap-1 mb-10 direction-ltr">
                         <span className={cn(
-                            "font-black text-white tracking-tighter",
-                            plan.highlight ? "text-6xl" : "text-5xl"
+                            "font-black tracking-tighter",
+                            plan.highlight 
+                                ? "text-6xl text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 drop-shadow-lg" 
+                                : "text-5xl text-white"
                         )}>
                             {plan.price}
                         </span>
@@ -90,31 +115,38 @@ export default function PricingSection() {
                         </div>
                     </div>
 
-                    <ul className="space-y-4 mb-10 flex-1">
+                    {/* Features Grid */}
+                    <ul className="space-y-5 mb-10 flex-1">
                         {plan.features.map((feature, i) => (
-                             <li key={i} className="flex items-start gap-3">
+                             <li key={i} className="flex items-start gap-3 group/item">
                                 <div className={cn(
-                                    "mt-1 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0",
-                                    plan.highlight ? "bg-alsaha-green text-black" : "bg-white/10 text-white/60"
+                                    "mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300",
+                                    plan.highlight 
+                                        ? "bg-yellow-500/10 text-yellow-400 group-hover/item:bg-yellow-500/20 group-hover/item:shadow-[0_0_10px_rgba(250,204,21,0.3)]" 
+                                        : "bg-white/5 text-white/30 group-hover/item:text-white group-hover/item:bg-white/10"
                                 )}>
-                                    <Check size={12} strokeWidth={4} />
+                                    <Check size={10} strokeWidth={4} />
                                  </div>
-                                 <span className={cn("text-sm font-medium", plan.highlight ? "text-white" : "text-white/70")}>{feature}</span>
+                                 <span className={cn(
+                                     "text-sm font-medium transition-colors",
+                                     plan.highlight ? "text-white/90" : "text-white/60 group-hover/item:text-white/80"
+                                 )}>{feature}</span>
                              </li>
                         ))}
                     </ul>
 
-                    <Link href="/subscription" className="w-full">
+                    {/* CTA Button */}
+                    <Link href="/subscription" className="w-full mt-auto">
                         <Button 
-                            variant={plan.highlight ? "default" : "secondary"}
+                            variant="default" // Force default structure
                             className={cn(
-                                "w-full py-6 text-lg font-bold rounded-xl",
+                                "w-full py-7 text-lg font-black rounded-2xl transition-all duration-500",
                                 plan.highlight 
-                                    ? "shadow-[0_4px_20px_rgba(114,191,68,0.3)] hover:shadow-[0_6px_30px_rgba(114,191,68,0.5)]" 
-                                    : "bg-white/5 border border-white/10 hover:bg-white/10"
+                                    ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-black border-none hover:shadow-[0_0_40px_rgba(234,179,8,0.4)] hover:scale-[1.02]"
+                                    : "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20"
                             )}
                         >
-                            اشترك الآن
+                            {plan.highlight ? "اشترك وأصبح VIP" : "اشترك الآن"}
                         </Button>
                     </Link>
                 </div>

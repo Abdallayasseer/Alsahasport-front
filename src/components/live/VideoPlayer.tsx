@@ -62,14 +62,15 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
     >
         {/* Start Screen */}
         {!isPlaying && !isLoading && !hasError && (
-            <div className="absolute inset-0 flex items-center justify-center bg-zinc-800 overflow-hidden">
-                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-70" />
-                 <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-black/40" />
+            <div className="absolute inset-0 flex items-center justify-center bg-zinc-800 overflow-hidden group/start">
+                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-70 group-hover/start:scale-105 transition-transform duration-1000" />
+                 <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/20 to-black/60" />
+                 
                  <button
                     onClick={() => setIsPlaying(true)}
-                    className="relative z-10 w-24 h-24 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shadow-[0_4px_20px_rgba(114,191,68,0.2)]"
+                    className="relative z-10 w-24 h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-[0_0_40px_rgba(114,191,68,0.3)] group-hover/start:scale-110 group-hover/start:bg-alsaha-green group-hover/start:border-alsaha-green transition-all duration-300"
                  >
-                     <Play size={40} className="fill-white text-white ml-2" />
+                     <Play size={40} className="fill-white text-white ml-2 group-hover/start:fill-black group-hover/start:text-black transition-colors" />
                  </button>
             </div>
         )}
@@ -77,12 +78,23 @@ export default function VideoPlayer({ channelName = "Channel", onShowSidebar }: 
         {/* Active Player / Loading */}
         {(isPlaying || isLoading) && !hasError && (
              <div className="absolute inset-0 flex items-center justify-center bg-black">
-                 <div className={`w-full h-full bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center ${isLoading ? 'opacity-30' : 'opacity-60'}`} />
+                 <div className={`w-full h-full bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0565c6a?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center ${isLoading ? 'opacity-30 blur-sm' : 'opacity-100'}`} />
                  
+                 {/* Watermark */}
+                 <div className="absolute top-6 left-6 z-10 pointer-events-none opacity-50 drop-shadow-lg">
+                    <span className="font-black text-white/50 text-xl tracking-tighter mix-blend-overlay">ALSAHA<span className="text-alsaha-green">.</span></span>
+                 </div>
+
                  {isLoading && (
                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-20">
-                         <div className="w-12 h-12 border-4 border-alsaha-green/30 border-t-alsaha-green rounded-full animate-spin" />
-                         <p className="text-white/50 text-xs font-mono tracking-widest uppercase">Connecting...</p>
+                         <div className="relative">
+                            <div className="w-16 h-16 rounded-full border-4 border-white/10" />
+                            <div className="absolute inset-0 w-16 h-16 rounded-full border-4 border-alsaha-green border-t-transparent animate-spin" />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-2 h-2 bg-alsaha-green rounded-full shadow-[0_0_15px_#72BF44]" />
+                            </div>
+                         </div>
+                         <p className="text-white/50 text-xs font-black tracking-widest uppercase animate-pulse">Establishing Feed...</p>
                      </div>
                  )}
              </div>

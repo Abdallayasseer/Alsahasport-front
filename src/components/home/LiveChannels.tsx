@@ -3,8 +3,6 @@ import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
-import { Skeleton } from "@/components/ui/Skeleton";
-import Button from "@/components/ui/Button";
 
 const CHANNELS = [
   { id: 1, name: "beIN Sports 1", image: "https://ui-avatars.com/api/?name=beIN+1&background=5a2d82&color=fff&size=256&font-size=0.35&length=2", category: "Sports" },
@@ -25,112 +23,108 @@ export default function LiveChannels() {
   }, []);
 
   const scrollLeft = () => {
-    if (containerRef.current) containerRef.current.scrollBy({ left: -320, behavior: "smooth" });
+    if (containerRef.current) containerRef.current.scrollBy({ left: -400, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    if (containerRef.current) containerRef.current.scrollBy({ left: 320, behavior: "smooth" });
+    if (containerRef.current) containerRef.current.scrollBy({ left: 400, behavior: "smooth" });
   };
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-[#050505]">
-      {/* 🌑 PHASE 4: LIVE CHANNELS */}
+    <section className="py-24 relative overflow-hidden bg-[#050505]">
       <div className="container mx-auto px-5 md:px-8 relative z-10 max-w-7xl">
         
         {/* Header */}
-        <div className="flex items-end justify-between mb-12">
+        <div className="flex items-end justify-between mb-8">
             <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-bold mb-4 opacity-100 md:opacity-0 md:animate-fade-in">
-                    <span className="w-2 h-2 rounded-full bg-red-500 md:animate-pulse" />
-                    <span>بث مباشر الآن</span>
-                </div>
-                <h2 className="text-3xl md:text-5xl font-black text-white mb-3 tracking-tight">
-                    قنوات <span className="text-transparent bg-clip-text bg-gradient-to-l from-alsaha-green to-white">التلفزيون</span>
+                <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight flex items-center gap-3">
+                    <span className="w-1.5 h-8 bg-alsaha-green rounded-full" />
+                    قنوات <span className="text-transparent bg-clip-text bg-gradient-to-l from-alsaha-green to-white">البث المباشر</span>
                 </h2>
             </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex gap-3">
-                <button onClick={scrollRight} className="p-4 rounded-2xl glass hover:bg-white/10 text-white transition-all hover:scale-105 active:scale-95 group border border-white/5">
-                    <ChevronRight size={24} className="group-hover:text-alsaha-green transition-colors" />
-                </button>
-                <button onClick={scrollLeft} className="p-4 rounded-2xl glass hover:bg-white/10 text-white transition-all hover:scale-105 active:scale-95 group border border-white/5">
-                    <ChevronLeft size={24} className="group-hover:text-alsaha-green transition-colors" />
-                </button>
-            </div>
+            {/* View All Link (Desktop) */}
+            <Link href="/channels" className="hidden md:flex items-center gap-2 text-sm font-bold text-white/50 hover:text-white transition-colors">
+                عرض الكل
+                <ChevronLeft size={16} />
+            </Link>
         </div>
 
-        {/* Carousel Container - Snap X for Mobile */}
-        <div 
-            ref={containerRef}
-            className="flex gap-6 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory -mx-5 px-5 md:mx-0 md:px-0"
-        >
-            {loading ? (
-                Array.from({ length: 5 }).map((_, idx) => (
-                    <div key={idx} className="min-w-[280px] md:min-w-[340px] snap-center">
-                        <div className="aspect-video rounded-xl bg-white/5 border border-white/5 p-6 flex flex-col justify-end relative overflow-hidden">
-                            <Skeleton className="w-16 h-3 rounded-md mb-2 bg-white/10 relative z-10" />
-                            <Skeleton className="w-32 h-6 rounded-md bg-white/10 relative z-10" />
+        {/* Carousel Container - The "Strip" */}
+        <div className="relative group/carousel">
+            
+            {/* Navigation Button: LEFT */}
+            <button 
+                onClick={scrollRight} // RTL: Right arrow moves content right (scrolls left visually?) Wait. scrollBy left positive moves right. In RTL, scrolling "right" means showing content hidden on the left? No.
+                // Standard: Click Right Arrow -> Scroll Content to Right (show items on right). Content moves Left. scrollBy left > 0.
+                // RTL: Content starts at Right. Click Left Arrow -> Scroll to Left (show items on left).
+                // Let's stick to logical directions. Arrow pointing LEFT should scroll so we see MORE LEFT content.
+                // In RTL, "Next" items are to the LEFT. So LEFT arrow is NEXT.
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-full bg-black/50 backdrop-blur-sm border-r border-white/5 items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hidden md:flex hover:bg-black/80 text-white cursor-pointer"
+            >
+                <ChevronLeft size={40} />
+            </button>
+
+            {/* Navigation Button: RIGHT (Previous in RTL) */}
+            <button 
+                onClick={scrollLeft}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-full bg-black/50 backdrop-blur-sm border-l border-white/5 items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hidden md:flex hover:bg-black/80 text-white cursor-pointer"
+            >
+                <ChevronRight size={40} />
+            </button>
+
+            {/* The Scrollable Strip */}
+            <div 
+                ref={containerRef}
+                className="flex gap-4 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory -mx-5 px-5 md:mx-0 md:px-0 scroll-smooth"
+            >
+                {loading ? (
+                    Array.from({ length: 6 }).map((_, idx) => (
+                        <div key={idx} className="min-w-[260px] md:min-w-[320px] snap-center">
+                            <div className="aspect-video rounded-xl bg-white/5 border border-white/5 p-6 flex flex-col justify-end relative overflow-hidden animate-pulse">
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 animate-[shimmer_2s_infinite]" />
+                            </div>
                         </div>
-                    </div>
-                ))
-            ) : (
-                CHANNELS.map((channel) => (
-                    <div 
-                        key={channel.id}
-                        className="min-w-[280px] md:min-w-[340px] snap-center flex-shrink-0"
-                    >
-                        <Link href={`/live?channel=${channel.id}`}>
-                            <div className="group relative aspect-video rounded-xl overflow-hidden bg-[#111] border border-white/10 cursor-pointer md:transition-all md:duration-500 md:hover:-translate-y-2 md:hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.6)] md:hover:border-alsaha-green/50">
-                                
-                                {/* Image Zoom Effect */}
-                                <div className="absolute inset-0 md:group-hover:scale-110 md:transition-transform md:duration-700">
+                    ))
+                ) : (
+                    CHANNELS.map((channel) => (
+                        <div 
+                            key={channel.id}
+                            className="min-w-[260px] md:min-w-[320px] snap-center flex-shrink-0 transition-transform duration-500 ease-out"
+                        >
+                            <Link href={`/live?channel=${channel.id}`} className="block h-full">
+                                <div className="group relative aspect-video rounded-xl overflow-hidden bg-[#0A0A0A] border border-white/10 md:hover:border-alsaha-green/50 md:transition-all md:duration-500">
+                                    
+                                    {/* Image */}
                                     <Image 
                                         src={channel.image} 
                                         alt={channel.name}
                                         fill
-                                        sizes="(max-width: 768px) 80vw, 340px"
-                                        className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                                        sizes="(max-width: 768px) 70vw, 320px"
+                                        className="object-cover transition-transform duration-700 md:group-hover:scale-105 opacity-80 group-hover:opacity-100"
                                     />
-                                </div>
 
-                                {/* Overlays */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90" />
-                                
-                                {/* Live Badge (Desktop Only) */}
-                                <div className="absolute top-4 right-4 hidden md:flex items-center gap-2 px-2 py-1 rounded bg-red-600/90 backdrop-blur text-white text-[10px] font-black tracking-widest uppercase shadow-lg">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                                    LIVE
-                                </div>
+                                    {/* Overlay Gradient */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 md:group-hover:opacity-60 transition-opacity" />
 
-                                {/* Content */}
-                                <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                                    <p className="text-alsaha-green text-xs font-bold mb-1 tracking-widest uppercase">{channel.category}</p>
-                                    <h3 className="text-2xl font-black text-white group-hover:text-alsaha-green transition-colors duration-300">
-                                        {channel.name}
-                                    </h3>
-                                </div>
-
-                                {/* Play Icon Overlay (Center) */}
-                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                                        <Play className="fill-white text-white ml-1" size={24} />
+                                    {/* Play Icon (Dynamic Fade) */}
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 md:group-hover:opacity-100 transition-all duration-500 scale-50 md:group-hover:scale-100">
+                                        <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                                            <Play className="fill-white text-white ml-1" size={24} />
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                ))
-            )}
-        </div>
 
-        {/* Mobile View All Button */}
-        <div className="flex justify-center md:hidden">
-            <Link href="/channels" className="w-full">
-                <Button variant="secondary" className="w-full py-4 bg-white/5 border border-white/10">
-                    عرض كل القنوات
-                </Button>
-            </Link>
+                                    {/* Text Info */}
+                                    <div className="absolute bottom-0 inset-x-0 p-5 translate-y-2 md:group-hover:translate-y-0 transition-transform duration-300">
+                                        <p className="text-[10px] font-bold text-alsaha-green mb-1 opacity-0 md:group-hover:opacity-100 transition-opacity uppercase tracking-wider">{channel.category}</p>
+                                        <h3 className="text-xl font-bold text-white leading-none">{channel.name}</h3>
+                                    </div>
+
+                                </div>
+                            </Link>
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
 
       </div>

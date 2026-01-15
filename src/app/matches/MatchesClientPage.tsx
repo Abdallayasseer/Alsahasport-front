@@ -66,7 +66,8 @@ export default function MatchesClientPage() {
 
   // Simulate Data Fetching
   useEffect(() => {
-    setIsLoading(true);
+    // Avoid setting loading to true here if we want to prevent flicker, 
+    // or wrap in a condition. For now, we will trust the initial state is true.
     const timer = setTimeout(() => {
         setActiveMatches(getMatchesForDate(selectedDate));
         setIsLoading(false);
@@ -190,7 +191,7 @@ export default function MatchesClientPage() {
                           <div className="w-1.5 h-6 bg-alsaha-green rounded-full shadow-[0_0_10px_#72BF44]" />
                           <h2 className="font-bold text-white text-lg">{leagueGroup.league}</h2>
                         </div>
-                        <div className="divide-y divide-white/5">
+                        <div className="flex flex-col gap-3 p-4">
                           {leagueGroup.matches.map((match: any, mIdx: number) => (
                             <MatchCard key={mIdx} match={match} />
                           ))}

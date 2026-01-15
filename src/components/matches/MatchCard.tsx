@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Clock, Trophy, Bell } from "lucide-react";
+import { Clock, Trophy, Bell, ChevronLeft } from "lucide-react";
 
 export interface MatchProps {
     id: number;
@@ -13,72 +13,87 @@ export interface MatchProps {
 }
 
 export default function MatchCard({ match }: { match: MatchProps }) {
-  return (
-    <div className="p-3 md:p-6 hover:bg-white/5 transition-colors flex items-center justify-between gap-2 md:gap-4 group cursor-pointer border-b border-white/5 last:border-0">
-        
-        {/* Status / Time (Right on RTL) */}
-        <div className="w-12 md:w-24 text-center shrink-0">
-            {match.status === 'LIVE' ? (
-                <div className="flex flex-col items-center gap-1">
-                    <span className="text-red-500 font-black text-[10px] md:text-xs md:animate-pulse">مباشر</span>
-                    <span className="text-alsaha-green text-[10px] font-bold">45&apos;</span>
-                </div>
-            ) : match.status === 'FINISHED' ? (
-                <div className="flex flex-col items-center gap-1 opacity-50">
-                    <span className="text-white font-bold text-xs md:text-sm">FT</span>
-                    <span className="text-text-secondary text-[10px]">{match.time}</span>
-                </div>
-            ) : (
-                <div className="flex flex-col items-center gap-1">
-                    <span className="text-white font-bold text-xs md:text-lg">{match.time}</span>
-                    <Clock size={12} className="text-text-secondary hidden md:block" />
-                </div>
-            )}
-        </div>
+    return (
+        <div className="group relative w-full p-4 rounded-xl border border-white/5 bg-[#0a0a0a] transition-all duration-300 md:hover:-translate-y-1 md:hover:border-[#72BF44] md:hover:shadow-[0_10px_30px_rgba(114,191,68,0.1)] active:scale-[0.98]">
+            {/* Background Hover Highlight */}
+            <div className="absolute inset-0 bg-white/0 md:group-hover:bg-white/5 transition-colors duration-300 rounded-xl" />
 
-        {/* Teams */}
-        <div className="flex-1 flex items-center justify-center gap-2 md:gap-12 min-w-0">
-            <div className="flex-1 text-left md:text-right font-bold text-white text-xs md:text-lg truncate pl-1">
-                {match.home}
-            </div>
-            
-            <div className="shrink-0 w-auto min-w-[60px] md:min-w-[100px] text-center relative z-10">
-                {match.status === 'LIVE' || match.status === 'FINISHED' ? (
-                    <span className={`
-                        px-2 md:px-4 py-1 rounded-lg font-mono font-bold tracking-widest text-sm md:text-3xl whitespace-nowrap block
-                        ${match.status === 'LIVE' ? 'bg-dark-base border border-alsaha-green/30 text-white shadow-[0_0_10px_rgba(114,191,68,0.2)]' : 'bg-white/5 text-white/50'}
-                    `} dir="ltr">
-                        {match.score}
-                    </span>
-                ) : (
-                    <span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white/5 flex items-center justify-center text-[10px] md:text-xs text-text-secondary font-bold mx-auto">VS</span>
-                )}
-            </div>
+            <div className="relative z-10 flex items-center justify-between gap-4">
+                
+                {/* 1. Time / Status (Left Side) */}
+                <div className="w-20 shrink-0 md:w-24 text-center">
+                    {match.status === 'LIVE' ? (
+                        <div className="flex flex-col items-center gap-1.5">
+                            <span className="inline-flex items-center gap-1.5 bg-red-600/10 border border-red-600/20 text-red-500 text-[10px] font-black px-2 py-0.5 rounded-full md:animate-pulse">
+                                <span className="w-1.5 h-1.5 bg-red-500 rounded-full" />
+                                LIVE
+                            </span>
+                            <span className="text-alsaha-green text-[10px] font-mono tracking-widest">45'</span>
+                        </div>
+                    ) : match.status === 'FINISHED' ? (
+                        <div className="flex flex-col items-center gap-1 opacity-50">
+                            <span className="text-white/60 font-bold text-xs bg-white/5 px-2 py-0.5 rounded">FT</span>
+                        </div>
+                    ) : (
+                        <div className="flex flex-col items-center gap-1">
+                            <span className="text-white/80 font-mono font-medium text-sm md:text-base tracking-wider group-hover:text-white transition-colors">{match.time}</span>
+                            <div className="text-[10px] text-text-secondary bg-white/5 px-2 rounded hidden md:block group-hover:bg-white/10 transition-colors">
+                                الليلة
+                            </div>
+                        </div>
+                    )}
+                </div>
 
-            <div className="flex-1 text-right md:text-left font-bold text-white text-xs md:text-lg truncate pr-1">
-                {match.away}
+                {/* 2. Teams & VS (Center) */}
+                <div className="flex-1 flex items-center justify-center gap-3 md:gap-8 min-w-0">
+                    
+                    {/* Home Team */}
+                    <div className="flex-1 flex items-center justify-end gap-3 text-right">
+                        <span className="font-bold text-white text-sm md:text-base truncate md:group-hover:text-alsaha-green transition-colors">{match.home}</span>
+                         {/* Circle Logo Placeholder */}
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 p-1.5 flex items-center justify-center border border-white/5 md:group-hover:border-alsaha-green/50 md:group-hover:bg-alsaha-green/10 transition-all duration-300">
+                             <div className="w-full h-full rounded-full bg-white/10" /> 
+                        </div>
+                    </div>
+
+                    {/* VS / Score */}
+                    <div className="shrink-0">
+                        {match.status !== 'UPCOMING' ? (
+                            <div className="px-3 py-1 bg-black/40 border border-white/10 rounded-lg backdrop-blur-md">
+                                <span className="text-lg md:text-2xl font-mono font-black text-white tracking-widest leading-none drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" dir="ltr">
+                                    {match.score}
+                                </span>
+                            </div>
+                        ) : (
+                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/5 md:group-hover:border-[#72BF44]/30 md:group-hover:shadow-[0_0_15px_rgba(114,191,68,0.2)] transition-all duration-300">
+                                <span className="text-[10px] font-black text-white/30 md:group-hover:text-[#72BF44] transition-colors">VS</span>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Away Team */}
+                    <div className="flex-1 flex items-center justify-start gap-3 text-left">
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 p-1.5 flex items-center justify-center border border-white/5 md:group-hover:border-alsaha-green/50 md:group-hover:bg-alsaha-green/10 transition-all duration-300">
+                             <div className="w-full h-full rounded-full bg-white/10" /> 
+                        </div>
+                        <span className="font-bold text-white text-sm md:text-base truncate md:group-hover:text-alsaha-green transition-colors">{match.away}</span>
+                    </div>
+                </div>
+
+                {/* 3. Action (Right Side) */}
+                <div className="w-10 shrink-0 flex justify-end">
+                     {match.status === 'LIVE' ? (
+                        <Link href="/live" className="w-8 h-8 rounded-full bg-alsaha-green/20 flex items-center justify-center text-alsaha-green hover:bg-alsaha-green hover:text-black transition-all hover:scale-110 shadow-[0_0_10px_rgba(114,191,68,0.2)]">
+                            <Trophy size={14} />
+                        </Link>
+                     ) : (
+                        <button className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 md:group-hover:border-alsaha-green/50 md:group-hover:text-alsaha-green transition-all">
+                            <Bell size={14} />
+                        </button>
+                     )}
+                </div>
+
             </div>
         </div>
-
-        {/* Actions */}
-        <div className="w-8 md:w-24 shrink-0 flex justify-end">
-            {match.status === 'LIVE' ? (
-                <Link href="/live">
-                    <button className="flex items-center gap-1 px-2 md:px-3 py-1 md:py-1.5 bg-alsaha-green/10 text-alsaha-green hover:bg-alsaha-green hover:text-black rounded-lg text-[10px] md:text-xs font-bold transition-all border border-alsaha-green/20 group-hover:scale-105">
-                        <Trophy size={12} className="md:w-[14px] md:h-[14px]" />
-                        <span className="hidden md:inline">مشاهدة</span>
-                    </button>
-                </Link>
-            ) : match.status === 'FINISHED' ? (
-                 <button className="p-2 text-white/20 cursor-default hidden md:block">
-                    <Trophy size={14} />
-                 </button>
-            ) : (
-                <button className="w-7 h-7 md:w-8 md:h-8 rounded-full border border-white/10 flex items-center justify-center text-text-secondary hover:text-alsaha-green hover:border-alsaha-green transition-all hover:scale-110 active:scale-95">
-                    <Bell size={12} className="md:w-[14px] md:h-[14px]" />
-                </button>
-            )}
-        </div>
-    </div>
-  );
+    );
 }

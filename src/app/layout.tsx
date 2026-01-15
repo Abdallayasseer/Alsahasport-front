@@ -55,10 +55,9 @@ export const metadata: Metadata = {
 };
 
 import Navbar from "@/components/layout/Navbar";
-
-import MobileTopBar from "@/components/layout/MobileTopBar";
-import MobileBottomNav from "@/components/layout/MobileBottomNav";
+import MobileNavOverlay from "@/components/layout/MobileNavOverlay";
 import MobileAnimationProvider from "@/components/providers/MobileAnimationProvider";
+import StageLights from "@/components/layout/StageLights";
 
 export default function RootLayout({
   children,
@@ -68,23 +67,21 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body
-        className={`${cairo.variable} antialiased min-h-screen pb-20 md:pb-0 relative overflow-x-hidden`}
+        className={`${cairo.variable} antialiased min-h-screen pb-24 md:pb-0 relative overflow-x-hidden`}
       >
         <MobileAnimationProvider>
           <NoiseOverlay />
+          <StageLights />
           <AuroraBackground />
           
-          {/* Mobile Top Bar */}
-          <MobileTopBar />
+          {/* Mobile Overlay (Header + Dock) */}
+          <MobileNavOverlay />
           
           <Navbar />
           
-          <main className="flex-grow mb-20 md:mb-0">
+          <main className="flex-grow pt-16 md:pt-0 mb-20 md:mb-0">
             {children}
           </main>
-          
-          {/* Mobile Bottom Navigation (Replaces old BottomNav & CTA) */}
-          <MobileBottomNav />
 
         </MobileAnimationProvider>
       </body>
